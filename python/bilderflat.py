@@ -1,6 +1,14 @@
+# Behövs rutin som rensar bort filer i Home och small utgående från bilder.json vid behov.
+# MD5 behövs inte på webben, används bara för att hålla reda på listan med bredder och höjder.
+# MD5 är bättre än löpnummer. T ex om man bytt namn på en bild, kan man hitta bilden mha MD5.
+# Användaren initierar alla ändringar via Originalkatalogen. Pythonprogrammet ändrar EJ i Originalkatalogen.
+# Dessa uppdaterar bilder.json, som kan minska eller öka i storlek.
+# Bilder hamnar alltid i Home och small. Dessa kataloger växer hela tiden. Parametrar sparas i MD5.json
+# Update = YES innebär att Home, small, bilder.json, MD5.json kan uppdateras.
+
 import time
 import json
-from os import scandir, mkdir # remove, rmdir
+from os import scandir, mkdir
 from os.path import exists, getsize
 from PIL import Image
 import hashlib
@@ -8,14 +16,15 @@ import shutil
 
 WIDTH = 475
 
-ROOT = "C:\\github\\2022-014-Bildbanken2\\"
-Original = ROOT + "public\\Original"
-Home = ROOT + "public\\Home"
-small = ROOT + "public\\small"
-JSON = ROOT + "public\\json\\"
+#ROOT = "C:\\github\\2022-014-Bildbanken2\\"
+ROOT = "D:\\"
+Original = ROOT + "Original"   # cirka 2.000.000 bytes per bild (Readonly)
+Home = ROOT + "public\\Home"   # cirka 2.000.000 bytes per bild
+small = ROOT + "public\\small" # cirka 	  25.000 bytes per bild
+JSON = ROOT + "public\\json\\" # cirka       120 bytes per bild (bilder.json)
+MD5 = ROOT + 'MD5.json'        # cirka        65 bytes per bild
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
-
 def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
 
 def dumpjson(data,f):
@@ -23,7 +32,6 @@ def dumpjson(data,f):
 	s = s.replace("],","],\n") # Varje key (katalog,fil) på egen rad.
 	s = s.replace(":{",":\n{")
 	s = s.replace(']},"',']},\n"')
-	# frekvens(s)
 	f.write(s)
 
 def loadJSON(path):
@@ -56,7 +64,7 @@ def makeSmall(Original,Home,small,name):
 
 	filename = "\\" + md5hash + ".jpg"
 	if md5hash in md5Register and exists(Home + filename) and exists(small + filename):
-		lst = md5Register[md5hash]
+		lst = md5Register[md5hash] + [md5hash]
 		patch(cache, name, lst)
 		return lst
 	else:
@@ -69,33 +77,33 @@ def makeSmall(Original,Home,small,name):
 
 	smallImg = bigImg.resize((WIDTH, round(WIDTH*bigImg.height/bigImg.width)))
 	smallImg.save(small + "\\" + md5hash + '.jpg')
-	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height, md5hash]
+	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height]
 	md5Register[md5hash] = lst
-	patch(cache, name, lst)
+	patch(cache, name, lst + [md5hash])
 	return lst
 
 def expand(a,d):
-	antal = {'files':0, 'folders':0}
+	antal = {'images':0, 'folders':0}
 	for key in a.keys():
 		if key not in d:
 			if is_jpg(key):
-				antal['files'] += 1
+				antal['images'] += 1
 				d[key] = makeSmall(Original,Home,small,key)
 			else:
-				print('D', end="")
+				print(antal['folders']%10, end="")
 				antal['folders'] += 1
 	print()
 	return antal
 
 def shrink(d,a):
-	antal = {'files':0, 'folders':0, 'keys':0}
+	antal = {'images':0, 'folders':0, 'keys':0}
 	keys = list(d.keys())
 	keys = reversed(keys)
 	for key in keys:
 		if key not in a: # Original
 			patch(cache, key, None)
 			if is_jpg(key):
-				antal['files'] += 1
+				antal['images'] += 1
 			else:
 				antal['folders'] += 1
 	return antal
@@ -127,24 +135,24 @@ def flatten(node, res={}, path=''):
 
 def compare(a,b,message):
 	res = {}
-	cfiles = 0
+	cimages = 0
 	cfolders = 0
 	for path in a:
 		if path not in b:
 			if is_jpg(path):
-				if cfiles == 0: res[path] = 0
-				cfiles += 1
+				if cimages == 0: res[path] = 0
+				cimages += 1
 			else:
 				res[path] = 0
 				cfolders += 1
-	if cfolders > 0 or cfiles > 0:
-		print(message, cfolders, 'folders +', cfiles, 'files')
+	if cfolders > 0 or cimages > 0:
+		print(message, cimages, 'images +', cfolders, 'folders')
 	return res
 
-def compare2(message,x,y):
+def compare2(x,y):
 	res = {}
-	res['missing'] = compare(x, y, 'Original vs ' + message + ': missing')
-	res['surplus'] = compare(y, x, 'Original vs ' + message + ': surplus')
+	res['missing'] = compare(x, y, 'Missing:')
+	res['surplus'] = compare(y, x, 'Surplus:')
 	return res
 
 def countFolders(arr):
@@ -178,13 +186,15 @@ def convert(hash):
 
 ######################
 
-md5Register = loadJSON(JSON + 'MD5.json') # givet md5key får man listan med sex element
+start = time.time()
+
+md5Register = loadJSON(MD5) # givet md5key får man listan med sex element
 cache = loadJSON(JSON + 'bilder.json')
 
-a = flat(Original, {}) # Readonly!
-b = flat(Home)   # Används bara för räkning
-c = flat(small)  # Används bara för räkning
-d = flatten(cache, {})
+a = flat(Original, {}) # Readonly!           Skickas INTE till GCS
+b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
+c = flat(small)  # Används bara för räkning. Skickas dock till GCS
+d = flatten(cache, {}) #                     Skickas till GCS
 
 print()
 ca = countFolders(a)
@@ -192,19 +202,20 @@ cb = countFolders(b)
 cc = countFolders(c)
 cd = countFolders(d)
 
-print('Original:', ca, 'folders +', len(a) - ca,'files')
-print('Home:    ', cb, 'folders +', len(b) - cb,'files')
-print('Small:   ', cc, 'folders +', len(c) - cc,'files')
-print('Cache:   ', cd, 'folders +', len(d) - cd,'files')
+print('Original:', len(a) - ca, 'images +', ca, 'folders')
+print('Home:    ', len(b),      'images')
+print('Small:   ', len(c),      'images')
+print('Cache:   ', len(d) - cd, 'images +', cd, 'folders', )
 
 print()
-resCache = compare2('Cache',a,d)
+resCache = compare2(a,d)
 
 print()
-for key in resCache['missing'].keys(): print('Cache missing:', key)
+for key in resCache['missing'].keys(): print('Missing:', key)
 print()
-for key in resCache['surplus'].keys(): print('Cache surplus:', key)
+for key in resCache['surplus'].keys(): print('Surplus:', key)
 
+print('Readonly:', round(time.time()-start,3),'seconds')
 print()
 update = input('Update? (NO/Yes) ').upper()
 update = update.startswith('Y')
@@ -215,14 +226,14 @@ if update:
 	print()
 	antal = expand(a,d)
 	print()
-	if antal['files'] > 0: print('Cache: Added', antal['files'], 'files')
+	if antal['images'] > 0: print('Added:', antal['images'], 'images')
 
 	antal = shrink(d,a)
-	if antal['files'] > 0: print('Cache: Deleted', antal['files'], 'files')
+	if antal['images'] > 0: print('Deleted:', antal['images'], 'images')
 
-	if antal['keys'] > 0: print('Cache: Deleted', antal['keys'], 'keys')
+	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
 
 	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
-	with open(JSON + 'MD5.json', 'w', encoding="utf8") as f: dumpjson(md5Register,f)
+	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)
 	print()
 	print(round(time.time() - start,3),'seconds')
