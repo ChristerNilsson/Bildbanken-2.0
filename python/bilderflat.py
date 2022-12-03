@@ -17,7 +17,8 @@ import shutil
 QUALITY = 95
 WIDTH = 475
 
-ROOT = "C:\\github\\2022-014-Bildbanken2\\"
+# ROOT = "C:\\github\\2022-014-Bildbanken2\\"
+ROOT = "C:\\github\\2022-014-Bildbanken2\\experiment\\"
 #ROOT = "D:\\"
 Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
 Home     = ROOT + "public\\Home"   # cirka 2.000.000 bytes per bild
@@ -75,7 +76,6 @@ def makeSmall(Original,Home,small,name):
 	if bigImg.width <= 2048:
 		shutil.copyfile(Original + name, Home + "\\" + md5hash + '.jpg')
 	else:
-		#print('BIG!')
 		bigImg = bigImg.resize((2048, round(2048 * bigImg.height / bigImg.width)))
 		bigImg.save(Home + "\\" + md5hash + '.jpg',quality=QUALITY)
 
@@ -87,30 +87,18 @@ def makeSmall(Original,Home,small,name):
 	return lst
 
 def expand(a,d):
-	alfa = ' 123456789abcdefghijklmnopqrstuvwxyzaABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	antal = {'images':0, 'folders':0}
-	i=0
-	slow = time.time()
-	start = time.time()
+	i = 0
 	for key in a.keys():
 		if key not in d:
 			if is_jpg(key):
-				d[key] = makeSmall(Original,Home,small,key)
+				start = time.perf_counter()
+				d[key] = makeSmall(Original, Home, small, key)
+				print(f'{i:6.0f} {1000 * (time.perf_counter() - start):6.0f}', key)
+				i += 1
 			else:
-				#print(antal['folders']%10, end="")
 				antal['folders'] += 1
-		if i % 200 == 0: print(f'{i:6.0f}', '', end="")
-		delay = round(1000*(time.time() - start))
-		start = time.time()
-		if delay >= len(alfa):
-			char = '_'
-		else:
-			char = alfa[delay]
-		print(char, end="")
-		i += 1
-		if i % 200 == 0:
-			# spara .json
-			print('',round(time.time() - slow,3))
+
 	print()
 	antal['images'] = i
 	return antal
