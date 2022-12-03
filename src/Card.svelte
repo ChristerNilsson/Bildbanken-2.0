@@ -46,7 +46,7 @@
 		return path.replaceAll('_', ' ')
 	}
 
-	function getPath(path,dir) { return path.replace("Home",dir) }
+	// function getPath(path,dir) { return path.replace("Home",dir) }
 
 </script>
 
@@ -54,7 +54,7 @@
 	<img
 		margin:0px
 		padding:0px
-		src = {getPath("Home\\" + card[13] + ".jpg", "small")}
+		src = {"small\\" + card[13] + ".jpg"}
 		width = {WIDTH}px
 		alt = ""
 		on:click = {() => {

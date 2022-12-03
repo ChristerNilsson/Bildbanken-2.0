@@ -14,15 +14,16 @@ from PIL import Image
 import hashlib
 import shutil
 
+QUALITY = 95
 WIDTH = 475
 
-#ROOT = "C:\\github\\2022-014-Bildbanken2\\"
-ROOT = "D:\\"
-Original = ROOT + "Original"   # cirka 2.000.000 bytes per bild (Readonly)
-Home = ROOT + "public\\Home"   # cirka 2.000.000 bytes per bild
-small = ROOT + "public\\small" # cirka 	  25.000 bytes per bild
-JSON = ROOT + "public\\json\\" # cirka       120 bytes per bild (bilder.json)
-MD5 = ROOT + 'MD5.json'        # cirka        65 bytes per bild
+ROOT = "C:\\github\\2022-014-Bildbanken2\\"
+#ROOT = "D:\\"
+Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
+Home     = ROOT + "public\\Home"   # cirka 2.000.000 bytes per bild
+small    = ROOT + "public\\small"  # cirka 	  25.000 bytes per bild
+JSON     = ROOT + "public\\json\\" # cirka       120 bytes per bild (bilder.json)
+MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
 def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
@@ -67,32 +68,51 @@ def makeSmall(Original,Home,small,name):
 		lst = md5Register[md5hash] + [md5hash]
 		patch(cache, name, lst)
 		return lst
-	else:
-		print('.', end="")
 
 	bigImg = Image.open(Original+name)
 	bigSize = getsize(Original+name)
 
-	shutil.copyfile(Original + name, Home + "\\" + md5hash + '.jpg')
+	if bigImg.width <= 2048:
+		shutil.copyfile(Original + name, Home + "\\" + md5hash + '.jpg')
+	else:
+		#print('BIG!')
+		bigImg = bigImg.resize((2048, round(2048 * bigImg.height / bigImg.width)))
+		bigImg.save(Home + "\\" + md5hash + '.jpg',quality=QUALITY)
 
 	smallImg = bigImg.resize((WIDTH, round(WIDTH*bigImg.height/bigImg.width)))
-	smallImg.save(small + "\\" + md5hash + '.jpg')
+	smallImg.save(small + "\\" + md5hash + '.jpg',quality=QUALITY)
 	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height]
 	md5Register[md5hash] = lst
 	patch(cache, name, lst + [md5hash])
 	return lst
 
 def expand(a,d):
+	alfa = ' 123456789abcdefghijklmnopqrstuvwxyzaABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	antal = {'images':0, 'folders':0}
+	i=0
+	slow = time.time()
+	start = time.time()
 	for key in a.keys():
 		if key not in d:
 			if is_jpg(key):
-				antal['images'] += 1
 				d[key] = makeSmall(Original,Home,small,key)
 			else:
-				print(antal['folders']%10, end="")
+				#print(antal['folders']%10, end="")
 				antal['folders'] += 1
+		if i % 200 == 0: print(f'{i:6.0f}', '', end="")
+		delay = round(1000*(time.time() - start))
+		start = time.time()
+		if delay >= len(alfa):
+			char = '_'
+		else:
+			char = alfa[delay]
+		print(char, end="")
+		i += 1
+		if i % 200 == 0:
+			# spara .json
+			print('',round(time.time() - slow,3))
 	print()
+	antal['images'] = i
 	return antal
 
 def shrink(d,a):
@@ -185,6 +205,11 @@ def convert(hash):
 	return arr
 
 ######################
+
+# for i in range(100):
+# 	time.sleep(0.1)
+# 	print ("\rComplete: ", i, "%", end="")
+# print ("\rComplete: 100%")
 
 start = time.time()
 
