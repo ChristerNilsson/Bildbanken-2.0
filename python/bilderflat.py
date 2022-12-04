@@ -17,8 +17,8 @@ import shutil
 QUALITY = 95
 WIDTH = 475
 
-# ROOT = "C:\\github\\2022-014-Bildbanken2\\"
-ROOT = "C:\\github\\2022-014-Bildbanken2\\experiment\\"
+ROOT = "C:\\github\\2022-014-Bildbanken2\\"
+#ROOT = "C:\\github\\2022-014-Bildbanken2\\experiment\\"
 #ROOT = "D:\\"
 Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
 Home     = ROOT + "public\\Home"   # cirka 2.000.000 bytes per bild
@@ -171,7 +171,7 @@ def countFolders(arr):
 
 hash = {}
 letters = list("+!§()0123456789_,.-¤")
-stoppord = 'aasen adepterr adersson jpg lowres och på adrian allan alsamarrai amalie amen analyse anmästearen anzambi autografskrvning ble blixte calm campo cat ceremonie coh dah dax deltagran do during ea edvin eisler ellen enricsson entre exteriöre frisys fö föräldrarl fötäldrar galleriet ggr gm hampus hanna hasselbacken his hurry huvudnonader idar ingertz interiiör interiö interiöri intervjuvar intrvjuas istället jadoube joakim jonathan jouni jubileuml junioer juniotturneringen jöberg kafeet kafffet kankse khalili klari koentatorsrummet kollar kollekt kommentatorr kommentatorrummet kommentatorsrummeti kommentatro kommenttorsrummet kommpisar kompisarpg lagdledare lagledate larsson lennart lexander linnea linus livesändningl livesåndning lokander lottnig lågstadet lögdahl mallanstadiet malmö mediaansvari miniior morellr mourad muntean mästartklassen näringsllivet oc ocb ocg ochh ocj oh olk ollefsén ostafiev ove pannka pch pettersson prisutdelnineng prisutdelningl prisutdelningr prize producenr profiiler publiparti qi radd raden resultatapportering resultatrapporteing reultatrapportering reultatredovisning rmorgondagens rondpausl rånby santiago sara schackinstruktio schackyouga seo severingen sgnerer simultanspell sk slutforsering snabbschacksdm solemn solomia some spealre spelaregistrering speling spellokaleni spleare sponsorerrond steinitz stromästarna stsningsgruppen ter the thordur tran trino triumvirat truskavetska träder tuomainen utanföt vallatorpsskolan vatn vede ver veteranallmän vilolaäge waeli wedberg wernberg with wweb xunming xxxxx åskådarei åskådarer åsådare af amassadör emanuel exteriörr klaas klas kolobok line livesädningen lottnib ooch prisutdelnigen pågåender shah sllutspel stasik to träbingsparti årfest års årsjubileum rondl tränongsparti vt it problemlösnings ron xuanming la mter and bokförsälning rrond highres cafeét veterner avlutningen of ans gr an'.split(' ')
+# stoppord = ''.split(' ')
 
 def flatWords(node):
 	for key in node:
@@ -187,8 +187,7 @@ def flatWords(node):
 def convert(hash):
 	arr = []
 	for key in hash.keys():
-		if key not in stoppord:
-			arr.append([hash[key],key])
+		arr.append([hash[key],key])
 	arr = sorted(arr)
 	return arr
 
@@ -216,9 +215,10 @@ cc = countFolders(c)
 cd = countFolders(d)
 
 print('Original:', len(a) - ca, 'images +', ca, 'folders')
+print('Cache:   ', len(d) - cd, 'images +', cd, 'folders', )
+print()
 print('Home:    ', len(b),      'images')
 print('Small:   ', len(c),      'images')
-print('Cache:   ', len(d) - cd, 'images +', cd, 'folders', )
 
 print()
 resCache = compare2(a,d)
