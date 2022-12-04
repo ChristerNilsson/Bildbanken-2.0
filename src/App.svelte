@@ -190,7 +190,7 @@
 	}
 
 	function visaBig(bs, bw, bh, md5, path, filename) {
-		console.log('visaBig',md5)
+		// console.log('visaBig',md5)
 		document.body.style = "overflow:hidden"
 
 		big.exifState = 0
@@ -213,13 +213,13 @@
 	}
 
 	function push(key) {
-		console.log('push',key)
-		if (is_jpg(key)) {
+		// console.log('push',key)
+		if (!is_jpg(key)) {
 			// const t5 = _.last(path)[key]
 			// console.log('t5',t5)
 			// // visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
 			// visaBig(t5[2],t5[3],t5[4],t5[5])
-		} else {
+		// } else {
 			path.push(_.last(path)[key])
 			stack.push(key)
 			path = path
@@ -352,13 +352,20 @@
 	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
-		// if (true) { // !retro
-			// if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
-			// const p = s.search(/\d\d\d\d-\d\d-\d\d/)
-			// if (p>=0) s = s.slice(0,p)
-			// s = s.replace('Pristagare ','')
-			// s = s.replace(/[kK]lass [A-Z]+/,'')
-		// }
+		path = path.slice(0,i)
+
+		if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
+		if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
+
+		const p = s.search(/\d{4}-\d{2}-\d{2}/)
+		if (p >= 0) {
+			const datum = s.slice(p,p+10)
+			if (path.includes(datum)) s = s.slice(0,p-1)
+		}
+		console.log("")
+		s = s.replace('Pristagare ','')
+		s = s.replace(/[kK]lass [A-Z]+/,'')
+
 		s = s.replace('.jpg','')
 		s = s.replace('.JPG','')
 		s = s.replace(/_M\d+/,'')
