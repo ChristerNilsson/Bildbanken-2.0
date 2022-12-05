@@ -1,5 +1,7 @@
 <script>
 
+	console.log('Hello?')
+
 	import _ from "lodash"
 	import { tick } from 'svelte'
 	import Card from "./Card.svelte"
