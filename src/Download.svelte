@@ -27,7 +27,8 @@
 		for (const i in _.range(Math.min(MAX_DOWNLOAD,selected.length))) {
 			if (selected[i]==true) {
 				const path = images[i][2] + "\\" + images[i][12]
-				fileArr.push({name:path, url:path})
+				// console.log("Home\\" + images[i][13] + ".jpg")
+				fileArr.push({name:path, url:"Home\\" + images[i][13] + ".jpg"})
 			}
 		}
 		n = fileArr.length

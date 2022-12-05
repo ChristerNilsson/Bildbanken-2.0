@@ -362,7 +362,6 @@
 			const datum = s.slice(p,p+10)
 			if (path.includes(datum)) s = s.slice(0,p-1)
 		}
-		console.log("")
 		s = s.replace('Pristagare ','')
 		s = s.replace(/[kK]lass [A-Z]+/,'')
 

@@ -8,11 +8,12 @@
 
 import time
 import json
-from os import scandir, mkdir
+from os import scandir, mkdir,rename
 from os.path import exists, getsize
 from PIL import Image
 import hashlib
 import shutil
+import re
 
 QUALITY = 95
 WIDTH = 475
@@ -33,7 +34,7 @@ def dumpjson(data,f):
 	s = json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 	s = s.replace("],","],\n") # Varje key (katalog,fil) på egen rad.
 	s = s.replace(":{",":\n{")
-	s = s.replace(']},"',']},\n"')
+	s = s.replace('},"','},\n"')
 	f.write(s)
 
 def loadJSON(path):
@@ -116,10 +117,44 @@ def shrink(d,a):
 				antal['folders'] += 1
 	return antal
 
+def fixMisspellings(root, path, namn,doit=False):
+
+	namn1 = re.sub(".jpg", "", namn)
+	namn1 = re.sub(".JPG", "", namn1)
+	namn0 = namn1
+	namn1 = re.sub("___", "__", namn1)
+	namn1 = re.sub("__", "_", namn1)
+	namn1 = re.sub("_ ","_",namn1)
+	namn1 = re.sub(" _","_",namn1)
+	namn1 = re.sub("  "," ",namn1)
+	namn1 = re.sub("_Von_","_von_",namn1)
+
+	if namn0 == namn1: return namn
+
+	path1 = root + path + "\\"
+	counter = ""
+	if exists(path1 + namn1 + '.jpg'):
+		counter = 1
+		while exists(path1 + namn1 + "-" + str(counter) + '.jpg'):
+			counter += 1
+	print("")
+	print(path1 + namn)
+	if counter == "":
+		print(path1 + namn1 + '.jpg')
+		if doit: rename(path1 + namn, path1 + namn1 + '.jpg')
+	else:
+		print(path1 + namn1 + "-" + str(counter) + '.jpg')
+		if doit: rename(path1 + namn, path1 + namn1 + "-" + str(counter) + '.jpg')
+	return namn1 + '.jpg'
+
 def flat(root, res={}, path=""):
 	ensurePath(root, path)
 	for name in [f for f in scandir(root + "\\" + path)]:
 		namn = name.name
+
+		# if not name.is_dir():
+		# 	namn = fixMisspellings(root,path,namn,False)
+
 		path1 = path + "\\" + namn
 		if name.is_dir():
 			res[path1] = ""
