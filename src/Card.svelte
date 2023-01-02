@@ -10,23 +10,23 @@
 
 	$: filename = card[2] + "\\" + card[12]
 
-	$: MS = getNumbers(filename,'M')
-	$: TS = getNumbers(filename,'T')
-	$: VS = getNumbers(filename,'V')
 	$: FS = getNumbers(filename,'F')
 	$: LS = getNumbers(filename,'L')
 	$: IS = getNumbers(filename,'I')
 	$: RS = getNumbers(filename,'R')
+	$: MS = getNumbers(filename,'M')
+	$: TS = getNumbers(filename,'T')
+	$: VS = getNumbers(filename,'V')
 
 	function getNumbers(path,letter) { // Används för filnummer = MTV FLIR member tournament video file (deprecated) link invite result
 		let matches
-		if (letter=='M') matches = path.matchAll(/[M]\d+/g)
-		if (letter=='T') matches = path.matchAll(/[T]\d+/g)
-		if (letter=='V') matches = path.matchAll(/[V]\d+/g)
 		if (letter=='F') matches = path.matchAll(/[F]\d+/g) // deprecated
 		if (letter=='L') matches = path.matchAll(/[L]\d+/g)
 		if (letter=='I') matches = path.matchAll(/[I]\d+/g)
 		if (letter=='R') matches = path.matchAll(/[R]\d+/g)
+		if (letter=='M') matches = path.matchAll(/[M]\d+/g)
+		if (letter=='T') matches = path.matchAll(/[T]\d+/g)
+		if (letter=='V') matches = path.matchAll(/[V]\d+/g)
 		if (! matches) return []
 		matches = [...matches]
 		return _.map(matches, (match) => match[0].slice(1)) // skippa bokstaven
@@ -36,13 +36,13 @@
 		path = path.split('\\')
 		path = path.slice(2,path.length-1)
 		path = path.join(" • ")
-		path = path.replaceAll(/_M\d+/g,'')
-		path = path.replaceAll(/_T\d+/g,'')
-		path = path.replaceAll(/_V\d+/g,'')
 		path = path.replaceAll(/_F\d+/g,'') // deprecated
 		path = path.replaceAll(/_L\d+/g,'')
 		path = path.replaceAll(/_I\d+/g,'')
 		path = path.replaceAll(/_R\d+/g,'')
+		path = path.replaceAll(/_M\d+/g,'')
+		path = path.replaceAll(/_T\d+/g,'')
+		path = path.replaceAll(/_V\d+/g,'')
 		return path.replaceAll('_', ' ')
 	}
 
@@ -79,15 +79,6 @@
 
 			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> 
 
-			{#each MS as M}
-				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>
-			{/each}
-			{#each TS as T}
-				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>
-			{/each}
-			{#each VS as V}
-				&nbsp;&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
-			{/each}
 			{#each FS as F}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
 			{/each}
@@ -99,6 +90,15 @@
 			{/each}
 			{#each RS as R}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][R]}">Result</a>
+			{/each}
+			{#each MS as M}
+				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>
+			{/each}
+			{#each TS as T}
+				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>
+			{/each}
+			{#each VS as V}
+				&nbsp;&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
 			{/each}
 
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>

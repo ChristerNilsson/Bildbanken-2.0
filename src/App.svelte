@@ -38,7 +38,7 @@
 
 	const range = _.range
 
-	const MAX_DOWNLOAD = 100 // Lars OH vill ha 500.
+	const MAX_DOWNLOAD = 500
 
   let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
 	let y = 0 // Anger var scrollern befinner sig just nu.
@@ -100,12 +100,14 @@
 	}
 
 	function consumeFolder(folder) {
+		console.log(folder)
 		sokruta = ""
 		stack = folder.split("\\")
 		path.length = 0 // clear
 		path.push(Home)
 		let pointer = Home
 		for (const key of stack.slice(1)) {
+			console.log(key)
 			pointer = pointer[key]
 			path.push(pointer)
 		}
