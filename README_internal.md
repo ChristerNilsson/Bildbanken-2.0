@@ -442,8 +442,6 @@ Small missing: \2022\2022-07-02_Schack-SM Uppsala Stad\Diverse\Vy-Schack-SM_anal
 
 Update Small and Cache? (NO/Yes) Y
 
-DD...................................................D.......................................................D....................................DD..D.......D.........D.........DD.......D........D........D...........DD....D.D.....D..D......D....D.....D.....DD.........D.........D...........................D...........D.....................................D...................................................D..................................D.......................D...........................................................................D..........................D..............D...............................................DD..D.....D.....D...D....D......D...D.D...DD..D....D..D.D...D..
-
 Small: Added 53 folders and 644 files
 Small: Deleted 53 folders and 644 files
 Cache: Pruned 53 folders and 644 files
@@ -529,6 +527,22 @@ Works not:  http://storage.googleapis.com/bildbanken2/index.html/
 This works: http://bildbanken.net/index.html
 Works not:  http://bildbanken.net/index.html/
 
+https://serverfault.com/questions/914048/htaccess-allow-viewing-of-index-html-via-www-example-com-foo-instead-of-www-ex
+
+.htaccess
+
+```
+<Files "">
+Order allow,deny
+Allow from all
+</Files>
+
+<Files "index.html">
+Order allow,deny
+Allow from all
+</Files>
+```
+
 The last slash is NOT added by me.
 
 bildbanken.net transforms into 
@@ -537,3 +551,61 @@ It seems the default concatenation of "index.html" does not work.
 I added index.html using "Edit website configuration" using console.cloud.google.
 ```
 
+### attr-hantering av Inbjudan och Resultat.
+
+Idag konkateneras info till katalognamnen. T ex _T10234, _I10027 och _R10068 vilket gör att man hittar resultatsidan  
+eller inbjudan. Avvikande länkar hanteras med file_index.json. Detta pga av att länkar inte kan innehålla länkar.  
+Detta kan ersättas med ett förenklat förfarande. I varje katalog kan en fil finnas som har all info som behövs.  
+Dessutom slipper man redigera katalognamn, vilket innebär att de blir stabilare över tid.  
+T ex 
+```
+Rilton:
+	attr.yaml:
+		Inbjudan: https://www.rilton.se/images/pdf/Inbjudan_Rilton_Cup_2022_2023.pdf
+	Cup:
+		attr.yaml:
+			Resultat: http://chess-results.com/tnr661619.aspx?lan=1&art=4
+		*.jpg
+	Elo:
+		attr.yaml:
+			Resultat: http://chess-results.com/tnr661620.aspx?lan=1&art=4
+		*.jpg
+```
+
+Vill man även dekorera filer i attr.json, kan man göra det också:
+```
+Rilton:
+	Elo: 
+		attr.yaml:
+			Resultat: http://chess-results.com/tnr661619.aspx?lan=1&art=4
+			Vy-Rilton-Elo_Anna_Cramling_2022-12-28-X:
+				Youtube: https://www.youtube.com/@AnnaCramling
+				Member: member.schack.se...
+		attr.json: 
+			{
+				"Resultat": "http://chess-results.com/tnr661619.aspx?lan=1&art=4",
+				"Vy-Rilton-Elo_Anna_Cramling_2022-12-28-X": 
+					{
+						"Youtube": "https://www.youtube.com/@AnnaCramling",
+						"Member": "member.schack.se..."
+					}
+			}
+```
+
+Använder **yaml ovan**, blir renare, men **json** går lika bra. Blir lite mer *indentering*, *krullparenteser*, *dubbelfnuttar*, *kommatecken* och *rader* bara.
+
+### Alternativ till **npm run dev**
+Denna tar 3.5 min med svelte och 7 min med sveltekit.
+Den går igenom 45.000 bilder i onödan och jag vet inte hur man hindrar det. 
+
+```
+npm run build (kompilerar .svelte till .js)
+cd public
+python -m http.server
+localhost:8000
+```
+
+Allt fungerar, åtminstone med svelte.  
+Ska testa med sveltekit.  
+Man tappar dock HMR (Hot Module Replacement).
+Lyfter man ut bildkatalogerna och bilder.json tar **npm run dev** bara fem sekunder.

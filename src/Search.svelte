@@ -18,7 +18,7 @@
 	}
 
 	function share () {
-		const q1 = stack.length <= 1 ? "" : "folder=" + stack.join("\\") 
+		const q1 = stack.length <= 1 ? "" : "folder=" + stack.join("/") 
 		const q2 = sokruta == "" ? "" : "query=" + sokruta		
 		const q = q1=="" && q2=="" ? "" : "?"
 		const a = q1!="" && q2!="" ? "&" : ""

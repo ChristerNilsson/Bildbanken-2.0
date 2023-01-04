@@ -1,0 +1,1 @@
+@if exist public\stor (call swap public public_other) else (echo Redan liten!)
