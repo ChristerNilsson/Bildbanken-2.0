@@ -1,7 +1,5 @@
 <script>
 
-	console.log('Hello?')
-
 	import _ from "lodash"
 	import { tick } from 'svelte'
 	import Card from "./Card.svelte"
@@ -256,8 +254,9 @@
 		cards = []
 		count = 0
 
-		words = words.toLowerCase()
-		// path = path.toLowerCase()
+		//words = words.toLowerCase()
+		//path = path.toLowerCase()
+
 		words = words.length == 0 ? [] : words.split(" ")
 
 		res = []
@@ -291,7 +290,7 @@
 			if (is_jpg(key)) {
 				total += 1
 				let s = ''
-				const newpath = newPath.toLowerCase()
+				const newpath = newPath //.toLowerCase()
 				for (const i in range(words.length)) {
 					const word = words[i]
 					if (word.length == 0) continue

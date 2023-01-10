@@ -8,6 +8,7 @@
 
 import time
 import json
+import yaml
 from os import scandir, mkdir,rename
 from os.path import exists, getsize
 from PIL import Image
@@ -31,11 +32,21 @@ def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
 def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
 
 def dumpjson(data,f):
+	start = time.time()
 	s = json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 	s = s.replace("],","],\n") # Varje key (katalog,fil) på egen rad.
 	s = s.replace(":{",":\n{")
 	s = s.replace('},"','},\n"')
 	f.write(s)
+	print('json',time.time()-start)
+
+def dumpyaml(data,f):
+	start = time.time()
+	s = yaml.dump(data)
+	# s = s.replace(": {",":\n{")
+	# s = s.replace('[\n','[')
+	f.write(s)
+	print('yaml',time.time()-start)
 
 def loadJSON(path):
 	if not exists(path): return {}
@@ -282,6 +293,8 @@ if update:
 	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
 
 	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
+	# with open(JSON + 'bilder.yaml', 'w', encoding="utf8") as f: dumpyaml(cache,f)
+
 	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)
 	print()
 	print(round(time.time() - start,3),'seconds')
