@@ -26,8 +26,9 @@
 		const fileArr = []
 		for (const i in _.range(Math.min(MAX_DOWNLOAD,selected.length))) {
 			if (selected[i]==true) {
-				const path = images[i][2] + "\\" + images[i][12]
-				// console.log("Home\\" + images[i][13] + ".jpg")
+				let path = images[i][2] + "\\" + images[i][12]
+				path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
+				// console.log(path,images[i][13])
 				fileArr.push({name:path, url:"Home\\" + images[i][13] + ".jpg"})
 			}
 		}
