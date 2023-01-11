@@ -1,6 +1,7 @@
 <script>
 
 	import _ from "lodash"
+	import countapi from 'countapi-js'
 	import { tick } from 'svelte'
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
@@ -26,6 +27,8 @@
 	// 11 bh = big height
 	// 12 filename
 	// 13 md5 (t ex 0123456789abcdef0123456789abcdef)
+
+	countapi.visits('bildbanken2.com','BB2').then((result) => {console.log('countapi',result.value)})
 
 	let Home
 	async function getJSON() {
