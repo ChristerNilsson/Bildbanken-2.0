@@ -28,7 +28,7 @@
 	// 12 filename
 	// 13 md5 (t ex 0123456789abcdef0123456789abcdef)
 
-	countapi.visits('bildbanken2.com','BB2').then((result) => {console.log('countapi',result.value)})
+	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
 	let Home
 	async function getJSON() {
