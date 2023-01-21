@@ -13,7 +13,8 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
-	import {selection} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+	import {Home,invHome} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+	import {log} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 
 	// 00 -antal letters
 	// 01 letters
@@ -32,7 +33,10 @@
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
-	let Home
+	// let Home
+
+	// $invHome = invertHome($Home)
+
 	async function getJSON() {
 		let response = await fetch("./json/bilder.json")
 		return await response.json()
@@ -75,7 +79,7 @@
 	$: WIDTH = calcWidth(innerWidth)
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-	let path=[] // = [Home] // used for navigation
+	let path=[] // = [$Home] // used for navigation
 	let stack=[] //= ["Home"]
 	
 	let res=[]
@@ -98,6 +102,24 @@
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
+	function invertHome(h) {
+		const res = {}
+		function recurse (node) {
+			for (const key in node) {
+				if (is_jpg(key)) {
+					const data = node[key]
+					data.push(false) // selected
+					const md5 = data[5]
+					res[md5] = data
+				} else {
+					recurse(node[key])
+				}
+			}
+		}
+		recurse(h)
+		return res
+	}
+
 	function calcWidth(innerWidth) {
 		let n = Math.floor(innerWidth/475)
 		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR-0)/n)
@@ -108,8 +130,8 @@
 		sokruta = ""
 		stack = folder.split("\\")
 		path.length = 0 // clear
-		path.push(Home)
-		let pointer = Home
+		path.push($Home)
+		let pointer = $Home
 		for (const key of stack.slice(1)) {
 			console.log(key)
 			pointer = pointer[key]
@@ -134,7 +156,7 @@
 		}
 	}
 
-	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'), Home)
+	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'), $Home)
 
 	$: { 
 		placera(images,visibleKeys)
@@ -386,8 +408,10 @@
 	}
 
 	function setHome(data) {
-		Home = data
-		path = [Home]
+		$Home = data
+		$invHome = invertHome($Home)
+		// log('$invHome',$invHome)
+		path = [$Home]
 		stack = ["Home"]
 		return ""
 	}
@@ -412,7 +436,7 @@
 		{#if state == 'PICTURE'}
 			<BigPicture {big} {prettyFilename} />
 		{:else}
-			<Play />
+			<Play bind:state />
 		{/if}
 	{/if}
 {/await}

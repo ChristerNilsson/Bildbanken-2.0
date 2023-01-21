@@ -1,9 +1,11 @@
 <script>
-	import {selection} from './lib/stores.js'
-	// import { Body } from 'svelte-body'
+	import {Home,invHome} from './lib/stores.js'
+	import { Body } from 'svelte-body'
 	import { fade } from 'svelte/transition'
 	import _ from 'lodash'
 	import {log} from './lib/utils.js'
+
+	export let state
 
 	const SIZE = 'Home'
 	let delay = 5 // s
@@ -12,14 +14,14 @@
 	let i=0
 	let paused = false
 
-	$: keys = _.keys($selection)
+	$: keys = _.filter(_.keys($invHome), (key)=> $invHome[key][6])
 	$: n = keys.length
-	$: data = $selection[keys[i]]
+	$: data = $invHome[keys[i]]
 	$: log(data)
-	$: bw = data[10] // -3
-	$: bh = data[11] // -3
-	$: md5 = data[13]
-	$: path = data[2] + '/' + data[12]
+	$: bw = data[3] // -3
+	$: bh = data[4] // -3
+	$: md5 = data[5]
+	$: path = 'TODO' //data[2] + '/' + data[12]
 	$: href = '/' + SIZE + '/' + md5 + '.jpg'
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
@@ -38,6 +40,7 @@
 
 	function keydown(event) {
 		const key = event.key
+		log(key)
 		if (key == ' ') paused = ! paused
 		if (key == 'ArrowLeft')  i = (i + n-1) % n
 		if (key == 'ArrowRight') i = (i + 1) % n
@@ -45,6 +48,8 @@
 		if (key == 'ArrowDown') delay = delay < 2 ? delay : delay-1
 		if (key == 'Home') i = 0
 		if (key == 'End') i = n-1
+		if (key == 'Escape') state='NORMAL'
+
 	}
 
 	window.onscroll = (e)=> {
@@ -57,7 +62,7 @@
 
 <svelte:window on:keydown={keydown}/>
 
-<!-- <Body style="background-color: black; color:white" /> -->
+<Body style="background-color: black; color:white" />
 
 <div>
 
@@ -65,7 +70,7 @@
 		<tr><td style='text-align:left' width=10%>
 			#{i}
 		</td><td style='text-align:center' width=80%>
-			{paused ? 'Paused' : key}
+			{paused ? 'Paused Left Right Up Down Esc' : key}
 		</td><td style='text-align:right' width=10%>
 			{delay}s
 		</td></tr>
@@ -79,6 +84,6 @@
 </div>
 
 <style>
-	/* svelte:body {background-color: black; color:white}  */
+	/* div {background-color: black; color:white} */
 	img {border-radius: 1%}
 </style>

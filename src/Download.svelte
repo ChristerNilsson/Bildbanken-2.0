@@ -4,7 +4,7 @@
 	import JSZip from "jszip"
 	import axios from "axios"
 	import { saveAs } from "file-saver"
-	import {selection} from './lib/stores.js' // object with md5 as keys
+	import {Home,invHome} from './lib/stores.js' // object with md5 as keys
 
 	// export let selected
 
@@ -15,7 +15,15 @@
 	export let stack
 	export let pop
 
-	$: n =_.size($selection) //_.sumBy(selected, (value) => value ? 1 : 0)
+	function countSelection(invHome) {
+		let count = 0 
+		for (const key in invHome) {
+			if (invHome[key][6]) count+=1
+		}
+		return count
+	}
+
+	$: n = countSelection($invHome)
 
 	$: log(n)
 
@@ -25,24 +33,24 @@
 
 	let zip = null
 
-	function all() {
-		// $selection = {}
-		for (const image of images) $selection[image[13]] = true
-		$selection = $selection
+	function all() { // in this folder
+		for (const image of images) $invHome[image[13]][6] = true
+		$invHome = $invHome
 	}
-	function none() {
-		for (const image of images) delete $selection[image[13]]
-		$selection = $selection
+	function none() { // in this folder
+		for (const image of images) $invHome[image[13]][6] = false
+		$invHome = $invHome
 	}
 
 	function downloadAll() { // download all files as ZIP archive
 		zip = new JSZip()
 		const fileArr = []
-		for (const key in $selection) {
-			const sel = $selection[key]
-			let path = sel[2] + "\\" + sel[12]
+		for (const key in $invHome) {
+			const sel = $invHome[key]
+			if (sel[6] == false) continue
+			let path = "TODO!" //sel[2] + "\\" + sel[12]
 			path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
-			fileArr.push({name:path, url:"Home\\" + sel[13] + ".jpg"})
+			fileArr.push({name:path, url:"Home\\" + sel[5] + ".jpg"})
 		}
 		n = fileArr.length
 		if (fileArr.length == 0) return

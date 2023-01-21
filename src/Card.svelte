@@ -1,7 +1,7 @@
 <script>
 	import _ from "lodash"
 	import {log} from './lib/utils.js'
-	import {selection} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
+	import {Home,invHome} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
 
 	export let WIDTH
 	export let card
@@ -53,13 +53,11 @@
 
 	function toggleSelection() {
 		const key = card[13] // md5
-		if (key in $selection) {
-			delete $selection[key]
-		} else {
-			$selection[key] = card
-		}
-		$selection = $selection
-		log('toggleSelection',key,card,$selection)
+		log({key})
+		log($invHome)
+		$invHome[key][6] = !$invHome[key][6]
+		$invHome = $invHome
+		log('toggleSelection',key,card,$invHome[key])
 	}
 
 	// function getPath(path,dir) { return path.replace("Home",dir) }
