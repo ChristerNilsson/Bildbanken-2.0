@@ -10,8 +10,10 @@
 	import NavigationHorisontal from "./NavigationHorisontal.svelte"
 	import Search from "./Search.svelte"
 	import BigPicture from "./BigPicture.svelte"
+	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
+	import {selection} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 
 	// 00 -antal letters
 	// 01 letters
@@ -45,6 +47,7 @@
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
 	let offset = 0
+	let state = 'NORMAL' // NORMAL, PICTURE or PLAY
 
 	$: { // infinite scroll
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -58,7 +61,7 @@
 		}
 	}
 
-	let selected = []
+	// let selected = []
 	let skala = 1
 
 	const fileWrapper = [fileIndex]
@@ -85,7 +88,7 @@
 	
 	let text0 = ""
 	let text1 = ""
-	let images = []
+	let images = [] // bilder i nuvarande katalogträd som uppfyller sökorden.
 	let visibleKeys = {}
 
 	// innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
@@ -123,6 +126,8 @@
 		const urlParams = new URLSearchParams(queryString)
 		if (urlParams.has("md5")) {
 			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("md5"),urlParams.get("path"),urlParams.get("filename"))
+		} else if (urlParams.has("ids")) {
+
 		} else {
 			if (urlParams.has("folder")) consumeFolder(urlParams.get("folder"))
 			if (urlParams.has("query")) sokruta = urlParams.get("query")
@@ -265,7 +270,7 @@
 		res = []
 		stat = {}
 		total = 0
-		selected = []
+		// selected = []
 
 		const start = new Date()
 
@@ -391,17 +396,23 @@
 
 <svelte:window bind:scrollY={y}/>
 
+<!-- <svelte:body style="background-color: black; color:white"/> -->
+
 {#await promise }
 	<p>Loading...</p>
 {:then data}
 	{setHome(data)}
-	{#if big.md5 == ""}
-		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} />
-		<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
+	{#if state == 'NORMAL'}
+		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} bind:state/>
+		<Download {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} bind:selected {cards} {round} {fileWrapper} {prettyFilename} />
+		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
 	{:else}
-		<BigPicture {big} {prettyFilename} />
+		{#if state == 'PICTURE'}
+			<BigPicture {big} {prettyFilename} />
+		{:else}
+			<Play />
+		{/if}
 	{/if}
 {/await}

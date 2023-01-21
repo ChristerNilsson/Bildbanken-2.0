@@ -1,10 +1,13 @@
 <script>
 	import _ from "lodash"
+	import {log} from "./lib/utils.js"
 	import JSZip from "jszip"
 	import axios from "axios"
 	import { saveAs } from "file-saver"
+	import {selection} from './lib/stores.js' // object with md5 as keys
 
-	export let selected
+	// export let selected
+
 	export let images
 	export let WIDTH
 	export let spreadWidth
@@ -12,25 +15,34 @@
 	export let stack
 	export let pop
 
-	$: n = _.sumBy(selected, (value) => value ? 1 : 0)
+	$: n =_.size($selection) //_.sumBy(selected, (value) => value ? 1 : 0)
 
-	function make(value) { selected = _.map(images, () => value) }
+	$: log(n)
+
+	// function make(value) { selected = _.map(images, () => value) }
+
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
 
 	let zip = null
 
-	function all() {make(true)}
-	function none() {make(false)}
+	function all() {
+		// $selection = {}
+		for (const image of images) $selection[image[13]] = true
+		$selection = $selection
+	}
+	function none() {
+		for (const image of images) delete $selection[image[13]]
+		$selection = $selection
+	}
+
 	function downloadAll() { // download all files as ZIP archive
 		zip = new JSZip()
 		const fileArr = []
-		for (const i in _.range(Math.min(MAX_DOWNLOAD,selected.length))) {
-			if (selected[i]==true) {
-				let path = images[i][2] + "\\" + images[i][12]
-				path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
-				// console.log(path,images[i][13])
-				fileArr.push({name:path, url:"Home\\" + images[i][13] + ".jpg"})
-			}
+		for (const key in $selection) {
+			const sel = $selection[key]
+			let path = sel[2] + "\\" + sel[12]
+			path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
+			fileArr.push({name:path, url:"Home\\" + sel[13] + ".jpg"})
 		}
 		n = fileArr.length
 		if (fileArr.length == 0) return

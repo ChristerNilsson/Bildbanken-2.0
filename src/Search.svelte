@@ -9,6 +9,7 @@
 	export let path
 	export let _
 	export let is_jpg
+	export let state
 
 	import { saveAs } from 'file-saver'
 
@@ -66,6 +67,11 @@
 		saveAs(blob, `${_.last(stack)}_${res.length}_keywords.txt`)
 	}
 
+	function play() {
+		state = 'PLAY'
+		// window.open("/play/?ids=0a0bd65aef49942c7fad7560b4bb4b91_fff86a56ee65ec30a8e7feca0a9c04f2")
+	}
+
 	function help() {
 		window.open("https://github.com/ChristerNilsson/2022-011-Bildbanken-svelte#readme")
 	}
@@ -82,8 +88,9 @@
 <div style="width:{WIDTH}px; height:34px">
 	<button on:click={clear}       style="left:{0}px;         width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
 	<button on:click={share}       style="left:{WIDTH/4}px;   width:{spreadWidth(1/4,WIDTH)}px">Share</button>
-	<button on:click={keywords}    style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Keywords</button>
+	<button on:click={play}        style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Play</button>
 	<button on:click={help}        style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
+	<!-- <button on:click={keywords}    style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Keywords</button> -->
 </div>
 
 {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}

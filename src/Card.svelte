@@ -1,9 +1,14 @@
 <script>
 	import _ from "lodash"
+	import {log} from './lib/utils.js'
+	import {selection} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
+
 	export let WIDTH
 	export let card
-	export let selected
-	export let index
+
+	// export let selected
+	// export let index
+
 	export let round
 	export let fileWrapper
 	export let prettyFilename
@@ -46,6 +51,17 @@
 		return path.replaceAll('_', ' ')
 	}
 
+	function toggleSelection() {
+		const key = card[13] // md5
+		if (key in $selection) {
+			delete $selection[key]
+		} else {
+			$selection[key] = card
+		}
+		$selection = $selection
+		log('toggleSelection',key,card,$selection)
+	}
+
 	// function getPath(path,dir) { return path.replace("Home",dir) }
 
 </script>
@@ -77,7 +93,7 @@
 				&nbsp;&nbsp;{card[1]}
 			{/if}
 
-			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> 
+			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="" on:change={toggleSelection}/> 
 
 			{#each FS as F}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
