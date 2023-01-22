@@ -13,7 +13,7 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
-	import {Home,invHome,images} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+	import {Home,invHome,images,selected} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 	import {log} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 
 	// json:
@@ -72,10 +72,11 @@
 			for (const md5 of $images.slice(n, n + 20)) {
 				cards.push($invHome[md5])
 			}
+			cards = cards 
 
 			const latest = _.last(cards)
 			if (n > 0) {
-				// ymax = latest.y + latest.sh // y + h
+				ymax = latest.y + latest.sh // y + h
 			}
 		}
 	}
@@ -138,7 +139,7 @@
 		bild.x = 0 // swimlane position
 		bild.y = 0
 		bild.index = 0 
-		bild.selected = false // checkbox
+		// bild.selected = false // checkbox
 
 		return bild
 	}
@@ -501,7 +502,7 @@
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} bind:cards {round} {fileWrapper} {prettyFilename} />
+		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
 	{:else}
 		{#if state == 'PICTURE'}
 			<BigPicture {big} {prettyFilename} />

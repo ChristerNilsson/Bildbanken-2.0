@@ -4,7 +4,7 @@
 	import JSZip from "jszip"
 	import axios from "axios"
 	import { saveAs } from "file-saver"
-	import {Home,invHome,images} from './lib/stores.js' // object with md5 as keys
+	import {Home,invHome,images,selected} from './lib/stores.js' // object with md5 as keys
 
 	// export let selected
 
@@ -15,15 +15,15 @@
 	export let stack
 	export let pop
 
-	function countSelection(invHome) {
+	function countSelection(selected,invHome) {
 		let count = 0 
-		for (const key in invHome) {
-			if (invHome[key].selected) count+=1
+		for (const key in selected) {
+			if (selected[key]) count+=1
 		}
 		return count
 	}
 
-	$: n = countSelection($invHome)
+	$: n = countSelection($selected,$invHome)
 
 	$: log(n)
 
@@ -34,23 +34,23 @@
 	let zip = null
 
 	function all() { // in this folder
-		for (const md5 of $images) $invHome[md5].selected = true
-		$invHome = $invHome
+		for (const md5 of $images) $selected[md5] = true
+		$selected=$selected
 	}
 	function none() { // in this folder
-		for (const md5 of $images) $invHome[md5].selected = false
-		$invHome = $invHome
+		for (const md5 of $images) $selected[md5] = false
+		$selected=$selected
 	}
 
 	function downloadAll() { // download all files as ZIP archive
 		zip = new JSZip()
 		const fileArr = []
-		for (const key in $invHome) {
-			const sel = $invHome[key]
-			if (!sel.selected) continue
-			let path = sel.path + '/' + sel.filename //sel[2] + "\\" + sel[12]
+		for (const key in $selected) {
+			const sel = $selected[key]
+			if (!sel) continue
+			let path = $invHome[key].path + '/' + $invHome[key].filename //sel[2] + "\\" + sel[12]
 			path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
-			fileArr.push({name:path, url:"Home\\" + sel.md5 + ".jpg"})
+			fileArr.push({name:path, url:"Home\\" + key + ".jpg"})
 		}
 		n = fileArr.length
 		if (n == 0) return

@@ -9,5 +9,5 @@
 </script>
 
 {#each cards as card}
-	<Card {WIDTH} bind:card {round} {fileWrapper} {prettyFilename} />
+	<Card {WIDTH} {card} {round} {fileWrapper} {prettyFilename} />
 {/each}

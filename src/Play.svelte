@@ -1,5 +1,5 @@
 <script>
-	import {Home,invHome} from './lib/stores.js'
+	import {Home,invHome,selected} from './lib/stores.js'
 	import { Body } from 'svelte-body'
 	import { fade } from 'svelte/transition'
 	import _ from 'lodash'
@@ -14,7 +14,7 @@
 	let i=0
 	let paused = false
 
-	$: keys = _.filter(_.keys($invHome), (key)=> $invHome[key].selected)
+	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
 	$: data = $invHome[keys[i]]
 	$: log(data)

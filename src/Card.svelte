@@ -1,7 +1,7 @@
 <script>
 	import _ from "lodash"
 	import {log} from './lib/utils.js'
-	import {Home,invHome,images} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
+	import {Home,invHome,images,selected} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
 
 	export let WIDTH
 	export let card
@@ -51,15 +51,12 @@
 		return path.replaceAll('_', ' ')
 	}
 
-	function toggleSelection() {
-		const key = card.md5
-		$invHome[key].selected = ! $invHome[key].selected
-		$invHome = $invHome
-		$images = $images
-		card.selected = ! card.selected
-		card = card
-		log('toggleSelection',key,card,$invHome[key])
-	}
+	// function toggleSelection() {
+	// 	const key = card.md5
+	// 	$selected[key] = ! $selected[key]
+	// 	$selected = $selected
+	// 	log('toggleSelection',key,card,$selected[key])
+	// }
 
 	// function getPath(path,dir) { return path.replace("Home",dir) }
 
@@ -92,7 +89,8 @@
 				&nbsp;&nbsp;{card.letters}
 			{/if}
 
-			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="false" on:change={toggleSelection}/> 
+			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" bind:checked={$selected[card.md5]} />
+			 <!-- on:change={toggleSelection}/> -->
 
 			{#each FS as F}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
