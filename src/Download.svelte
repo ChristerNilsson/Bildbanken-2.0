@@ -48,12 +48,12 @@
 		for (const key in $invHome) {
 			const sel = $invHome[key]
 			if (sel[6] == false) continue
-			let path = "TODO!" //sel[2] + "\\" + sel[12]
+			let path = "TODO.jpg" //sel[2] + "\\" + sel[12]
 			path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
 			fileArr.push({name:path, url:"Home\\" + sel[5] + ".jpg"})
 		}
 		n = fileArr.length
-		if (fileArr.length == 0) return
+		if (n == 0) return
 
 		const arrOfFiles = fileArr.map((item) => download(item)) //create array of promises
 		Promise.all(arrOfFiles)

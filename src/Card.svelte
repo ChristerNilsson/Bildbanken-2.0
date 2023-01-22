@@ -53,8 +53,6 @@
 
 	function toggleSelection() {
 		const key = card[13] // md5
-		log({key})
-		log($invHome)
 		$invHome[key][6] = !$invHome[key][6]
 		$invHome = $invHome
 		log('toggleSelection',key,card,$invHome[key])
@@ -91,7 +89,7 @@
 				&nbsp;&nbsp;{card[1]}
 			{/if}
 
-			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="" on:change={toggleSelection}/> 
+			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="false" on:change={toggleSelection}/> 
 
 			{#each FS as F}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->

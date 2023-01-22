@@ -84,6 +84,5 @@
 </div>
 
 <style>
-	/* div {background-color: black; color:white} */
 	img {border-radius: 1%}
 </style>

@@ -16,19 +16,29 @@
 	import {Home,invHome} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 	import {log} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 
+	// json:
+	// 00 sw
+	// 01 sh
+	// 02 bs
+	// 03 bw
+	// 04 bh
+	// 05 md5
+	// (06 selected)
+
+	// images:
 	// 00 -antal letters
-	// 01 letters
+	// 01 letters (search)
 	// 02 path
 	// 03 sw = small width
 	// 04 sh = small height
-	// 05 x
+	// 05 x (swimlane)
 	// 06 y
-	// 07 index
+	// 07 index (visas i card)
 	// 08 select (kryssruta)
 	// 09 bs = big size
 	// 10 bw = big width
 	// 11 bh = big height
-	// 12 filename
+	// 12 filename.jpg
 	// 13 md5 (t ex 0123456789abcdef0123456789abcdef)
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
@@ -157,6 +167,7 @@
 	}
 
 	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'), $Home)
+	$: log('images',images)
 
 	$: { 
 		placera(images,visibleKeys)
@@ -245,13 +256,7 @@
 	}
 
 	function push(key) {
-		// console.log('push',key)
 		if (!is_jpg(key)) {
-			// const t5 = _.last(path)[key]
-			// console.log('t5',t5)
-			// // visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
-			// visaBig(t5[2],t5[3],t5[4],t5[5])
-		// } else {
 			path.push(_.last(path)[key])
 			stack.push(key)
 			path = path
@@ -283,6 +288,7 @@
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
 		count = 0
+		log('search')
 
 		//words = words.toLowerCase()
 		//path = path.toLowerCase()
@@ -365,7 +371,7 @@
 			bild[5] = (GAP + WIDTH)*index // x
 			bild[6] = cols[index]       // y
 			bild[7] = i
-			bild[8] = true // kryssruta
+			bild[8] = false // kryssruta
 			cols[index] += Math.round(WIDTH*bild[4]/bild[3]) + textHeights // h/w
 		}
 		images = images
