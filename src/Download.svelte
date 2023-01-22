@@ -4,11 +4,11 @@
 	import JSZip from "jszip"
 	import axios from "axios"
 	import { saveAs } from "file-saver"
-	import {Home,invHome} from './lib/stores.js' // object with md5 as keys
+	import {Home,invHome,images} from './lib/stores.js' // object with md5 as keys
 
 	// export let selected
 
-	export let images
+	// export let images
 	export let WIDTH
 	export let spreadWidth
 	export let MAX_DOWNLOAD
@@ -18,7 +18,7 @@
 	function countSelection(invHome) {
 		let count = 0 
 		for (const key in invHome) {
-			if (invHome[key][6]) count+=1
+			if (invHome[key].selected) count+=1
 		}
 		return count
 	}
@@ -34,11 +34,11 @@
 	let zip = null
 
 	function all() { // in this folder
-		for (const image of images) $invHome[image[13]][6] = true
+		for (const md5 of $images) $invHome[md5].selected = true
 		$invHome = $invHome
 	}
 	function none() { // in this folder
-		for (const image of images) $invHome[image[13]][6] = false
+		for (const md5 of $images) $invHome[md5].selected = false
 		$invHome = $invHome
 	}
 
@@ -47,10 +47,10 @@
 		const fileArr = []
 		for (const key in $invHome) {
 			const sel = $invHome[key]
-			if (sel[6] == false) continue
-			let path = "TODO.jpg" //sel[2] + "\\" + sel[12]
+			if (!sel.selected) continue
+			let path = sel.path + '/' + sel.filename //sel[2] + "\\" + sel[12]
 			path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
-			fileArr.push({name:path, url:"Home\\" + sel[5] + ".jpg"})
+			fileArr.push({name:path, url:"Home\\" + sel.md5 + ".jpg"})
 		}
 		n = fileArr.length
 		if (n == 0) return

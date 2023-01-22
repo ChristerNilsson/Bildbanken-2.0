@@ -1,16 +1,18 @@
 <script>
 	import _ from "lodash"
+	import {log} from './lib/utils.js'
+	export let buttons
 	export let visibleKeys
 	export let push
 	export let is_jpg
 	export let WIDTH
 	export let spaceShip
 	export let stack
-	export let buttons
 
 	buttons = false
 
 	function sortera(keys,i) {
+		log({keys,i})
 		const path = stack.join("\\")
 		buttons = (n == 2 && path != "Home\\0000 Klubbar") 
 		sortIndex = buttons ? i : 0

@@ -13,7 +13,7 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
-	import {Home,invHome} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+	import {Home,invHome,images} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 	import {log} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 
 	// json:
@@ -26,7 +26,7 @@
 	// (06 selected)
 
 	// images:
-	// 00 -antal letters
+	// 00 letterCount
 	// 01 letters (search)
 	// 02 path
 	// 03 sw = small width
@@ -34,7 +34,7 @@
 	// 05 x (swimlane)
 	// 06 y
 	// 07 index (visas i card)
-	// 08 select (kryssruta)
+	// 08 selected (kryssruta)
 	// 09 bs = big size
 	// 10 bw = big width
 	// 11 bh = big height
@@ -67,10 +67,15 @@
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
 		if (y + 2 * screen.height > ymax) {
 			const n = cards.length
-			cards = cards.concat(images.slice(n, n + 20))
+
+			// cards = cards.concat($images.slice(n, n + 20))
+			for (const md5 of $images.slice(n, n + 20)) {
+				cards.push($invHome[md5])
+			}
+
 			const latest = _.last(cards)
 			if (n > 0) {
-				ymax = latest[4] + latest[6] // y + h
+				// ymax = latest.y + latest.sh // y + h
 			}
 		}
 	}
@@ -92,7 +97,7 @@
 	let path=[] // = [$Home] // used for navigation
 	let stack=[] //= ["Home"]
 	
-	let res=[]
+	// let res=[]
 	let stat={}
 	let total=0
 	let buttons = false
@@ -102,32 +107,58 @@
 	
 	let text0 = ""
 	let text1 = ""
-	let images = [] // bilder i nuvarande katalogträd som uppfyller sökorden.
+	// let images = [] // bilder i nuvarande katalogträd som uppfyller sökorden.
 	let visibleKeys = {}
 
 	// innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
-	$: visibleKeys = getVisibleKeys(res, path.length)
+	$: visibleKeys = getVisibleKeys($images,path.length)
 
 	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
+	function expand(imagedata,path,filename) { // converts 6-element array to object with 14 properties
+		const bild = {}
+
+		// data from json file:
+		bild.sw  = imagedata[0] // small width
+		bild.sh  = imagedata[1] // small height
+		bild.bs  = imagedata[2] // big size
+		bild.bw  = imagedata[3] // big width
+		bild.bh  = imagedata[4] // big height
+		bild.md5 = imagedata[5] // unique id based om md5
+
+		// added properties:
+		bild.path = path         // the folder names only
+		bild.filename = filename // filename with extension .jpg
+
+		// dynamic properties:
+		bild.letterCount = 0 // created when searching
+		bild.letters = ''
+		bild.x = 0 // swimlane position
+		bild.y = 0
+		bild.index = 0 
+		bild.selected = false // checkbox
+
+		return bild
+	}
+
 	function invertHome(h) {
-		const res = {}
-		function recurse (node) {
+		const ih = {}
+		function recurse (node,path) {
 			for (const key in node) {
 				if (is_jpg(key)) {
-					const data = node[key]
-					data.push(false) // selected
-					const md5 = data[5]
-					res[md5] = data
+					node[key] = expand(node[key],path,key)
+					ih[node[key].md5] = node[key]
 				} else {
-					recurse(node[key])
+					recurse(node[key],path + '/'  +key)
 				}
 			}
 		}
-		recurse(h)
-		return res
+		recurse(h,'')
+		// log(h)
+		// log(ih[_.keys(ih)[0]])
+		return ih
 	}
 
 	function calcWidth(innerWidth) {
@@ -138,7 +169,7 @@
 	function consumeFolder(folder) {
 		console.log(folder)
 		sokruta = ""
-		stack = folder.split("\\")
+		stack = folder.split("/")
 		path.length = 0 // clear
 		path.push($Home)
 		let pointer = $Home
@@ -166,34 +197,44 @@
 		}
 	}
 
-	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'), $Home)
-	$: log('images',images)
+	$: [text0,text1,$images] = search(_.last(path), sokruta, stack.join('/'), $Home)
+	$: log('images',$images.length)
 
 	$: { 
-		placera(images,visibleKeys)
-		images = images
+		placera($images,visibleKeys)
+		// $images = $images
 	}
 
 	function resize() {
 		WIDTH = calcWidth(innerWidth)
-		placera(images,visibleKeys)
-		images = images
+		placera($images,visibleKeys)
+		// $images = $images
 	}
 
 	window.onresize = resize
 
-	function assert(a,b) {
-		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
+	function assert(a,b,msg="") {
+		if (!_.isEqual(a,b)) {
+			console.log("Assert failed",msg)
+			console.log(a)
+			console.log(b)
+			// debug.assert(!_.isEqual(a,b))
+		}
 	}
 
-	function spaceShip (a,b) {
-		if (a < b) return -1
+	function spaceShip (a,b,desc=1) {
+		if (a < b) return -desc
 		else if (a == b) return 0
-		return 1 
+		return desc
 	}
 	assert(spaceShip(1,2),-1)
 	assert(spaceShip(1,1),0)
 	assert(spaceShip(1,0),1)
+
+	assert(spaceShip(1,2,-1),1)
+	assert(spaceShip(1,1,-1),0)
+	assert(spaceShip(1,0,-1),-1)
+
 	assert(_.range(3),[0,1,2])
 
 	function comp (a,b) { if (a[0] == b[0]) {return spaceShip(a[1], b[1])} else {return spaceShip(a[0], b[0])}}
@@ -203,14 +244,23 @@
 	// 2 index => [-1,-2],[1,-2],[-1,2],[1,2], [-2,-1],[-2,1],[2,-1],[2,1] = 2!*2^2 = 8 varianter
 	// 3 index => n! * 2^n = 48 varianter
 	// 4 index => 24 * 16 = 384 varianter
-	function multiSort (a,b,indexes) {
-		for (const i in _.range(indexes.length)) {
-			const index = Math.abs(indexes[i])-1 // 0..
-			let res = spaceShip(a[index],b[index])
-			if (res != 0) return indexes[i] < 0 ? -res : res
+	function multiSort (a,b,keys,desc=" ") { // det som sorteras är objekt
+		keys = keys.split(' ')
+		desc = desc.split(' ')
+		for (const key of keys) {
+			let result = spaceShip(a[key],b[key], (desc.includes(key) ? -1 : 1))
+			// log({key},a[key],b[key],result)
+			if (result != 0) return result
 		}
 	}
-	assert([[2018, 'Noah'], [2013, 'Numa'], [1982, 'Karolina'], [1982, 'Kasper'], [1982, 'Miranda'], [1954, 'Christer'], [1954, 'Maria']],[[1954,'Christer'],[1982,'Kasper'],[1982,'Karolina'],[1982,'Miranda'],[2013,'Numa'],[2018,'Noah'],[1954,'Maria']].sort((a,b) =>  multiSort(a,b,[-1,2])) )
+	assert(false,''.split(' ').includes(' '),'XX')
+	assert(true,'A'.split(' ').includes('A'),'YY')
+	assert(false,'A'.split(' ').includes('B'),'ZZ')
+
+	assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n','y')), 'AA')
+	assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n')) ,    'BB')
+	assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y','n')), 'CC')
+	assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y')) ,    'DD')
 
 	function comp2(a,b) { if (a.length == b.length) {return spaceShip(a,b)} else {return -spaceShip(a.length,b.length)}}
 	assert(comp2("A","B"),-1)
@@ -272,30 +322,66 @@
 	}
 
 	// Gå igenom listan, plocka ut de knappar som ska synas.
-	function getVisibleKeys(bilder,level) {
-		const res = {}
-		for (const bild of bilder) {
-			const arr = bild[2].split("\\")
+	function getVisibleKeys(images,level) {
+		const result = {}
+		log('images.length',images.length,{level})
+		for (const md5 of images) {
+			// log({md5})
+			const data = $invHome[md5]
+			// log({data})
+			const arr = data.path.split("/")
 			if (level >= arr.length) break
 			const key = arr[level]
-			res[key] ||= 0
-			res[key] += 1
+			result[key] ||= 0
+			result[key] += 1
+			// log(result)
 		}
-		return res
+		// log({result})
+		return result
 	}
 
 	function search(node,words,path) {
+
+		const result = []
+ 
+		// rekursiv pga varierande djup i trädet
+		function recursiveSearch (node,words,path,levels) { // node är nuvarande katalog. words är de sökta orden
+			tick()
+			if (levels==0) return
+			for (const key in node) {
+				const newPath = path + "/" + key
+				if (is_jpg(key)) {
+					total += 1
+					let s = ''
+					const newpath = newPath //.toLowerCase()
+					for (const i in range(words.length)) {
+						const word = words[i]
+						if (word.length == 0) continue
+						count += 1
+						if (newpath.slice(10).includes(word)) s += ALFABET[i]
+					}
+					if (s.length > 0 || words.length == 0) {
+						// const [sw,sh,bs,bw,bh,md5] = node[key] // small/big width/height/size md5=32*hex
+						// result.push([-s.length, s, path, sw, sh, 0, 0, 0, false, bs, bw, bh, key, md5])
+						result.push(node[key].md5)
+						stat[s] = (stat[s] || 0) + 1
+					}
+				} else {
+					recursiveSearch(node[key], words, newPath, levels - 1)
+				}
+			}
+		}
+
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
 		count = 0
-		log('search')
+		// log('search')
 
 		//words = words.toLowerCase()
 		//path = path.toLowerCase()
 
 		words = words.length == 0 ? [] : words.split(" ")
 
-		res = []
 		stat = {}
 		total = 0
 		// selected = []
@@ -304,7 +390,8 @@
 
 		const levels = 99
 		recursiveSearch(node, words, path, levels)
-		res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
+		// $images.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
+		result.sort((a,b) => multiSort(a,b,'letterCount letters path filename','letterCount'))
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
@@ -314,35 +401,10 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,res]
+		log({result})
+		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result]
 	}
 
-	// rekursiv pga varierande djup i trädet
-	function recursiveSearch (node,words,path,levels) { // node är nuvarande katalog. words är de sökta orden
-		tick()
-		if (levels==0) return
-		for (const key in node) {
-			const newPath = path + "\\" + key
-			if (is_jpg(key)) {
-				total += 1
-				let s = ''
-				const newpath = newPath //.toLowerCase()
-				for (const i in range(words.length)) {
-					const word = words[i]
-					if (word.length == 0) continue
-					count += 1
-					if (newpath.slice(10).includes(word)) s += ALFABET[i]
-				}
-				if (s.length > 0 || words.length == 0) {
-					const [sw,sh,bs,bw,bh,md5] = node[key] // small/big width/height/size md5=32*hex
-					res.push([-s.length, s, path, sw, sh, 0, 0, 0, false, bs, bw, bh, key, md5])
-					stat[s] = (stat[s] || 0) + 1
-				}
-			} else {
-				recursiveSearch(node[key], words, newPath, levels - 1)
-			}
-		}
-	}
 
 	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
@@ -360,36 +422,37 @@
 		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 50-2 //43
-		const res = images
-		for (const i in res) {
+		// const res = $images
+		for (const i in range(images.length)) {
 			tick()
-			const bild = res[i]
+			const md5 = images[i]
+			const bild = $invHome[md5]
 			let index = 0 // sök fram index för minsta kolumnen
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
 			}
-			bild[5] = (GAP + WIDTH)*index // x
-			bild[6] = cols[index]       // y
-			bild[7] = i
-			bild[8] = false // kryssruta
-			cols[index] += Math.round(WIDTH*bild[4]/bild[3]) + textHeights // h/w
+			bild.x = (GAP + WIDTH)*index
+			bild.y = cols[index]
+			bild.index = i
+			//bild.selected = false // kryssruta
+			cols[index] += Math.round(WIDTH*bild.sh/bild.sw) + textHeights // h/w
 		}
-		images = images
+		//$images = $images
 	}
 
 	function countDirs(path) {
-		let res = 0
+		let result = 0
 		for (const name in path) {
 			console.log('countDirs',name)
 			if (! is_jpg(name)) {
-				res += 1
+				result += 1
 			}
 		}
-		return res
+		return result
 	}
 
 	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
-		let i = path.lastIndexOf('\\')
+		let i = path.lastIndexOf('/')
 		let s = path.slice(i+1)
 		path = path.slice(0,i)
 
@@ -415,6 +478,7 @@
 
 	function setHome(data) {
 		$Home = data
+
 		$invHome = invertHome($Home)
 		// log('$invHome',$invHome)
 		path = [$Home]
@@ -434,10 +498,10 @@
 	{setHome(data)}
 	{#if state == 'NORMAL'}
 		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} bind:state/>
-		<Download {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
+		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
+		<Infinite {WIDTH} bind:cards {round} {fileWrapper} {prettyFilename} />
 	{:else}
 		{#if state == 'PICTURE'}
 			<BigPicture {big} {prettyFilename} />

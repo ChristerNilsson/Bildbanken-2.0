@@ -1,7 +1,7 @@
 <script>
 	import _ from "lodash"
 	import {log} from './lib/utils.js'
-	import {Home,invHome} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
+	import {Home,invHome,images} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
 
 	export let WIDTH
 	export let card
@@ -13,7 +13,7 @@
 	export let fileWrapper
 	export let prettyFilename
 
-	$: filename = card[2] + "\\" + card[12]
+	$: filename = card.path + "/" + card.filename
 
 	$: FS = getNumbers(filename,'F')
 	$: LS = getNumbers(filename,'L')
@@ -52,9 +52,12 @@
 	}
 
 	function toggleSelection() {
-		const key = card[13] // md5
-		$invHome[key][6] = !$invHome[key][6]
+		const key = card.md5
+		$invHome[key].selected = ! $invHome[key].selected
 		$invHome = $invHome
+		$images = $images
+		card.selected = ! card.selected
+		card = card
 		log('toggleSelection',key,card,$invHome[key])
 	}
 
@@ -62,16 +65,16 @@
 
 </script>
 
-<div class="card" id="images" style="position:absolute; width:{WIDTH}px; left:{card[5]}px; top:{card[6]}px">
+<div class="card" id="images" style="position:absolute; width:{WIDTH}px; left:{card.x}px; top:{card.y}px">
 	<img
 		margin:0px
 		padding:0px
-		src = {"small\\" + card[13] + ".jpg"}
+		src = {"small\\" + card.md5 + ".jpg"}
 		width = {WIDTH}px
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
-			window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&md5=${card[13]}&path=${card[2]}&filename=${card[12]}`)
+			window.open(host + `?bs=${card.bs}&bw=${card.bw}&bh=${card.bh}&md5=${card.md5}&path=${card.path}&filename=${card.filename}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
@@ -83,10 +86,10 @@
 			&nbsp;{prettyPath(filename)}
 		</div>
 		<div class="info" style="display:flex; height:13px; width:{WIDTH}px">
-			&nbsp;{card[7]}
+			&nbsp;{card.index}
 
-			{#if card[1]}
-				&nbsp;&nbsp;{card[1]}
+			{#if card.letters}
+				&nbsp;&nbsp;{card.letters}
 			{/if}
 
 			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="false" on:change={toggleSelection}/> 
@@ -114,7 +117,7 @@
 			{/each}
 
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
-			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1024/1024,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1024,0)} kB &nbsp;</span>
+			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card.bw*card.bh/1024/1024,1)} MP • {card.bw} x {card.bh} • {round(card.bs/1024,0)} kB &nbsp;</span>
 		</div>	
 	</div>
 </div>

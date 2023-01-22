@@ -14,14 +14,14 @@
 	let i=0
 	let paused = false
 
-	$: keys = _.filter(_.keys($invHome), (key)=> $invHome[key][6])
+	$: keys = _.filter(_.keys($invHome), (key)=> $invHome[key].selected)
 	$: n = keys.length
 	$: data = $invHome[keys[i]]
 	$: log(data)
-	$: bw = data[3] // -3
-	$: bh = data[4] // -3
-	$: md5 = data[5]
-	$: path = 'TODO' //data[2] + '/' + data[12]
+	$: bw = data.bw
+	$: bh = data.bh
+	$: md5 = data.md5
+	$: path = data.path + '/' + data.filename
 	$: href = '/' + SIZE + '/' + md5 + '.jpg'
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
