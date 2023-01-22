@@ -1,7 +1,10 @@
 <script>
 	import _ from "lodash"
+	import {log} from './lib/utils.js'
+
 	export let big
 	export let prettyFilename
+	export let state
 
 	const INCR = 0.08
 
@@ -90,6 +93,12 @@
 		big = big
 	}
 
+	function keydown(event) {
+		const key = event.key
+		// log({key})
+		if (key == 'Escape') state='NORMAL'
+	}
+
 	function share () {
 		const extra = `bs=${big.bs}&bw=${big.bw}&bh=${big.bh}&md5=${big.md5}&path=${big.path}&filename=${big.filename}`
 		navigator.clipboard.writeText(location.origin + location.pathname + "?" + extra)
@@ -100,6 +109,8 @@
 	document.title = prettyFilename(big.filename,false)
 
 </script>
+
+<svelte:window on:keydown={keydown}/>
 
 <button on:click={share}> Share </button>
 

@@ -17,7 +17,7 @@
 	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
 	$: data = $invHome[keys[i]]
-	$: log(data)
+	// $: log(data)
 	$: bw = data.bw
 	$: bh = data.bh
 	$: md5 = data.md5
@@ -40,7 +40,7 @@
 
 	function keydown(event) {
 		const key = event.key
-		log(key)
+		// log(key)
 		if (key == ' ') paused = ! paused
 		if (key == 'ArrowLeft')  i = (i + n-1) % n
 		if (key == 'ArrowRight') i = (i + 1) % n

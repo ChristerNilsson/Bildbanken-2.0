@@ -5,13 +5,14 @@
 
 	export let WIDTH
 	export let card
-
+	export let state
 	export let round
 	export let fileWrapper
 	export let prettyFilename
+	export let visaBig
 
 	$: filename = card.path + "/" + card.filename
-	$: log(filename)
+	// $: log(filename)
 
 	$: FS = getNumbers(filename,'F')
 	$: LS = getNumbers(filename,'L')
@@ -60,7 +61,9 @@
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
-			window.open(host + `?bs=${card.bs}&bw=${card.bw}&bh=${card.bh}&md5=${card.md5}&path=${card.path}&filename=${card.filename}`)
+			visaBig(card)
+			state = 'PICTURE'
+			// window.open(host + `?bs=${card.bs}&bw=${card.bw}&bh=${card.bh}&md5=${card.md5}&path=${card.path}&filename=${card.filename}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
@@ -79,7 +82,6 @@
 			{/if}
 
 			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" bind:checked={$selected[card.md5]} />
-			 <!-- on:change={toggleSelection}/> -->
 
 			{#each FS as F}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->

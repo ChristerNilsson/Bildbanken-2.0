@@ -195,7 +195,7 @@
 	}
 
 	$: [text0,text1,$images] = search(_.last(path), sokruta, stack.join('/'), $Home)
-	$: log('images',$images.length)
+	// $: log('images',$images.length)
 
 	$: placera($images,visibleKeys)
 
@@ -275,26 +275,26 @@
 		return path
 	}
 
-	function visaBig(bs, bw, bh, md5, path, filename) {
+	function visaBig(card) { //bs, bw, bh, md5, path, filename
 		// console.log('visaBig',md5)
 		document.body.style = "overflow:hidden"
 
 		big.exifState = 0
 		big.mouseState = 0
 
-		big.bs = bs
-		big.bw = bw
-		big.bh = bh
+		big.bs = card.bs
+		big.bw = card.bw
+		big.bh = card.bh
 
-		big.skala = Math.min(innerHeight/bh, innerWidth/bw)
-		big.width = bw * big.skala
-		big.height = bh * big.skala
+		big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
+		big.width = big.bw * big.skala
+		big.height = big.bh * big.skala
 		big.left = (innerWidth-big.width)/2
 		big.top = (innerHeight-big.height)/2
 
-		big.md5 = md5
-		big.path = path
-		big.filename = filename
+		big.md5 = card.md5
+		big.path = card.path
+		big.filename = card.filename
 		big = big
 	}
 
@@ -317,7 +317,7 @@
 	// Gå igenom listan, plocka ut de knappar som ska synas.
 	function getVisibleKeys(images,level) {
 		const result = {}
-		log('images.length',images.length,{level})
+		// log('images.length',images.length,{level})
 		for (const md5 of images) {
 			const data = $invHome[md5]
 			const arr = data.path.split("/")
@@ -382,7 +382,7 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		log({result})
+		// log({result})
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result]
 	}
 
@@ -474,10 +474,10 @@
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
+		<Infinite bind:state {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} {visaBig}/>
 	{:else}
 		{#if state == 'PICTURE'}
-			<BigPicture {big} {prettyFilename} />
+			<BigPicture bind:state {big} {prettyFilename} />
 		{:else}
 			<Play bind:state />
 		{/if}

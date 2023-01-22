@@ -12,7 +12,7 @@
 	buttons = false
 
 	function sortera(keys,i) {
-		log({keys,i})
+		// log({keys,i})
 		const path = stack.join("/")
 		buttons = (n == 2 && path != "Home/0000 Klubbar") 
 		sortIndex = buttons ? i : 0

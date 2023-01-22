@@ -8,9 +8,9 @@
 
 	export let WIDTH
 	export let spreadWidth
-	// export let MAX_DOWNLOAD
 	export let stack
 	export let pop
+	export let MAX_DOWNLOAD
 
 	function countSelection(selected,invHome) {
 		let count = 0 
@@ -21,7 +21,7 @@
 	}
 
 	$: n = countSelection($selected,$invHome)
-	$: log(n)
+	// $: log(n)
 
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
 	let zip = null
@@ -38,7 +38,7 @@
 	function downloadAll() { // download all files as ZIP archive
 		zip = new JSZip()
 		const fileArr = []
-		for (const key in $selected) {
+		for (const key of _.keys($selected).slice(0,500)) {
 			const sel = $selected[key]
 			if (!sel) continue
 			let path = $invHome[key].path + '/' + $invHome[key].filename //sel[2] + "/" + sel[12]

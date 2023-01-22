@@ -7,38 +7,40 @@ När du startar ser du alla bilder, med de senaste högst upp.
 Du kan avgränsa sökandet på två sätt:
 
 1. Genom att välja katalog. Hierarkin ser ut ungefär så här:
-	1. Home
-	2. År
-	3. Turnering/Event
-	4. Klass
-	5. Grupp
+	* Home
+		* År
+			* Turnering/Event
+				* Klass
+					* Grupp
 
 2. Genom att skriva in ett eller flera ord i sökrutan längst upp.  
 	Skriver du flera ord, kommer bilderna högre upp ju fler träffar orden får.  
-	(Man kan säga att OCH kommer före ELLER)
+	(Man kan säga att **och** kommer före **eller**)
 
-	* [Clear] rensar sökrutan
-	* [Share] kopierar aktuell URL till klippbordet
-	* [Play] Visar ett bildspel med utsökta bilder
-	* [Help] visar denna sida
-	* [Up] går till närmast högre liggande katalog
-	* [None] avmarkerar alla bilder i denna utsökning
-	* [Download] hämtar alla markerade bilder i en zipfil
-	* [All] markerar alla bilder i denna utsökning
+	* **Clear** rensar sökrutan
+	* **Share** kopierar aktuell URL till klippbordet
+	* **Play** Visar ett bildspel med utsökta bilder
+	* **Help** visar denna sida
+	* **Up** går till närmast högre liggande katalog
+	* **None** avmarkerar alla bilder i denna utsökning
+	* **Download** hämtar alla markerade bilder i en zipfil
+	* **All** markerar alla bilder i denna utsökning
 	* Home = aktuell katalog. Här ser du alla bilder
-	* [Date] sorterar på datum, fallande
-	* [Event] sorterar på event, stigande
-	* [2022 (4936)] visar de 4936 bilder som tagits detta år.
-	* Klicka på en bild om du vill se högre upplösning. 
+	* **Date** sorterar på datum, fallande
+	* **Event** sorterar på event, stigande
+	* **2022 (4936)** visar de 4936 bilder som tagits detta år
+	* Klicka på en bild om du vill se högre upplösning
 		* En ny flik skapas där du kan zooma (med mushjulet) och panorera
-		* Bakom bilden finns tekniska data. Bland annat bländare, exponeringstid, objektiv, fotograf, tidpunkt
+		* Bakom bilden finns tekniska data
+			* T ex bländare, exponeringstid, objektiv, fotograf, tidpunkt
+		* Återgå med **Escape**
 
 ## Sökning
 
 Sökning genomförs genom att fylla i sökrutan.  
 Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filnamn  
-De kombineras automatiskt med OCH och ELLER  
-Underscore (_) kan användas för att binda ihop ord, t ex Numa_Karlsson  
+De kombineras automatiskt med **och** och **eller**  
+Underscore (_) kan användas för att binda ihop ord, t ex *Numa_Karlsson*  
 
 Sökningen är känslig för VERSALER och gemener.
 De ord man anger kan vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson  
@@ -87,11 +89,11 @@ Klicka på en bild för att se den i högsta upplösningen.
 ## Bildspel
 
 * Markera de bilder du vill visa
-* Klicka på Play
-* Maximera bilden med F11
-* Pausa med mellanslag
-* Gå framåt med pil höger
-* Gå bakåt med pil vänster
-* Minska hastigheten med pil upp
-* Öka hastigheten med pil ner
-* Återgå med Escape
+* Klicka på **Play**
+* Maximera bilden med **F11**
+* Pausa med **mellanslag**
+* Gå framåt med **pil höger**
+* Gå bakåt med **pil vänster**
+* Minska hastigheten med **pil upp**
+* Öka hastigheten med **pil ner**
+* Återgå med **Escape**
