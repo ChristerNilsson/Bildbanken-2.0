@@ -49,7 +49,6 @@
 		if (key == 'Home') i = 0
 		if (key == 'End') i = n-1
 		if (key == 'Escape') state='NORMAL'
-
 	}
 
 	window.onscroll = (e)=> {

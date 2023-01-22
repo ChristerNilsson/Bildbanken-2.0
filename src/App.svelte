@@ -14,7 +14,9 @@
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
 	import {Home,invHome,images,selected} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
-	import {log} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+	import {assert,comp2,log,multiSort,spaceShip} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+
+	window.onresize = resize
 
 	// json (array):
 	// 00 sw
@@ -204,62 +206,6 @@
 		placera($images,visibleKeys)
 	}
 
-	window.onresize = resize
-
-	function assert(a,b,msg="") {
-		if (!_.isEqual(a,b)) {
-			console.log("Assert failed",msg)
-			console.log(a)
-			console.log(b)
-			// debug.assert(!_.isEqual(a,b))
-		}
-	}
-
-	function spaceShip (a,b,desc=1) {
-		if (a < b) return -desc
-		else if (a == b) return 0
-		return desc
-	}
-	assert(spaceShip(1,2),-1)
-	assert(spaceShip(1,1),0)
-	assert(spaceShip(1,0),1)
-
-	assert(spaceShip(1,2,-1),1)
-	assert(spaceShip(1,1,-1),0)
-	assert(spaceShip(1,0,-1),-1)
-
-	assert(_.range(3),[0,1,2])
-
-	function comp (a,b) { if (a[0] == b[0]) {return spaceShip(a[1], b[1])} else {return spaceShip(a[0], b[0])}}
-
-	// Obs: använd index++ istf 0 pga -0 == +0
-	// 1 index => [-1],[1] = 2 varianter
-	// 2 index => [-1,-2],[1,-2],[-1,2],[1,2], [-2,-1],[-2,1],[2,-1],[2,1] = 2!*2^2 = 8 varianter
-	// 3 index => n! * 2^n = 48 varianter
-	// 4 index => 24 * 16 = 384 varianter
-	function multiSort (a,b,keys,desc=" ") { // det som sorteras är objekt
-		keys = keys.split(' ')
-		desc = desc.split(' ')
-		for (const key of keys) {
-			let result = spaceShip(a[key],b[key], (desc.includes(key) ? -1 : 1))
-			// log({key},a[key],b[key],result)
-			if (result != 0) return result
-		}
-	}
-	assert(false,''.split(' ').includes(' '),'XX')
-	assert(true,'A'.split(' ').includes('A'),'YY')
-	assert(false,'A'.split(' ').includes('B'),'ZZ')
-
-	assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n','y')), 'AA')
-	assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n')) ,    'BB')
-	assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y','n')), 'CC')
-	assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y')) ,    'DD')
-
-	function comp2(a,b) { if (a.length == b.length) {return spaceShip(a,b)} else {return -spaceShip(a.length,b.length)}}
-	assert(comp2("A","B"),-1)
-	assert(comp2("AB","AB"),0)
-	assert(comp2("B","A"),1)
-	assert(comp2("BC","A"),-1)
 
 	function f(skala,left,x,width) {return Math.round((1-skala) * (x-left))} //         
 	//           skala left x   width
@@ -330,7 +276,7 @@
 	}
 
 	function search(node,words,path) {
-
+		log('search')
 		const result = []
  
 		// rekursiv pga varierande djup i trädet
@@ -350,6 +296,8 @@
 						if (newpath.slice(10).includes(word)) s += ALFABET[i]
 					}
 					if (s.length > 0 || words.length == 0) {
+						node[key].letters = s
+						node[key].letterCount = s.length
 						result.push(node[key].md5)
 						stat[s] = (stat[s] || 0) + 1
 					}
@@ -372,7 +320,8 @@
 
 		const levels = 99
 		recursiveSearch(node, words, path, levels)
-		result.sort((a,b) => multiSort(a,b,'letterCount letters path filename','letterCount'))
+
+		result.sort((a,b) => multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount'))
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
