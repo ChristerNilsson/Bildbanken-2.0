@@ -6,12 +6,9 @@
 	import { saveAs } from "file-saver"
 	import {Home,invHome,images,selected} from './lib/stores.js' // object with md5 as keys
 
-	// export let selected
-
-	// export let images
 	export let WIDTH
 	export let spreadWidth
-	export let MAX_DOWNLOAD
+	// export let MAX_DOWNLOAD
 	export let stack
 	export let pop
 
@@ -24,13 +21,9 @@
 	}
 
 	$: n = countSelection($selected,$invHome)
-
 	$: log(n)
 
-	// function make(value) { selected = _.map(images, () => value) }
-
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
-
 	let zip = null
 
 	function all() { // in this folder
@@ -48,9 +41,9 @@
 		for (const key in $selected) {
 			const sel = $selected[key]
 			if (!sel) continue
-			let path = $invHome[key].path + '/' + $invHome[key].filename //sel[2] + "\\" + sel[12]
-			path = path.replaceAll('\\','__') // Flat fil önskad av Hedlund
-			fileArr.push({name:path, url:"Home\\" + key + ".jpg"})
+			let path = $invHome[key].path + '/' + $invHome[key].filename //sel[2] + "/" + sel[12]
+			path = path.replaceAll('/','__') // Flat fil önskad av Hedlund
+			fileArr.push({name:path, url:"Home/" + key + ".jpg"})
 		}
 		n = fileArr.length
 		if (n == 0) return

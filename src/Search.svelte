@@ -73,7 +73,7 @@
 	}
 
 	function help() {
-		window.open("https://github.com/ChristerNilsson/2022-011-Bildbanken-svelte#readme")
+		window.open("https://github.com/ChristerNilsson/2022-014-Bildbanken2#readme")
 	}
 
 	window.onload = () => document.getElementById("search").focus()

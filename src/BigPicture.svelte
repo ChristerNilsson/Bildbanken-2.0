@@ -7,7 +7,7 @@
 
 	let exif = null
 
-	let path = big.path.replaceAll("_"," ").replace('.jpg','').replaceAll("\\",' • ')
+	let path = big.path.replaceAll("_"," ").replace('.jpg','').replaceAll("/",' • ')
 	let filename = big.filename //_.last(big.filename)
 //	let path = names.slice(1,names.length-1).join(' • ')
 	// let path = names.join(' • ')
@@ -116,7 +116,7 @@
 
 <img 
 	id='picture'
-	src={"Home\\" + big.md5 + ".jpg"}
+	src={"Home/" + big.md5 + ".jpg"}
 	alt=""
 	on:wheel={wheel}
 	on:mousedown={mousedown}

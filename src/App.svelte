@@ -16,7 +16,7 @@
 	import {Home,invHome,images,selected} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 	import {log} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
 
-	// json:
+	// json (array):
 	// 00 sw
 	// 01 sh
 	// 02 bs
@@ -25,27 +25,25 @@
 	// 05 md5
 	// (06 selected)
 
-	// images:
-	// 00 letterCount
-	// 01 letters (search)
-	// 02 path
-	// 03 sw = small width
-	// 04 sh = small height
-	// 05 x (swimlane)
-	// 06 y
-	// 07 index (visas i card)
-	// 08 selected (kryssruta)
-	// 09 bs = big size
-	// 10 bw = big width
-	// 11 bh = big height
-	// 12 filename.jpg
-	// 13 md5 (t ex 0123456789abcdef0123456789abcdef)
+	// .expanded json (objekt):
+	// .letterCount
+	// .letters (search)
+	// .path
+	// .sw = small width
+	// .sh = small height
+	// .x (swimlane)
+	// .y
+	// .index (visas i card)
+	// .selected (kryssruta) not used! See $selected
+	// .bs = big size
+	// .bw = big width
+	// .bh = big height
+	// .filename.jpg
+	// .md5 (t ex 0123456789abcdef0123456789abcdef)
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
 	// let Home
-
-	// $invHome = invertHome($Home)
 
 	async function getJSON() {
 		let response = await fetch("./json/bilder.json")
@@ -72,7 +70,7 @@
 			for (const md5 of $images.slice(n, n + 20)) {
 				cards.push($invHome[md5])
 			}
-			cards = cards 
+			cards = cards
 
 			const latest = _.last(cards)
 			if (n > 0) {
@@ -157,8 +155,6 @@
 			}
 		}
 		recurse(h,'')
-		// log(h)
-		// log(ih[_.keys(ih)[0]])
 		return ih
 	}
 
@@ -201,15 +197,11 @@
 	$: [text0,text1,$images] = search(_.last(path), sokruta, stack.join('/'), $Home)
 	$: log('images',$images.length)
 
-	$: { 
-		placera($images,visibleKeys)
-		// $images = $images
-	}
+	$: placera($images,visibleKeys)
 
 	function resize() {
 		WIDTH = calcWidth(innerWidth)
 		placera($images,visibleKeys)
-		// $images = $images
 	}
 
 	window.onresize = resize
@@ -327,17 +319,13 @@
 		const result = {}
 		log('images.length',images.length,{level})
 		for (const md5 of images) {
-			// log({md5})
 			const data = $invHome[md5]
-			// log({data})
 			const arr = data.path.split("/")
 			if (level >= arr.length) break
 			const key = arr[level]
 			result[key] ||= 0
 			result[key] += 1
-			// log(result)
 		}
-		// log({result})
 		return result
 	}
 
@@ -362,8 +350,6 @@
 						if (newpath.slice(10).includes(word)) s += ALFABET[i]
 					}
 					if (s.length > 0 || words.length == 0) {
-						// const [sw,sh,bs,bw,bh,md5] = node[key] // small/big width/height/size md5=32*hex
-						// result.push([-s.length, s, path, sw, sh, 0, 0, 0, false, bs, bw, bh, key, md5])
 						result.push(node[key].md5)
 						stat[s] = (stat[s] || 0) + 1
 					}
@@ -376,22 +362,16 @@
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
 		count = 0
-		// log('search')
-
-		//words = words.toLowerCase()
-		//path = path.toLowerCase()
 
 		words = words.length == 0 ? [] : words.split(" ")
 
 		stat = {}
 		total = 0
-		// selected = []
 
 		const start = new Date()
 
 		const levels = 99
 		recursiveSearch(node, words, path, levels)
-		// $images.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
 		result.sort((a,b) => multiSort(a,b,'letterCount letters path filename','letterCount'))
 
 		const keys = Object.keys(stat)
@@ -405,7 +385,6 @@
 		log({result})
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result]
 	}
-
 
 	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
@@ -423,7 +402,6 @@
 		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 50-2 //43
-		// const res = $images
 		for (const i in range(images.length)) {
 			tick()
 			const md5 = images[i]
@@ -435,10 +413,8 @@
 			bild.x = (GAP + WIDTH)*index
 			bild.y = cols[index]
 			bild.index = i
-			//bild.selected = false // kryssruta
 			cols[index] += Math.round(WIDTH*bild.sh/bild.sw) + textHeights // h/w
 		}
-		//$images = $images
 	}
 
 	function countDirs(path) {
@@ -479,9 +455,7 @@
 
 	function setHome(data) {
 		$Home = data
-
 		$invHome = invertHome($Home)
-		// log('$invHome',$invHome)
 		path = [$Home]
 		stack = ["Home"]
 		return ""
@@ -490,8 +464,6 @@
 </script>
 
 <svelte:window bind:scrollY={y}/>
-
-<!-- <svelte:body style="background-color: black; color:white"/> -->
 
 {#await promise }
 	<p>Loading...</p>

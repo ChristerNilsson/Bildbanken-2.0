@@ -1,8 +1,8 @@
 # Bildbanken 2
 
-### Introduktion
+## Introduktion
 
-Denna databas innehåller cirka 50.000 fotografier från den svenska schackvärlden, tagna av Lars OA Hedlund, sedan 2011.  
+Denna databas innehåller drygt 45.000 fotografier från den svenska schackvärlden, tagna av Lars OA Hedlund, sedan 2011.  
 När du startar ser du alla bilder, med de senaste högst upp.  
 Du kan avgränsa sökandet på två sätt:
 
@@ -13,19 +13,18 @@ Du kan avgränsa sökandet på två sätt:
 	4. Klass
 	5. Grupp
 
-
 2. Genom att skriva in ett eller flera ord i sökrutan längst upp.  
 	Skriver du flera ord, kommer bilderna högre upp ju fler träffar orden får.  
 	(Man kan säga att OCH kommer före ELLER)
 
 	* [Clear] rensar sökrutan
 	* [Share] kopierar aktuell URL till klippbordet
-	* [Keywords] Laddar ner en textfil med aktuell katalogs sökord samt deras frekvens
+	* [Play] Visar ett bildspel med utsökta bilder
 	* [Help] visar denna sida
 	* [Up] går till närmast högre liggande katalog
-	* [None] avmarkerar alla bilder
+	* [None] avmarkerar alla bilder i denna utsökning
 	* [Download] hämtar alla markerade bilder i en zipfil
-	* [All] markerar alla bilder
+	* [All] markerar alla bilder i denna utsökning
 	* Home = aktuell katalog. Här ser du alla bilder
 	* [Date] sorterar på datum, fallande
 	* [Event] sorterar på event, stigande
@@ -34,21 +33,21 @@ Du kan avgränsa sökandet på två sätt:
 		* En ny flik skapas där du kan zooma (med mushjulet) och panorera
 		* Bakom bilden finns tekniska data. Bland annat bländare, exponeringstid, objektiv, fotograf, tidpunkt
 
-### Sökning
+## Sökning
 
 Sökning genomförs genom att fylla i sökrutan.  
 Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filnamn  
 De kombineras automatiskt med OCH och ELLER  
 Underscore (_) kan användas för att binda ihop ord, t ex Numa_Karlsson  
 
-Sökningen är inte känslig för VERSALER och gemener.
+Sökningen är känslig för VERSALER och gemener.
 De ord man anger kan vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson  
 
 Tom söksträng innebär att alla bilder matchar.
 
 Sökning går endast mot den katalog man valt. Välj Home om du vill söka i alla kataloger.
 
-### Exempel
+## Exempel
 
 ![Example](help.jpg)
 
@@ -84,3 +83,15 @@ Vill man avgränsa sig kan man t ex söka på Anna_Cramling eller klicka på Sch
 Klickar man på [Up] får man se alla år och kan då klicka på 2011 för att se hur Anna såg ut då.
 
 Klicka på en bild för att se den i högsta upplösningen.
+
+## Bildspel
+
+* Markera de bilder du vill visa
+* Klicka på Play
+* Maximera bilden med F11
+* Pausa med mellanslag
+* Gå framåt med pil höger
+* Gå bakåt med pil vänster
+* Minska hastigheten med pil upp
+* Öka hastigheten med pil ner
+* Återgå med Escape

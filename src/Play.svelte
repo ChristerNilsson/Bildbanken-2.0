@@ -45,7 +45,7 @@
 		if (key == 'ArrowLeft')  i = (i + n-1) % n
 		if (key == 'ArrowRight') i = (i + 1) % n
 		if (key == 'ArrowUp')   delay++
-		if (key == 'ArrowDown') delay = delay < 2 ? delay : delay-1
+		if (key == 'ArrowDown') delay = delay <= 5 ? delay : delay-1
 		if (key == 'Home') i = 0
 		if (key == 'End') i = n-1
 		if (key == 'Escape') state='NORMAL'

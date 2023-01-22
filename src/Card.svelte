@@ -6,14 +6,12 @@
 	export let WIDTH
 	export let card
 
-	// export let selected
-	// export let index
-
 	export let round
 	export let fileWrapper
 	export let prettyFilename
 
 	$: filename = card.path + "/" + card.filename
+	$: log(filename)
 
 	$: FS = getNumbers(filename,'F')
 	$: LS = getNumbers(filename,'L')
@@ -38,7 +36,7 @@
 	}
 
 	function prettyPath(path) { // Tag bort eventuellt T-nummer
-		path = path.split('\\')
+		path = path.split('/')
 		path = path.slice(2,path.length-1)
 		path = path.join(" • ")
 		path = path.replaceAll(/_F\d+/g,'') // deprecated
@@ -51,22 +49,13 @@
 		return path.replaceAll('_', ' ')
 	}
 
-	// function toggleSelection() {
-	// 	const key = card.md5
-	// 	$selected[key] = ! $selected[key]
-	// 	$selected = $selected
-	// 	log('toggleSelection',key,card,$selected[key])
-	// }
-
-	// function getPath(path,dir) { return path.replace("Home",dir) }
-
 </script>
 
 <div class="card" id="images" style="position:absolute; width:{WIDTH}px; left:{card.x}px; top:{card.y}px">
 	<img
 		margin:0px
 		padding:0px
-		src = {"small\\" + card.md5 + ".jpg"}
+		src = {"small/" + card.md5 + ".jpg"}
 		width = {WIDTH}px
 		alt = ""
 		on:click = {() => {

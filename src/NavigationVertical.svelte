@@ -13,8 +13,8 @@
 
 	function sortera(keys,i) {
 		log({keys,i})
-		const path = stack.join("\\")
-		buttons = (n == 2 && path != "Home\\0000 Klubbar") 
+		const path = stack.join("/")
+		buttons = (n == 2 && path != "Home/0000 Klubbar") 
 		sortIndex = buttons ? i : 0
 
 		let pos = sortIndex==1 ? 11 : 0
