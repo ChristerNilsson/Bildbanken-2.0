@@ -2,6 +2,7 @@
 	import { saveAs } from 'file-saver'
 	import {selected} from './lib/stores.js'
 	import {log} from './lib/utils.js'
+	import _ from 'lodash'
 
 	export let sokruta
 	export let text0
@@ -11,9 +12,9 @@
 	export let GAP
 	export let spreadWidth
 	export let path
-	export let _
 	export let is_jpg
-	export let state
+	export let MAX_DOWNLOAD
+	// export let state
 
 	function clear() {
 		sokruta = ""
@@ -70,9 +71,10 @@
 	}
 
 	function play() {
-		log($selected)
-		if (_.size($selected) > 0) state = 'PLAY'
-		// window.open("/play/?ids=0a0bd65aef49942c7fad7560b4bb4b91_fff86a56ee65ec30a8e7feca0a9c04f2")
+		const host = location.origin + location.pathname
+		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('_')
+		window.open(host + "?ids=" + ids)
+		// if (_.size($selected) > 0) state = 'PLAY'
 	}
 
 	function help() {

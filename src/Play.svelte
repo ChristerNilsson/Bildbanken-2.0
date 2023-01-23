@@ -5,9 +5,6 @@
 	import _ from 'lodash'
 	import {log} from './lib/utils.js'
 
-	export let state
-
-	const SIZE = 'Home'
 	let delay = 5 // s
 	const DURATION = 1000 // ms
 	const GAP = 30
@@ -17,19 +14,17 @@
 	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
 	$: data = $invHome[keys[i]]
-	// $: log(data)
 	$: bw = data.bw
 	$: bh = data.bh
 	$: md5 = data.md5
 	$: path = data.path + '/' + data.filename
-	$: href = '/' + SIZE + '/' + md5 + '.jpg'
+	$: href = '/Home/' + md5 + '.jpg'
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
 	const f = () => {
 		i = paused ? i : (i+1) % n
 		setTimeout(f,delay*1000)
 	}
-
 	setTimeout(f,delay*1000)
 
 	$: skala  = Math.min((innerHeight-GAP)/bh, (innerWidth)/bw)
@@ -40,7 +35,6 @@
 
 	function keydown(event) {
 		const key = event.key
-		// log(key)
 		if (key == ' ') paused = ! paused
 		if (key == 'ArrowLeft')  i = (i + n-1) % n
 		if (key == 'ArrowRight') i = (i + 1) % n
@@ -48,7 +42,7 @@
 		if (key == 'ArrowDown') delay = delay <= 5 ? delay : delay-1
 		if (key == 'Home') i = 0
 		if (key == 'End') i = n-1
-		if (key == 'Escape') state='NORMAL'
+		// if (key == 'Escape') state='NORMAL'
 	}
 
 	window.onscroll = (e)=> {

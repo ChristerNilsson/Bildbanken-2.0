@@ -613,3 +613,11 @@ Lyfter man ut bildkatalogerna och bilder.json tar **npm run dev** bara fem sekun
 ### Om en bild förekommer två gånger, visas den som en tom yta andra gången.
 
 Detta beror på att listan @images, med dublett md5, används för att sätta x och y. Det innebär att de två bilderna visas i exakt samma position. Kan undvikas genom att eliminera dubletter. Låter det stå kvar tills vidare.
+
+### Bildspelet
+
+Det bygger på att en url med md5:orna skapas.  
+md5 tar 32 tecken. Chrome klarar url:er upp till 16K verkar det som.  
+Det innebär att maximum (16K/33) = 496 bilder kan hanteras  
+Genom att minska till 16 tecken, kan 16K/17 = 963 bilder hanteras  
+Då ökar också risken för krock.

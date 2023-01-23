@@ -18,7 +18,6 @@
 
 	window.onresize = resize
 
-
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
 	// let Home
@@ -162,14 +161,22 @@
 	function consumeParameters() {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
-		if (urlParams.has("md5")) {
-			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("md5"),urlParams.get("path"),urlParams.get("filename"))
-		} else if (urlParams.has("ids")) {
-
-		} else {
-			if (urlParams.has("folder")) consumeFolder(urlParams.get("folder"))
-			if (urlParams.has("query")) sokruta = urlParams.get("query")
+		if (urlParams.has("folder")) consumeFolder(urlParams.get("folder"))
+		if (urlParams.has("query")) sokruta = urlParams.get("query")
+		if (urlParams.has("ids")) {
+			const ids = urlParams.get("ids").split('_')
+			for (const md5 of ids) {
+				$selected[md5] = true
+				state = 'PLAY'
+			}
 		}
+
+		// if (urlParams.has("md5")) {
+		// 	visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("md5"),urlParams.get("path"),urlParams.get("filename"))
+		// } else if (urlParams.has("ids")) {
+
+		// } else {
+		// }
 	}
 
 	$: [text0,text1,$images] = search(_.last(path), sokruta, stack.join('/'), $Home)
@@ -395,7 +402,7 @@
 {:then data}
 	{setHome(data)}
 	{#if state == 'NORMAL'}
-		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} bind:state/>
+		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} bind:state {MAX_DOWNLOAD} />
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />

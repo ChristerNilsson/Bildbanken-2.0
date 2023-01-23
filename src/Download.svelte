@@ -13,7 +13,7 @@
 	export let MAX_DOWNLOAD
 
 	function countSelection(selected,invHome) {
-		let count = 0 
+		let count = 0
 		for (const key in selected) {
 			if (selected[key]) count+=1
 		}
@@ -21,7 +21,6 @@
 	}
 
 	$: n = countSelection($selected,$invHome)
-	// $: log(n)
 
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
 	let zip = null
@@ -38,10 +37,10 @@
 	function downloadAll() { // download all files as ZIP archive
 		zip = new JSZip()
 		const fileArr = []
-		for (const key of _.keys($selected).slice(0,500)) {
+		for (const key of _.keys($selected).slice(0,MAX_DOWNLOAD)) {
 			const sel = $selected[key]
 			if (!sel) continue
-			let path = $invHome[key].path + '/' + $invHome[key].filename //sel[2] + "/" + sel[12]
+			let path = $invHome[key].path + '/' + $invHome[key].filename
 			path = path.replaceAll('/','__') // Flat fil önskad av Hedlund
 			fileArr.push({name:path, url:"Home/" + key + ".jpg"})
 		}
