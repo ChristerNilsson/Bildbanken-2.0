@@ -30,7 +30,7 @@ Du kan avgränsa sökandet på två sätt:
 	* **Event** sorterar på event, stigande
 	* **2022 (4936)** visar de 4936 bilder som tagits detta år
 	* Klicka på en bild om du vill se högre upplösning
-		* En ny flik skapas där du kan zooma (med mushjulet) och panorera
+		* Nu kan du zooma (med mushjulet) och panorera (hasa med musen)
 		* Bakom bilden finns tekniska data
 			* T ex bländare, exponeringstid, objektiv, fotograf, tidpunkt
 		* Återgå med **Escape**
@@ -88,12 +88,14 @@ Klicka på en bild för att se den i högsta upplösningen.
 
 ## Bildspel
 
-* Markera de bilder du vill visa
-* Klicka på **Play**
+* Markera de bilder du vill visa. Samma hantering som vid Download
+* Klicka på **Play**. Ny flik skapas
 * Maximera bilden med **F11**
 * Pausa med **mellanslag**
 * Gå framåt med **pil höger**
 * Gå bakåt med **pil vänster**
 * Minska hastigheten med **pil upp**
 * Öka hastigheten med **pil ner**
-* Återgå med **Escape**
+* Avsluta genom att stänga fliken
+* Maximalt 400 bilder kan visas
+	* Bildernas identitet anges i url:en och den klarar bara 16k tecken.

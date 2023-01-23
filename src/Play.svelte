@@ -18,7 +18,12 @@
 	$: bh = data.bh
 	$: md5 = data.md5
 	$: path = data.path + '/' + data.filename
-	$: href = '/Home/' + md5 + '.jpg'
+	const host = location.origin + location.pathname.replace('index.html','')
+	$: log('origin',location.origin)
+	$: log('pathname',location.pathname)
+	$: href = host + 'Home/' + md5 + '.jpg'
+	$: log('href',href)
+
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
 	const f = () => {

@@ -18,6 +18,8 @@
 
 	window.onresize = resize
 
+	log('Skapad: 2023-01-23 14:41')
+
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
 	// let Home
@@ -259,7 +261,7 @@
 	}
 
 	function search(node,words,path) {
-		log('search')
+		// log('search')
 		const result = []
  
 		// rekursiv pga varierande djup i trädet
