@@ -1,4 +1,8 @@
 <script>
+	import { saveAs } from 'file-saver'
+	import {selected} from './lib/stores.js'
+	import {log} from './lib/utils.js'
+
 	export let sokruta
 	export let text0
 	export let text1
@@ -10,8 +14,6 @@
 	export let _
 	export let is_jpg
 	export let state
-
-	import { saveAs } from 'file-saver'
 
 	function clear() {
 		sokruta = ""
@@ -68,7 +70,8 @@
 	}
 
 	function play() {
-		state = 'PLAY'
+		log($selected)
+		if (_.size($selected) > 0) state = 'PLAY'
 		// window.open("/play/?ids=0a0bd65aef49942c7fad7560b4bb4b91_fff86a56ee65ec30a8e7feca0a9c04f2")
 	}
 
@@ -76,7 +79,7 @@
 		window.open("https://github.com/ChristerNilsson/2022-014-Bildbanken2#readme")
 	}
 
-	window.onload = () => document.getElementById("search").focus()
+	// window.onload = () => document.getElementById("search").focus()
 
 </script>
 

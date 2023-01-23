@@ -609,3 +609,7 @@ Allt fungerar, åtminstone med svelte.
 Ska testa med sveltekit.  
 Man tappar dock HMR (Hot Module Replacement).
 Lyfter man ut bildkatalogerna och bilder.json tar **npm run dev** bara fem sekunder.
+
+### Om en bild förekommer två gånger, visas den som en tom yta andra gången.
+
+Detta beror på att listan @images, med dublett md5, används för att sätta x och y. Det innebär att de två bilderna visas i exakt samma position. Kan undvikas genom att eliminera dubletter. Låter det stå kvar tills vidare.

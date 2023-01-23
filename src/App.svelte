@@ -13,35 +13,11 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
-	import {Home,invHome,images,selected} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
-	import {assert,comp2,log,multiSort,spaceShip} from './lib/utils.js' // objekt med md5 som nycklar. Utvalda med kryssruta. Innehåller långa listan från images
+	import {Home,invHome,images,selected} from './lib/stores.js'
+	import {assert,comp2,log,multiSort,spaceShip} from './lib/utils.js'
 
 	window.onresize = resize
 
-	// json (array):
-	// 00 sw
-	// 01 sh
-	// 02 bs
-	// 03 bw
-	// 04 bh
-	// 05 md5
-	// (06 selected)
-
-	// .expanded json (objekt):
-	// .letterCount
-	// .letters (search)
-	// .path
-	// .sw = small width
-	// .sh = small height
-	// .x (swimlane)
-	// .y
-	// .index (visas i card)
-	// .selected (kryssruta) not used! See $selected
-	// .bs = big size
-	// .bw = big width
-	// .bh = big height
-	// .filename.jpg
-	// .md5 (t ex 0123456789abcdef0123456789abcdef)
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
@@ -321,7 +297,7 @@
 		const levels = 99
 		recursiveSearch(node, words, path, levels)
 
-		result.sort((a,b) => multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount'))
+		result.sort((a,b) => multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount path'))
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
@@ -331,7 +307,7 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		// log({result})
+		// if (result.length < 150) log({result})
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result]
 	}
 

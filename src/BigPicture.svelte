@@ -100,8 +100,7 @@
 	}
 
 	function share () {
-		const extra = `bs=${big.bs}&bw=${big.bw}&bh=${big.bh}&md5=${big.md5}&path=${big.path}&filename=${big.filename}`
-		navigator.clipboard.writeText(location.origin + location.pathname + "?" + extra)
+		navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')
 	}
 
 	document.onmousemove = mousemove
