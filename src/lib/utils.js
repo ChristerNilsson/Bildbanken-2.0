@@ -144,24 +144,22 @@ assert(_.range(3),[0,1,2])
 
 export function comp (a,b) { if (a[0] == b[0]) {return spaceShip(a[1], b[1])} else {return spaceShip(a[0], b[0])}}
 
-export function multiSort (a,b,keys,desc=" ") { // det som sorteras är objekt
-	// log('multiSort',{a,b})
-	keys = keys.split(' ')
-	desc = desc.split(' ')
-	for (const key of keys) {
-		let result = spaceShip(a[key],b[key], (desc.includes(key) ? -1 : 1))
-		// log({key},a[key],b[key],result)
-		if (result != 0) return result
-	}
-}
-assert(false,''.split(' ').includes(' '),'XX')
-assert(true,'A'.split(' ').includes('A'),'YY')
-assert(false,'A'.split(' ').includes('B'),'ZZ')
+// export function multiSort (a,b,keys,desc=" ") { // det som sorteras är objekt
+// 	keys = keys.split(' ')
+// 	desc = desc.split(' ')
+// 	for (const key of keys) {
+// 		let result = spaceShip(a[key],b[key], (desc.includes(key) ? -1 : 1))
+// 		if (result != 0) return result
+// 	}
+// }
+// assert(false,''.split(' ').includes(' '),'XX')
+// assert(true,'A'.split(' ').includes('A'),'YY')
+// assert(false,'A'.split(' ').includes('B'),'ZZ')
 
-assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n','y')), 'AA')
-assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n')) ,    'BB')
-assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y','n')), 'CC')
-assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y')) ,    'DD')
+// assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n','y')), 'AA')
+// assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'y n')) ,    'BB')
+// assert([{y:13,n:'B'}, {y:18,n:'A'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y','n')), 'CC')
+// assert([{y:18,n:'A'}, {y:13,n:'B'}], [{y:18,n:'A'}, {y:13,n:'B'}].sort((a,b) =>  multiSort(a,b,'n y')) ,    'DD')
 
 export function comp2(a,b) { if (a.length == b.length) {return spaceShip(a,b)} else {return -spaceShip(a.length,b.length)}}
 assert(comp2("A","B"),-1)

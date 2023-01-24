@@ -5,7 +5,8 @@ export let invHome  = writable({}) // objekt med md5 som nyckel. Pekar på utök
 export let images   = writable([]) // lista över framsökta md5 i aktuell folder.
 export let selected = writable({}) // Objekt nycklad med md5. True eller false. Kopplad till checkbox.
 
-	// json (array), ursprungliga listan med sex element:
+	// $Home, ursprungliga listan med sex element:
+	// {[sw,sh,bs,bw,bh,md5]}
 	// 0 sw Small Width
 	// 1 sh Small Height
 	// 2 bs Big Size
@@ -13,18 +14,16 @@ export let selected = writable({}) // Objekt nycklad med md5. True eller false. 
 	// 4 bh Big Height
 	// 5 md5 32 hexadecimala tecken
 
-	// Expanderad json (objekt), listan utökad till 13 element och omvandlad till objekt.
-	// .sw
-	// .sh
-	// .bs
-	// .bw
-	// .bh
-	// .md5 (t ex 0123456789abcdef0123456789abcdef)
+	// $Home (objekt), listan utökad till åtta element och omvandlad till objekt.
+	// {md5:{sw,sh,bs,bw,bh,md5,path,filename}}
 
-	// .letterCount A => 1, AB => 2 osv
+	// $images
+	// [{letters,timestamp,x,y,md5}]
 	// .letters t ex AB A B osv
-	// .path
-	// .filename
-	// .x (swimlane)
+	// .timestamp tidpunkt när bilden togs. "yyyy-mm-dd hh:mm:ss"
+	// .x (swimlane position)
 	// .y
-	// .index (visas i card)
+	// (.index (visas i card))
+
+	// $selected
+	// {md5 : true/false}

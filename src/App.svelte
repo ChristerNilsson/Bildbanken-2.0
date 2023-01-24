@@ -14,7 +14,7 @@
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
 	import {Home,invHome,images,selected} from './lib/stores.js'
-	import {assert,comp2,log,multiSort,spaceShip} from './lib/utils.js'
+	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
 	window.onresize = resize
 
@@ -306,7 +306,14 @@
 		const levels = 99
 		recursiveSearch(node, words, path, levels)
 
-		result.sort((a,b) => multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount path'))
+		result.sort((a,b) => {
+			// multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount path'))
+			a = $invHome[a]
+			b = $invHome[b]
+			const al = a.letters
+			const bl = b.letters
+			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(b.path,a.path)
+		})
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
