@@ -13,11 +13,11 @@
 
 	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
-	$: data = $invHome[keys[i]]
-	$: bw = data.bw
-	$: bh = data.bh
-	$: md5 = data.md5
-	$: path = data.path + '/' + data.filename
+	$: ih = $invHome[keys[i]]
+	$: bw = ih.bw
+	$: bh = ih.bh
+	$: md5 = ih.md5
+	$: path = ih.path + '/' + ih.filename
 	const host = location.origin + location.pathname.replace('index.html','')
 	$: log('origin',location.origin)
 	$: log('pathname',location.pathname)

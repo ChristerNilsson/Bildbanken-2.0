@@ -26,11 +26,11 @@
 	let zip = null
 
 	function all() { // in this folder
-		for (const md5 of $images) $selected[md5] = true
+		for (const image of $images) $selected[image.md5] = true
 		$selected=$selected
 	}
 	function none() { // in this folder
-		for (const md5 of $images) $selected[md5] = false
+		for (const image of $images) $selected[image.md5] = false
 		$selected=$selected
 	}
 

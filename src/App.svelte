@@ -46,14 +46,14 @@
 			const n = cards.length
 
 			// cards = cards.concat($images.slice(n, n + 20))
-			for (const md5 of $images.slice(n, n + 20)) {
-				cards.push($invHome[md5])
+			for (const image of $images.slice(n, n + 20)) {
+				cards.push(image)
 			}
 			cards = cards
 
 			const latest = _.last(cards)
 			if (n > 0) {
-				ymax = latest.y + latest.sh // y + h
+				ymax = latest.y + $invHome[latest.md5].sh // y + h
 			}
 		}
 	}
@@ -111,11 +111,11 @@
 		bild.filename = filename // filename with extension .jpg
 
 		// dynamic properties:
-		bild.letterCount = 0 // created when searching
-		bild.letters = ''
-		bild.x = 0 // swimlane position
-		bild.y = 0
-		bild.index = 0 
+		// bild.letterCount = 0 // created when searching
+		//bild.letters = ''
+		//bild.x = 0 // swimlane position
+		//bild.y = 0
+		//bild.index = 0 
 		// bild.selected = false // checkbox
 
 		return bild
@@ -208,14 +208,15 @@
 
 	function visaBig(card) { //bs, bw, bh, md5, path, filename
 		// console.log('visaBig',md5)
+		const ih = $invHome[card.md5]
 		document.body.style = "overflow:hidden"
 
 		big.exifState = 0
 		big.mouseState = 0
 
-		big.bs = card.bs
-		big.bw = card.bw
-		big.bh = card.bh
+		big.bs = ih.bs
+		big.bw = ih.bw
+		big.bh = ih.bh
 
 		big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
 		big.width = big.bw * big.skala
@@ -224,8 +225,8 @@
 		big.top = (innerHeight-big.height)/2
 
 		big.md5 = card.md5
-		big.path = card.path
-		big.filename = card.filename
+		big.path = ih.path
+		big.filename = ih.filename
 		big = big
 	}
 
@@ -249,9 +250,9 @@
 	function getVisibleKeys(images,level) {
 		const result = {}
 		// log('images.length',images.length,{level})
-		for (const md5 of images) {
-			const data = $invHome[md5]
-			const arr = data.path.split("/")
+		for (const image of images) {
+			const ih = $invHome[image.md5]
+			const arr = ih.path.split("/")
 			if (level >= arr.length) break
 			const key = arr[level]
 			result[key] ||= 0
@@ -281,9 +282,9 @@
 						if (newpath.slice(10).includes(word)) s += ALFABET[i]
 					}
 					if (s.length > 0 || words.length == 0) {
-						node[key].letters = s
-						node[key].letterCount = s.length
-						result.push(node[key].md5)
+						// node[key].letters = s
+						// node[key].letterCount = s.length
+						result.push({md5:node[key].md5, letters:s,x:0,y:0})
 						stat[s] = (stat[s] || 0) + 1
 					}
 				} else {
@@ -308,8 +309,8 @@
 
 		result.sort((a,b) => {
 			// multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount path'))
-			a = $invHome[a]
-			b = $invHome[b]
+			//a = $invHome[a]
+			//b = $invHome[b]
 			const al = a.letters
 			const bl = b.letters
 			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(b.path,a.path)
@@ -345,16 +346,16 @@
 		const textHeights = 50-2 //43
 		for (const i in range(images.length)) {
 			tick()
-			const md5 = images[i]
-			const bild = $invHome[md5]
+			const image = images[i]
+			const ih = $invHome[image.md5]
 			let index = 0 // sök fram index för minsta kolumnen
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
 			}
-			bild.x = (GAP + WIDTH)*index
-			bild.y = cols[index]
-			bild.index = i
-			cols[index] += Math.round(WIDTH*bild.sh/bild.sw) + textHeights // h/w
+			image.x = (GAP + WIDTH)*index
+			image.y = cols[index]
+			image.index = i
+			cols[index] += Math.round(WIDTH*ih.sh/ih.sw) + textHeights // h/w
 		}
 	}
 

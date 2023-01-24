@@ -11,7 +11,9 @@
 	export let prettyFilename
 	export let visaBig
 
-	$: filename = card.path + "/" + card.filename
+	const ih = $invHome[card.md5]
+
+	$: filename = ih.path + "/" + ih.filename
 	// $: log(filename)
 
 	$: FS = getNumbers(filename,'F')
@@ -106,7 +108,7 @@
 			{/each}
 
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
-			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card.bw*card.bh/1024/1024,1)} MP • {card.bw} x {card.bh} • {round(card.bs/1024,0)} kB &nbsp;</span>
+			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(ih.bw*ih.bh/1024/1024,1)} MP • {ih.bw} x {ih.bh} • {round(ih.bs/1024,0)} kB &nbsp;</span>
 		</div>	
 	</div>
 </div>
