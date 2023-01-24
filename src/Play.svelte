@@ -1,7 +1,7 @@
 <script>
 	import {Home,invHome,selected} from './lib/stores.js'
 	import { Body } from 'svelte-body'
-	import { fade } from 'svelte/transition'
+	import { fade,fly } from 'svelte/transition'
 	import _ from 'lodash'
 	import {log} from './lib/utils.js'
 
@@ -74,10 +74,11 @@
 	</table>
 
 	{#if i%2==0}
-		<img id='picture0' transition:fade={{ duration:DURATION}} style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
+		<img transition:fade="{{ duration:DURATION}}" style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
 	{:else}
-		<img id='picture1' transition:fade={{ duration:DURATION}} style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
+		<img transition:fade="{{ duration:DURATION}}" style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
 	{/if}
+
 </div>
 
 <style>

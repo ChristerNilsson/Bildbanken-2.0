@@ -79,7 +79,7 @@ def makeSmall(Original,Home,small,name):
 
 	filename = "\\" + md5hash + ".jpg"
 	if md5hash in md5Register and exists(Home + filename) and exists(small + filename):
-		lst = md5Register[md5hash] + [md5hash, getTimestamp(name)]
+		lst = md5Register[md5hash] # + [md5hash, getTimestamp(name)]
 		patch(cache, name, lst)
 		return lst
 
