@@ -33,7 +33,6 @@ Du kan avgränsa sökandet på två sätt:
 		* Nu kan du zooma (med mushjulet) och panorera (hasa med musen)
 		* Bakom bilden finns tekniska data
 			* T ex bländare, exponeringstid, objektiv, fotograf, tidpunkt
-		* Återgå med **Escape**
 
 ## Sökning
 

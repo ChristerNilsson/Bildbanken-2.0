@@ -16,9 +16,7 @@
 	import {Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
-	window.onresize = resize
-
-	log('Skapad: 2023-01-23 17:28')
+	log('Skapad: 2023-01-24 15:30')
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
@@ -46,10 +44,10 @@
 			const n = cards.length
 
 			// cards = cards.concat($images.slice(n, n + 20))
-			for (const image of $images.slice(n, n + 20)) {
-				cards.push(image)
-			}
-			cards = cards
+			// for (const image of $images.slice(n, n + 20)) {
+			// 	cards.push(image)
+			// }
+			cards = cards.concat($images.slice(n, n + 20))
 
 			const latest = _.last(cards)
 			if (n > 0) {
@@ -95,28 +93,21 @@
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
-	function expand(imagedata,path,filename) { // converts 6-element array to object with 14 properties
+	function expand(imagedata,path,filename) { // converts 7-element array to object with 9 properties
 		const bild = {}
 
 		// data from json file:
-		bild.sw  = imagedata[0] // small width
-		bild.sh  = imagedata[1] // small height
-		bild.bs  = imagedata[2] // big size
-		bild.bw  = imagedata[3] // big width
-		bild.bh  = imagedata[4] // big height
-		bild.md5 = imagedata[5] // unique id based om md5
+		bild.sw        = imagedata[0] // small width
+		bild.sh        = imagedata[1] // small height
+		bild.bs        = imagedata[2] // big size
+		bild.bw        = imagedata[3] // big width
+		bild.bh        = imagedata[4] // big height
+		bild.md5       = imagedata[5] // unique id based om md5
+		bild.timestamp = imagedata[6] // 2023-01-24 12:34:56
 
 		// added properties:
 		bild.path = path         // the folder names only
 		bild.filename = filename // filename with extension .jpg
-
-		// dynamic properties:
-		// bild.letterCount = 0 // created when searching
-		//bild.letters = ''
-		//bild.x = 0 // swimlane position
-		//bild.y = 0
-		//bild.index = 0 
-		// bild.selected = false // checkbox
 
 		return bild
 	}
@@ -172,27 +163,28 @@
 				state = 'PLAY'
 			}
 		}
+		if (urlParams.has("md5")) {
+			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("md5"),urlParams.get("path"),urlParams.get("filename"))
+			state = 'PICTURE'
+		}
 
-		// if (urlParams.has("md5")) {
-		// 	visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("md5"),urlParams.get("path"),urlParams.get("filename"))
-		// } else if (urlParams.has("ids")) {
-
-		// } else {
-		// }
 	}
 
-	$: [text0,text1,$images] = search(_.last(path), sokruta, stack.join('/'), $Home)
-	// $: log('images',$images.length)
+	$: [text0, text1, $images] = search(_.last(path), sokruta, stack.join('/'), $Home)
 
-	$: placera($images,visibleKeys)
+	$: placera($images,visibleKeys,innerWidth)
+	$: WIDTH = calcWidth(innerWidth)
 
 	function resize() {
+		cards = []
+		ymax = 0
 		WIDTH = calcWidth(innerWidth)
-		placera($images,visibleKeys)
+		placera($images,visibleKeys,innerWidth)
 	}
 
+	window.onresize = resize
 
-	function f(skala,left,x,width) {return Math.round((1-skala) * (x-left))} //         
+	const f= (skala,left,x,width) => Math.round((1-skala) * (x-left))
 	//           skala left x   width
 	assert(  0,f(1.1,  200, 200,400))
 	assert(-20,f(1.1,  200, 400,400))
@@ -206,17 +198,16 @@
 		return path
 	}
 
-	function visaBig(card) { //bs, bw, bh, md5, path, filename
-		// console.log('visaBig',md5)
-		const ih = $invHome[card.md5]
+	function visaBig(bs, bw, bh, md5, path, filename) {
+		log('visaBig',md5)
 		document.body.style = "overflow:hidden"
 
 		big.exifState = 0
 		big.mouseState = 0
 
-		big.bs = ih.bs
-		big.bw = ih.bw
-		big.bh = ih.bh
+		big.bs = bs
+		big.bw = bw
+		big.bh = bh
 
 		big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
 		big.width = big.bw * big.skala
@@ -224,9 +215,9 @@
 		big.left = (innerWidth-big.width)/2
 		big.top = (innerHeight-big.height)/2
 
-		big.md5 = card.md5
-		big.path = ih.path
-		big.filename = ih.filename
+		big.md5 = md5
+		big.path = path
+		big.filename = filename
 		big = big
 	}
 
@@ -282,8 +273,6 @@
 						if (newpath.slice(10).includes(word)) s += ALFABET[i]
 					}
 					if (s.length > 0 || words.length == 0) {
-						// node[key].letters = s
-						// node[key].letterCount = s.length
 						result.push({md5:node[key].md5, letters:s,x:0,y:0})
 						stat[s] = (stat[s] || 0) + 1
 					}
@@ -307,14 +296,15 @@
 		const levels = 99
 		recursiveSearch(node, words, path, levels)
 
-		result.sort((a,b) => {
-			// multiSort($invHome[a],$invHome[b],'letterCount letters path filename','letterCount path'))
-			//a = $invHome[a]
-			//b = $invHome[b]
+		function g(a,b) {
+			const iha = $invHome[a.md5]
+			const ihb = $invHome[b.md5]
 			const al = a.letters
 			const bl = b.letters
-			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(b.path,a.path)
-		})
+			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(ihb.timestamp,iha.timestamp)
+		}
+
+		result.sort(g)
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
@@ -324,14 +314,13 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		// if (result.length < 150) log({result})
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result]
 	}
 
 	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
-	function placera(images,visibleKeys) {
+	function placera(images,visibleKeys,innerWidth) {
 		const rows = sokruta=="" ? 4 : 5
 		let antal = rows + 1 + _.size(visibleKeys)
 		if (stack.length==2) antal+=1
@@ -344,6 +333,7 @@
 		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 50-2 //43
+		log('placera',{images,innerWidth,rows,antal,offset,COLS,GAP,WIDTH})
 		for (const i in range(images.length)) {
 			tick()
 			const image = images[i]
@@ -396,6 +386,7 @@
 	}
 
 	function setHome(data) {
+		log('setHome')
 		$Home = data
 		$invHome = invertHome($Home)
 		path = [$Home]
@@ -412,14 +403,14 @@
 {:then data}
 	{setHome(data)}
 	{#if state == 'NORMAL'}
-		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} bind:state {MAX_DOWNLOAD} />
+		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {MAX_DOWNLOAD} />
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite bind:state {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} {visaBig}/>
+		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
 	{:else}
 		{#if state == 'PICTURE'}
-			<BigPicture bind:state {big} {prettyFilename} />
+			<BigPicture {big} {prettyFilename} />
 		{:else}
 			<Play bind:state />
 		{/if}

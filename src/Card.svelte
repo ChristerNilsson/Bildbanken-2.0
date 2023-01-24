@@ -1,20 +1,16 @@
 <script>
 	import _ from "lodash"
 	import {log} from './lib/utils.js'
-	import {Home,invHome,images,selected} from './lib/stores.js' // objekt med md5 som nycklar. Utvalda med kryssruta
+	import {Home,invHome,images,selected} from './lib/stores.js'
 
 	export let WIDTH
 	export let card
-	export let state
 	export let round
 	export let fileWrapper
 	export let prettyFilename
-	export let visaBig
 
-	const ih = $invHome[card.md5]
-
+	$: ih = $invHome[card.md5]
 	$: filename = ih.path + "/" + ih.filename
-	// $: log(filename)
 
 	$: FS = getNumbers(filename,'F')
 	$: LS = getNumbers(filename,'L')
@@ -63,9 +59,8 @@
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
-			visaBig(card)
-			state = 'PICTURE'
-			// window.open(host + `?bs=${card.bs}&bw=${card.bw}&bh=${card.bh}&md5=${card.md5}&path=${card.path}&filename=${card.filename}`)
+			const ih = $invHome[card.md5]
+			window.open(host + `?bs=${ih.bs}&bw=${ih.bw}&bh=${ih.bh}&md5=${card.md5}&path=${ih.path}&filename=${ih.filename}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
@@ -84,6 +79,8 @@
 			{/if}
 
 			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" bind:checked={$selected[card.md5]} />
+
+			&nbsp;© Lars OA Hedlund
 
 			{#each FS as F}
 				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
@@ -107,8 +104,8 @@
 				&nbsp;&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
 			{/each}
 
-			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
-			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(ih.bw*ih.bh/1024/1024,1)} MP • {ih.bw} x {ih.bh} • {round(ih.bs/1024,0)} kB &nbsp;</span>
+			<span style="flex:2; text-align:center; white-space:nowrap;">  </span>
+			<span style="flex:1; text-align:right; white-space:nowrap;"> {ih.timestamp.slice(0,16)} • {round(ih.bw*ih.bh/1024/1024,1)}MP • {ih.bw}x{ih.bh} • {round(ih.bs/1024,0)}kB</span>
 		</div>	
 	</div>
 </div>

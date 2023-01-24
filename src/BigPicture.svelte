@@ -1,10 +1,10 @@
 <script>
 	import _ from "lodash"
-	import {log} from './lib/utils.js'
+	import {log,round} from './lib/utils.js'
 
 	export let big
 	export let prettyFilename
-	export let state
+	// export let state
 
 	const INCR = 0.08
 
@@ -15,7 +15,6 @@
 //	let path = names.slice(1,names.length-1).join(' • ')
 	// let path = names.join(' • ')
 	
-	const round = (x,n=0) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 
 	function getExif() {
 		const img = document.getElementById("picture")
@@ -93,11 +92,7 @@
 		big = big
 	}
 
-	function keydown(event) {
-		const key = event.key
-		// log({key})
-		if (key == 'Escape') state='NORMAL'
-	}
+	// function keydown(event) {if (event.key == 'Escape') state='NORMAL'}
 
 	function share () {
 		navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')
@@ -109,7 +104,7 @@
 
 </script>
 
-<svelte:window on:keydown={keydown}/>
+<!-- <svelte:window on:keydown={keydown}/> -->
 
 <button on:click={share}> Share </button>
 

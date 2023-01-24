@@ -74,7 +74,6 @@
 		const host = location.origin + location.pathname
 		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('_')
 		window.open(host + "?ids=" + ids)
-		// if (_.size($selected) > 0) state = 'PLAY'
 	}
 
 	function help() {

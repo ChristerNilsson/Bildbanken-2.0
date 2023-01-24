@@ -19,6 +19,8 @@ assert(splitPath(''),     [] )
 assert(splitPath('a'),    ['a'] )
 assert(splitPath('a/a1'), ['a','a1'] )
 
+export const round = (x,n=0) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+
 export function getChildren(curr,path) {
 	if (_.size(curr)==0) return []
 	for (const item of splitPath(path)) curr = curr[item]

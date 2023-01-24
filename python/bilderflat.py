@@ -10,7 +10,8 @@ import time
 import json
 import yaml
 from os import scandir, mkdir,rename
-from os.path import exists, getsize
+from os.path import exists, getsize,getmtime
+from datetime import datetime
 from PIL import Image
 import hashlib
 import shutil
@@ -78,12 +79,18 @@ def makeSmall(Original,Home,small,name):
 
 	filename = "\\" + md5hash + ".jpg"
 	if md5hash in md5Register and exists(Home + filename) and exists(small + filename):
-		lst = md5Register[md5hash] + [md5hash]
+		lst = md5Register[md5hash] + [md5hash, getTimestamp(name)]
 		patch(cache, name, lst)
 		return lst
 
 	bigImg = Image.open(Original+name)
 	bigSize = getsize(Original+name)
+
+	#exif = bigImg.getexif()
+	#print(name,exif.get(36867))
+
+	# "000087e0ce7e41c24d4be21fe51df3e1": [475, 349, 239518, 600, 441],
+	# "0000b60dbb1ded20ba8a81c40f6bceec":[475,514,2593106,1891,2048],
 
 	if bigImg.width <= 2048:
 		shutil.copyfile(Original + name, Home + "\\" + md5hash + '.jpg')
@@ -93,9 +100,9 @@ def makeSmall(Original,Home,small,name):
 
 	smallImg = bigImg.resize((WIDTH, round(WIDTH*bigImg.height/bigImg.width)))
 	smallImg.save(small + "\\" + md5hash + '.jpg',quality=QUALITY)
-	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height]
+	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height, md5hash, getTimestamp(name)]
 	md5Register[md5hash] = lst
-	patch(cache, name, lst + [md5hash])
+	patch(cache, name, lst)
 	return lst
 
 def expand(a,d):
@@ -171,6 +178,10 @@ def flat(root, res={}, path=""):
 			res[path1] = ""
 			flat(root, res, path1)
 		elif is_jpg(namn):
+
+			# dt = getctime(Original + path1)
+			# print(datetime.fromtimestamp(int(dt)))
+
 			res[path1] = ""
 		else:
 			print("*** Ignored file:", "public\\Home" + path1)
@@ -180,6 +191,9 @@ def flatten(node, res={}, path=''):
 	for key in node:
 		path1 = path + "\\" + key
 		if is_jpg(key):
+			# if len(node[key]) == 5:
+			# 	node[key].append(key)
+			# 	node[key].append(getTimestamp(path1))
 			res[path1] = node[key]
 		else:
 			res[path1] = ""
@@ -236,6 +250,28 @@ def convert(hash):
 		arr.append([hash[key],key])
 	arr = sorted(arr)
 	return arr
+
+def getTimestamp(path):
+	bigImg = Image.open(Original + path)
+	obj = bigImg._getexif()
+	exifdate = ""
+	if obj and 36867 in obj:
+		exifdate = obj[36867]
+		arr = exifdate.split(" ")
+		arr[0] = arr[0].replace(':','-')
+		exifdate = ' '.join(arr)
+	mdate = str(datetime.fromtimestamp(int(getmtime(Original + path))))
+	arr = path.split('\\')
+	folderDate = arr[2][0:10] + ' 00:00:00'
+	dt = ""
+	if exifdate == '':
+		if folderDate > mdate:
+			dt = mdate
+		else:
+			dt = folderDate
+	else:
+		dt = exifdate
+	return dt
 
 ######################
 
