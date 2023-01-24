@@ -614,10 +614,16 @@ Lyfter man ut bildkatalogerna och bilder.json tar **npm run dev** bara fem sekun
 
 Detta beror på att listan @images, med dublett md5, används för att sätta x och y. Det innebär att de två bilderna visas i exakt samma position. Kan undvikas genom att eliminera dubletter. Låter det stå kvar tills vidare.
 
-### Bildspelet
+## Bildspelet
 
 Det bygger på att en url med md5:orna skapas.  
-md5 tar 32 tecken. Chrome klarar url:er upp till 16K verkar det som.  
-Det innebär att maximum (16K/33) = 496 bilder kan hanteras  
-Genom att minska till 16 tecken, kan 16K/17 = 963 bilder hanteras  
-Då ökar också risken för krock.
+md5 tar 32 tecken. Chrome klarar url:er upp till 2MB.  
+Det innebär att maximum (2MB/33) = 62K bilder kan hanteras  
+Den begränsning på ca 16KB jag upplevde, sitter nog i pythons hhtp.server.
+GCS har ingen http-server inblandad, så begränsningen ligger inte där.
+Däremot har andra browsrar begränsningar. T ex Edge har bara 2kB.
+
+## Hålen vid visning i swimlanes
+
+Dessa uppstår pga att dubletter existerar. Eftersom (x,y) lagras en gång per md5, kommer båda bilderna att få samma koordinat. 
+Detta kan undvikas genom att flytta (x,y) till listan $images. Istf [md5] blir innehållet [{md5,x,y}] i listan. Index kan troligen flyttas också eller t o m tas bort eftersom det framgår av positionen i $images.

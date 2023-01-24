@@ -18,7 +18,7 @@
 
 	window.onresize = resize
 
-	log('Skapad: 2023-01-23 14:41')
+	log('Skapad: 2023-01-23 17:28')
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
@@ -32,7 +32,7 @@
 
 	const range = _.range
 
-	const MAX_DOWNLOAD = 500
+	const MAX_DOWNLOAD = 1000
 
   let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
 	let y = 0 // Anger var scrollern befinner sig just nu.

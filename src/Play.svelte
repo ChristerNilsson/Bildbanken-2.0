@@ -22,7 +22,7 @@
 	$: log('origin',location.origin)
 	$: log('pathname',location.pathname)
 	$: href = host + 'Home/' + md5 + '.jpg'
-	$: log('href',href)
+	$: log(href.replace('https://storage.googleapis.com/',''))
 
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
@@ -47,7 +47,6 @@
 		if (key == 'ArrowDown') delay = delay <= 5 ? delay : delay-1
 		if (key == 'Home') i = 0
 		if (key == 'End') i = n-1
-		// if (key == 'Escape') state='NORMAL'
 	}
 
 	window.onscroll = (e)=> {
@@ -68,7 +67,7 @@
 		<tr><td style='text-align:left' width=10%>
 			#{i}
 		</td><td style='text-align:center' width=80%>
-			{paused ? 'Paused Left Right Up Down Esc' : key}
+			{paused ? 'Paused (Keys: Space Home Left Right Up Down End)' : key}
 		</td><td style='text-align:right' width=10%>
 			{delay}s
 		</td></tr>

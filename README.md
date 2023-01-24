@@ -97,5 +97,5 @@ Klicka på en bild för att se den i högsta upplösningen.
 * Minska hastigheten med **pil upp**
 * Öka hastigheten med **pil ner**
 * Avsluta genom att stänga fliken
-* Maximalt 400 bilder kan visas
-	* Bildernas identitet anges i url:en och den klarar bara 16k tecken.
+* Maximalt 1000 bilder kan visas i Chrome eller Safari.
+	* [Microsoft Edge](https://www.geeksforgeeks.org/maximum-length-of-a-url-in-different-browsers/) klarar bara 60 bilder.
