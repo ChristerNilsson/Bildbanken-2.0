@@ -5,7 +5,7 @@
 	import _ from 'lodash'
 	import {log} from './lib/utils.js'
 
-	let delay = 5 // s
+	let delay = 10 // s
 	const DURATION = 1000 // ms
 	const GAP = 30
 	let i=0
@@ -13,7 +13,7 @@
 
 	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
-	$: ih = $invHome[keys[i]]
+	$: ih = $invHome[keys[i%n]]
 	$: bw = ih.bw
 	$: bh = ih.bh
 	$: md5 = ih.md5
@@ -27,7 +27,7 @@
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
 	const f = () => {
-		i = paused ? i : (i+1) % n
+		i = paused ? i : i+1
 		setTimeout(f,delay*1000)
 	}
 	setTimeout(f,delay*1000)
@@ -41,8 +41,8 @@
 	function keydown(event) {
 		const key = event.key
 		if (key == ' ') paused = ! paused
-		if (key == 'ArrowLeft')  i = (i + n-1) % n
-		if (key == 'ArrowRight') i = (i + 1) % n
+		if (key == 'ArrowLeft')  i -= 1
+		if (key == 'ArrowRight') i += 1
 		if (key == 'ArrowUp')   delay++
 		if (key == 'ArrowDown') delay = delay <= 5 ? delay : delay-1
 		if (key == 'Home') i = 0
@@ -65,7 +65,7 @@
 
 	<table width=99%>
 		<tr><td style='text-align:left' width=10%>
-			#{i}
+			#{i%n}
 		</td><td style='text-align:center' width=80%>
 			{paused ? 'Paused (Keys: Space Home Left Right Up Down End)' : key}
 		</td><td style='text-align:right' width=10%>
@@ -73,11 +73,9 @@
 		</td></tr>
 	</table>
 
-	{#if i%2==0}
-		<img transition:fade="{{ duration:DURATION}}" style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
-	{:else}
-		<img transition:fade="{{ duration:DURATION}}" style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
-	{/if}
+	{#key i}
+		<img transition:fade = {{duration:DURATION}} style="position:absolute;left:{left}px;top:{top}px;" width={width}px  src={href} alt="">
+	{/key}
 
 </div>
 
