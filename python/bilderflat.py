@@ -6,6 +6,11 @@
 # Bilder hamnar alltid i Home och small. Dessa kataloger växer hela tiden. Parametrar sparas i MD5.json
 # Update = YES innebär att Home, small, bilder.json, MD5.json kan uppdateras.
 
+# För total omstart rekommenderas:
+#   Flytta bilder.json
+#   Flytta MD5.json
+#   Flytta small
+
 import time
 import json
 import yaml
@@ -19,14 +24,15 @@ import re
 
 QUALITY = 95
 WIDTH = 475
+YEAR = datetime.today().year
 
-ROOT = "C:\\github\\2022-014-Bildbanken2\\"
-#ROOT = "C:\\github\\2022-014-Bildbanken2\\experiment\\"
-#ROOT = "D:\\"
+ROOT = "C:/github/2022-014-Bildbanken2/"
+#ROOT = "C:/github/2022-014-Bildbanken2/experiment/"
+#ROOT = "D:/"
 Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
-Home     = ROOT + "public\\Home"   # cirka 2.000.000 bytes per bild
-small    = ROOT + "public\\small"  # cirka 	  25.000 bytes per bild
-JSON     = ROOT + "public\\json\\" # cirka       120 bytes per bild (bilder.json)
+Home     = ROOT + "public/Home"    # cirka 2.000.000 bytes per bild
+small    = ROOT + "public/small"   # cirka 	  25.000 bytes per bild
+JSON     = ROOT + "public/json/"   # cirka       120 bytes per bild (bilder.json)
 MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
@@ -55,13 +61,13 @@ def loadJSON(path):
 		return json.loads(f.read())
 
 def ensurePath(root,path):
-	arr = path.split("\\")
+	arr = path.split("/")
 	for i in range(len(arr)):
-		p = root + "\\" + "\\".join(arr[0:i])
+		p = root + "/" + "/".join(arr[0:i])
 		if not exists(p): mkdir(p)
 
 def patch(tree,path,data):
-	arr = path.split("\\")
+	arr = path.split("/")
 	ptr = tree
 	for key in arr[1:len(arr)]:
 		if key not in ptr: ptr[key] = {}
@@ -77,29 +83,23 @@ def makeSmall(Original,Home,small,name):
 		data = f.read()
 		md5hash = hashlib.md5(data).hexdigest()
 
-	filename = "\\" + md5hash + ".jpg"
+	filename = "/" + md5hash + ".jpg"
 	if md5hash in md5Register and exists(Home + filename) and exists(small + filename):
-		lst = md5Register[md5hash] # + [md5hash, getTimestamp(name)]
+		lst = md5Register[md5hash]
 		patch(cache, name, lst)
 		return lst
 
 	bigImg = Image.open(Original+name)
 	bigSize = getsize(Original+name)
 
-	#exif = bigImg.getexif()
-	#print(name,exif.get(36867))
-
-	# "000087e0ce7e41c24d4be21fe51df3e1": [475, 349, 239518, 600, 441],
-	# "0000b60dbb1ded20ba8a81c40f6bceec":[475,514,2593106,1891,2048],
-
 	if bigImg.width <= 2048:
-		shutil.copyfile(Original + name, Home + "\\" + md5hash + '.jpg')
+		shutil.copyfile(Original + name, Home + "/" + md5hash + '.jpg')
 	else:
 		bigImg = bigImg.resize((2048, round(2048 * bigImg.height / bigImg.width)))
-		bigImg.save(Home + "\\" + md5hash + '.jpg',quality=QUALITY)
+		bigImg.save(Home + "/" + md5hash + '.jpg',quality=QUALITY)
 
 	smallImg = bigImg.resize((WIDTH, round(WIDTH*bigImg.height/bigImg.width)))
-	smallImg.save(small + "\\" + md5hash + '.jpg',quality=QUALITY)
+	smallImg.save(small + "/" + md5hash + '.jpg',quality=QUALITY)
 	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height, md5hash, getTimestamp(name)]
 	md5Register[md5hash] = lst
 	patch(cache, name, lst)
@@ -149,7 +149,7 @@ def fixMisspellings(root, path, namn,doit=False):
 
 	if namn0 == namn1: return namn
 
-	path1 = root + path + "\\"
+	path1 = root + path + "/"
 	counter = ""
 	if exists(path1 + namn1 + '.jpg'):
 		counter = 1
@@ -167,33 +167,27 @@ def fixMisspellings(root, path, namn,doit=False):
 
 def flat(root, res={}, path=""):
 	ensurePath(root, path)
-	for name in [f for f in scandir(root + "\\" + path)]:
+	for name in [f for f in scandir(root + "/" + path)]:
 		namn = name.name
-
-		# if not name.is_dir():
-		# 	namn = fixMisspellings(root,path,namn,False)
-
-		path1 = path + "\\" + namn
+		path1 = path + "/" + namn
 		if name.is_dir():
 			res[path1] = ""
 			flat(root, res, path1)
 		elif is_jpg(namn):
-
-			# dt = getctime(Original + path1)
-			# print(datetime.fromtimestamp(int(dt)))
-
 			res[path1] = ""
 		else:
-			print("*** Ignored file:", "public\\Home" + path1)
+			print("*** Ignored file:", "public/Home" + path1)
 	return res
 
 def flatten(node, res={}, path=''):
 	for key in node:
-		path1 = path + "\\" + key
+		path1 = path + "/" + key
 		if is_jpg(key):
+
 			# if len(node[key]) == 5:
 			# 	node[key].append(key)
-			# 	node[key].append(getTimestamp(path1))
+			# getTimestamp(path1)
+
 			res[path1] = node[key]
 		else:
 			res[path1] = ""
@@ -229,10 +223,6 @@ def countFolders(arr):
 		if not is_jpg(key): antal += 1
 	return antal
 
-hash = {}
-letters = list("+!§()0123456789_,.-¤")
-# stoppord = ''.split(' ')
-
 def flatWords(node):
 	for key in node:
 		words = key
@@ -251,36 +241,60 @@ def convert(hash):
 	arr = sorted(arr)
 	return arr
 
+def findMatch(rex,path):
+	match = re.search(rex,path)
+	if match:
+		z = match.regs
+		(p,q) = z[0]
+		date = path[p:q]
+		if date:
+			if path[p-1] in 'XM': return None
+			if len(date) in [8,10]: return date
+			if len(date) == 6: # kolla om datum existerar
+				y = 2000 + int(date[0:2])
+				m = int(date[2:4])
+				d = int(date[4:6])
+				if y <= YEAR+1 and m <= 12 and d <= 31: return date
+	return None
+
+def getFileDate(path):
+	date = findMatch(r'\d\d\d\d-\d\d-\d\d',path) or findMatch(r'\d\d\d\d\d\d\d\d',path) or findMatch(r'\d\d\d\d\d\d',path)
+	if date:
+		if len(date) == 6: date = "20" + date[0:2] + "-" + date[2:4] + "-" + date[4:6]
+		if len(date) == 8: date = date[0:4] + "-" + date[4:6] + "-" + date[6:8]
+		return date
+	return None
+
 def getTimestamp(path):
 	bigImg = Image.open(Original + path)
 	obj = bigImg._getexif()
-	exifdate = ""
-	if obj and 36867 in obj:
-		exifdate = obj[36867]
-		arr = exifdate.split(" ")
-		arr[0] = arr[0].replace(':','-')
-		exifdate = ' '.join(arr)
+	exifdate = None
+	if obj:
+		#if 306 in obj: exifdate = obj[306] # andrahandsval
+		if 36867 in obj: exifdate = obj[36867] # förstahandsval
+		if exifdate:
+			arr = exifdate.split(" ")
+			arr[0] = arr[0].replace(':','-')
+			exifdate = ' '.join(arr)
 	mdate = str(datetime.fromtimestamp(int(getmtime(Original + path))))
-	arr = path.split('\\')
-	folderDate = arr[2][0:10] + ' 00:00:00'
-	dt = ""
-	if exifdate == '':
-		if folderDate > mdate:
-			dt = mdate
-		else:
-			dt = folderDate
-	else:
-		dt = exifdate
-	return dt
+	p = path.rindex('/')
+	folderDate = getFileDate(path[0:p])
+	fileDate = getFileDate(path[p:])
+
+	if exifdate: return exifdate
+	if fileDate: return fileDate + ' 00:00:00'
+	if folderDate and folderDate <= mdate: return folderDate + ' 00:00:00'
+	print(mdate,path)
+	return mdate
 
 ######################
 
-# for i in range(100):
-# 	time.sleep(0.1)
-# 	print ("\rComplete: ", i, "%", end="")
-# print ("\rComplete: 100%")
-
 start = time.time()
+
+getTimestamp('/2022/2022-12-29 Stockholms Schackförbunds och Pia Cramlings tjejschacktävling i samband med Rilton/Vy-Rilton-tjejtävling_prisutdelning_6.Shira_Milikov_2022-12-29.jpg')
+
+hash = {}
+letters = list("+!§()0123456789_,.-¤")
 
 md5Register = loadJSON(MD5) # givet md5key får man listan med sex element
 cache = loadJSON(JSON + 'bilder.json')
@@ -329,8 +343,7 @@ if update:
 	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
 
 	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
-	# with open(JSON + 'bilder.yaml', 'w', encoding="utf8") as f: dumpyaml(cache,f)
-
 	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)
+
 	print()
 	print(round(time.time() - start,3),'seconds')
