@@ -27,11 +27,11 @@
 			if (exif.ExifVersion) {
 				big.exifState = 2
 				big = big
-				if (exif.DateTimeOriginal) {
-					exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
-				} else {
-					exif.DateTimeOriginal = "2000-00-00 00:00:00"
-				}
+				// if (exif.DateTimeOriginal) {
+				// 	exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
+				// } else {
+				// 	exif.DateTimeOriginal = "2000-00-00 00:00:00"
+				// }
 			}
 		})
 	}
@@ -118,7 +118,7 @@
 	<span style="top:20%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
 {/if}
 {#if big.exifState == 2}
-	<span style="top:16%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+	<span style="top:16%;"> {big.timestamp.replace(" "," • ")} </span>
 	<span style="top:24%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
 	<span style="top:28%;"> © {exif.Copyright} </span>
 {/if}

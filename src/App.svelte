@@ -30,14 +30,6 @@
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
-	// let Home
-
-	// async function getJSON() {
-	// 	let response = await fetch("./json/bilder.json")
-	// 	return await response.json()
-	// }
-	// const promise = getJSON()
-
 	const range = _.range
 
 	const MAX_DOWNLOAD = 1000
@@ -53,10 +45,6 @@
 		if (y + 2 * screen.height > ymax) {
 			const n = cards.length
 
-			// cards = cards.concat($images.slice(n, n + 20))
-			// for (const image of $images.slice(n, n + 20)) {
-			// 	cards.push(image)
-			// }
 			cards = cards.concat($images.slice(n, n + 20))
 
 			const latest = _.last(cards)
@@ -159,9 +147,9 @@
 		stack = stack 
 	}
 
-	consumeParameters()
+$: consumeParameters($invHome)
 
-	function consumeParameters() {
+	function consumeParameters(ih) {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
 		if (urlParams.has("folder")) consumeFolder(urlParams.get("folder"))
@@ -174,7 +162,7 @@
 			}
 		}
 		if (urlParams.has("md5")) {
-			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("md5"),urlParams.get("path"),urlParams.get("filename"))
+			visaBig(urlParams.get("md5"))
 			state = 'PICTURE'
 		}
 
@@ -208,16 +196,17 @@
 		return path
 	}
 
-	function visaBig(bs, bw, bh, md5, path, filename) {
-		log('visaBig',md5)
+	function visaBig(md5) {
 		document.body.style = "overflow:hidden"
+
+		const ih = $invHome[md5]
 
 		big.exifState = 0
 		big.mouseState = 0
 
-		big.bs = bs
-		big.bw = bw
-		big.bh = bh
+		big.bs = ih.bs
+		big.bw = ih.bw
+		big.bh = ih.bh
 
 		big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
 		big.width = big.bw * big.skala
@@ -226,8 +215,9 @@
 		big.top = (innerHeight-big.height)/2
 
 		big.md5 = md5
-		big.path = path
-		big.filename = filename
+		big.path = ih.path
+		big.filename = ih.filename
+		big.timestamp = ih.timestamp
 		big = big
 	}
 
@@ -399,11 +389,6 @@
 
 <svelte:window bind:scrollY={y}/>
 
-<!-- {#await promise }
-	<p>Loading...</p>
-{:then data}
-	{setHome(data)} -->
-
 {#if state == 'NORMAL'}
 	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {MAX_DOWNLOAD} />
 	<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
@@ -417,5 +402,3 @@
 		<Play bind:state />
 	{/if}
 {/if}
-
-<!-- {/await} -->

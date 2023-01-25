@@ -65,7 +65,8 @@
 		on:click = {() => {
 			const host = location.origin + location.pathname
 			const ih = $invHome[card.md5]
-			window.open(host + `?bs=${ih.bs}&bw=${ih.bw}&bh=${ih.bh}&md5=${card.md5}&path=${ih.path}&filename=${ih.filename}`)
+			// window.open(host + `?bs=${ih.bs}&bw=${ih.bw}&bh=${ih.bh}&md5=${card.md5}&path=${ih.path}&filename=${ih.filename}`)
+			window.open(host + `?md5=${card.md5}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
