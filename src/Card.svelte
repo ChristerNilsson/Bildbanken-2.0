@@ -51,6 +51,7 @@
 	function flip() {
 		$selected[card.md5] = ! $selected[card.md5]
 	}
+	function noop(){}
 
 </script>
 
@@ -69,13 +70,13 @@
 		on:keydown = {() =>{}}
 	/>
 	<div class="group">
-		<div class="info" style="width:{WIDTH}px" on:click = {flip} on:keyup={flip}>
+		<div class="info" style="width:{WIDTH}px" on:click = {flip} on:keyup={noop}>
 			&nbsp;{prettyFilename(filename)}
 		</div>
-		<div class="info" style="width:{WIDTH}px" on:click = {flip} on:keyup={flip}>
+		<div class="info" style="width:{WIDTH}px" on:click = {flip} on:keyup={noop}>
 			&nbsp;{prettyPath(filename)}
 		</div>
-		<div class="info" style="display:flex; height:13px; width:{WIDTH}px" on:click = {flip} on:keyup={flip}>
+		<div class="info" style="display:flex; height:13px; width:{WIDTH}px" on:click = {flip} on:keyup={noop}>
 			&nbsp;{card.index}
 
 			{#if card.letters}
