@@ -13,20 +13,30 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
+	import data from './json/bilder.json'
 	import {Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
 	log('Skapad: 2023-01-24 15:30')
 
+	$: setHome(data)
+
+	function setHome(data) {
+		$Home = data
+		$invHome = invertHome($Home)
+		path = [$Home]
+		stack = ["Home"]
+	}
+
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
 	// let Home
 
-	async function getJSON() {
-		let response = await fetch("./json/bilder.json")
-		return await response.json()
-	}
-	const promise = getJSON()
+	// async function getJSON() {
+	// 	let response = await fetch("./json/bilder.json")
+	// 	return await response.json()
+	// }
+	// const promise = getJSON()
 
 	const range = _.range
 
@@ -385,34 +395,27 @@
 		return s
 	}
 
-	function setHome(data) {
-		log('setHome')
-		$Home = data
-		$invHome = invertHome($Home)
-		path = [$Home]
-		stack = ["Home"]
-		return ""
-	}
-
 </script>
 
 <svelte:window bind:scrollY={y}/>
 
-{#await promise }
+<!-- {#await promise }
 	<p>Loading...</p>
 {:then data}
-	{setHome(data)}
-	{#if state == 'NORMAL'}
-		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {MAX_DOWNLOAD} />
-		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
-		<NavigationHorisontal {stack} {WIDTH} />
-		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
+	{setHome(data)} -->
+
+{#if state == 'NORMAL'}
+	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {MAX_DOWNLOAD} />
+	<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
+	<NavigationHorisontal {stack} {WIDTH} />
+	<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
+	<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
+{:else}
+	{#if state == 'PICTURE'}
+		<BigPicture {big} {prettyFilename} />
 	{:else}
-		{#if state == 'PICTURE'}
-			<BigPicture {big} {prettyFilename} />
-		{:else}
-			<Play bind:state />
-		{/if}
+		<Play bind:state />
 	{/if}
-{/await}
+{/if}
+
+<!-- {/await} -->
