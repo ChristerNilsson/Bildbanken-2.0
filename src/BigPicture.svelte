@@ -27,7 +27,11 @@
 			if (exif.ExifVersion) {
 				big.exifState = 2
 				big = big
-				exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
+				if (exif.DateTimeOriginal) {
+					exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
+				} else {
+					exif.DateTimeOriginal = "2000-00-00 00:00:00"
+				}
 			}
 		})
 	}

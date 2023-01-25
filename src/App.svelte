@@ -332,7 +332,7 @@
 
 		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
-		const textHeights = 50-2 //43
+		const textHeights = 50-7 //43
 		log('placera',{images,innerWidth,rows,antal,offset,COLS,GAP,WIDTH})
 		for (const i in range(images.length)) {
 			tick()
