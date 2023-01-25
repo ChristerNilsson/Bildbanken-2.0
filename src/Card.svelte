@@ -48,6 +48,10 @@
 		return path.replaceAll('_', ' ')
 	}
 
+	function flip() {
+		$selected[card.md5] = ! $selected[card.md5]
+	}
+
 </script>
 
 <div class="card" id="images" style="position:absolute; width:{WIDTH}px; left:{card.x}px; top:{card.y}px">
@@ -65,13 +69,13 @@
 		on:keydown = {() =>{}}
 	/>
 	<div class="group">
-		<div class="info" style="width:{WIDTH}px">
+		<div class="info" style="width:{WIDTH}px" on:click = {flip} on:keyup={flip}>
 			&nbsp;{prettyFilename(filename)}
 		</div>
-		<div class="info" style="width:{WIDTH}px">
+		<div class="info" style="width:{WIDTH}px" on:click = {flip} on:keyup={flip}>
 			&nbsp;{prettyPath(filename)}
 		</div>
-		<div class="info" style="display:flex; height:13px; width:{WIDTH}px">
+		<div class="info" style="display:flex; height:13px; width:{WIDTH}px" on:click = {flip} on:keyup={flip}>
 			&nbsp;{card.index}
 
 			{#if card.letters}
