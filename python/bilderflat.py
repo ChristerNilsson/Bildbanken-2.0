@@ -9,7 +9,7 @@
 # För total omstart rekommenderas:
 #   Flytta bilder.json
 #   Flytta MD5.json
-#   Flytta small
+#   (Flytta small)
 
 import time
 import json
@@ -32,7 +32,8 @@ ROOT = "C:/github/2022-014-Bildbanken2/"
 Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
 Home     = ROOT + "public/Home"    # cirka 2.000.000 bytes per bild
 small    = ROOT + "public/small"   # cirka 	  25.000 bytes per bild
-JSON     = ROOT + "public/json/"   # cirka       120 bytes per bild (bilder.json)
+#JSON     = ROOT + "public/json/"  # cirka       120 bytes per bild (bilder.json)
+JSON     = ROOT + "src/json/"      # cirka       120 bytes per bild (bilder.json)
 MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
@@ -291,7 +292,8 @@ def getTimestamp(path):
 
 start = time.time()
 
-getTimestamp('/2022/2022-12-29 Stockholms Schackförbunds och Pia Cramlings tjejschacktävling i samband med Rilton/Vy-Rilton-tjejtävling_prisutdelning_6.Shira_Milikov_2022-12-29.jpg')
+#getTimestamp('/2017/2017--2018 Allsvenskan/495_GM_Juan_Bellon_Lopez_2018-02-03.jpg')
+#getTimestamp('/2022/2022-12-29 Stockholms Schackförbunds och Pia Cramlings tjejschacktävling i samband med Rilton/Vy-Rilton-tjejtävling_prisutdelning_6.Shira_Milikov_2022-12-29.jpg')
 
 hash = {}
 letters = list("+!§()0123456789_,.-¤")

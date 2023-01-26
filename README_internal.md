@@ -8,7 +8,8 @@ Det som komplicerar är att infinite scroll används för framsökta bilder.
 ```
 npm run dev
 npm run build
-gsutil -m rsync -d -r C:\github\2022-014-Bildbanken2\public gs://bildbanken2
+gsutil -m rsync -d -r C:\github\2022-014-Bildbanken2\public       gs://bildbanken2
+gsutil -m rsync -d -r C:\github\2022-014-Bildbanken2\public/build gs://bildbanken2/build
 https://console.cloud.google.com/billing/01CC24-E15D8C-3CC9BD/reports;savedView=7347e53f-a528-477a-8f5d-6ea4053eb201?project=project-id-9963945262588989747
 https://storage.googleapis.com/bildbanken2/index.html
 
@@ -20,27 +21,30 @@ https://domains.google.com/registrar/bildbanken.net/webhost?utm_campaign=email_v
 
 Då man klickar eller scrollar läses information in om den stora bilden (*EXIF-data*)
 
-Filen **src\json\bilder.json** återspeglar katalogstrukturen för katalogerna **Home** och **small**
+Filen **src\json\bilder.json** 
 ```json
 {
 	"2022": {
 		"2022-09-17_Kristallens_JGP": {
 		"Klass_AB_T10368": {
-				"1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg":[475,267,224639,1600,1200],
+				"1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg":[475,267,224639,1600,1200,"1305971bf08c855a278d25d47f3ec04d","2023-01-25 12:34:56"],
 				...
 			}
 		}
 	}
 }
 
+Home och small är platta kataloger bestående av md5.jpg-filer.
+
 pixlar,pixlar,bytes, pixlar,pixlar,hex
-[475,  267,   224639,1600,  1200, '0123456789abcdef0123456789abcdef']
-[sw,   sh,    bs,    bw,    bh,    md5]    s/b = small/big   s/w/h = size/width/height
+[475,  267,   224639,1600,  1200, "0123456789abcdef0123456789abcdef","2023-01-25 12:34:56"]
+[sw,   sh,    bs,    bw,    bh,    md5,                               timestamp]    s/b = small/big   s/w/h = size/width/height
 ```
 * sw och sh används för att bygga swimlanes
 * bs är ren information
 * bw och bh används för att placera ut stora bilder initialt maximerade.
 * md5 används för att hitta bildfilerna.
+* timestamp anger när bilden togs.
  
 * Dessa skulle alternativt kunna tas fram genom att läsa från filsystemet, men det skulle ta längre tid.
 * Ponera att 47.000 thumbnails sökts fram och man vill placera dem i rätt swimlane, beroende på bildernas höjder.
@@ -240,7 +244,7 @@ OBS: Filen ska ligga i katalogen **src**. Detta tog ett antal timmar att inse.
 		* **gsutil rsync** är många gånger snabbare än GCS websida. Oftast lägger man bara till någon procent.
 		* Dessutom kan man utföra många utspridda insert,delete och updates. rsync är smart.
 1. Starta https://storage.googleapis.com/bildbanken2/index.html och kontrollera att allt är med
-	* Kan ta någon timme innan google publicerar det senaste. Orsak okänd. Möjligen viruscheck.
+	* Kan vara lämpligt att tömma historiken för att se senaste version. Framför allt cookies och cached files.
 
 ### Alternativ datumhantering
 
@@ -248,13 +252,13 @@ Man skulle kunna tänka sig ta bort yyyy och behålla -mm-dd turneringsnamn.
 Då skulle man slippa en upprepning och ändå kunna söka på yyyy-mm-dd.
 
 
-För att snabba upp sökningar, skapas en fil, *bilder.js*, som innehåller katalognamn och filnamn.
-Denna fil, som egentligen är en [JSON](https://en.wikipedia.org/wiki/JSON)-fil, hämtas ner till klienten.
+För att snabba upp sökningar, skapas en fil, *bilder.json*, som innehåller katalognamn och filnamn.
+Denna fil, som är en [JSON](https://en.wikipedia.org/wiki/JSON)-fil, hämtas ner till klienten.
 
 Att krympa bilder är en långsam process, därför cachas lokala bilder.js i varje katalog *small*. 
-Denna katalog innehåller även *thumbnails*, [wikipedia](https://en.wikipedia.org/wiki/Thumbnail).
+Denna katalog innehåller *thumbnails*, [wikipedia](https://en.wikipedia.org/wiki/Thumbnail).
 
-Pythonprogrammet bilder.py underhåller denna fil.
+Pythonprogrammet bilderflat.py underhåller denna fil.
 
 ### Format
 
@@ -291,9 +295,9 @@ bilder.js
 ```
 Filer har *extension* [.jpg](https://en.wikipedia.org/wiki/JPEG) och .js, övriga är kataloger.
 
-* Filen *bilder.js* avspeglar katalogstrukturen.
+* Filen *bilder.json* avspeglar katalogstrukturen.
 * Den är uppbyggd mha *{}*, även kallad [object](https://www.w3schools.com/js/js_objects.asp) i Javascript och [dict](https://python.fandom.com/wiki/Dictionaries) i Python.
-	* En bild nås via Home["2022"]["2022-09-17_Kristallens_JGP"]["Klass_D_T10370"]["7.Numa_Karlsson_klass_D_2022-09-17.jpg"] == [432,300,256000,1600,900]
+	* En bild nås via Home["2022"]["2022-09-17_Kristallens_JGP"]["Klass_D_T10370"]["7.Numa_Karlsson_klass_D_2022-09-17.jpg"] == [432,300,256000,1600,900,md5,timestamp]
 	* Texterna i klamrarna, även kallade *nycklar* eller *keys* utgör underlaget för all sökning.
 * bilder.js innehåller även *width* och *height* för varje thumbnail. Höjden används för utplacering i rätt [swimlane](https://en.wikipedia.org/wiki/Swimlane), bredderna är samma för alla thumbnails. De tre sista talen i listan, står för högupplösta bildens storlek i bytes, bredd och höjd i pixlar.
 
@@ -302,11 +306,11 @@ Filer har *extension* [.jpg](https://en.wikipedia.org/wiki/JPEG) och .js, övrig
 * Högupplöst bild: 2 Mbyte (t ex 2048x1365)
 * Thumbnail: 25 kbyte (t ex 432x300) (1% av högupplöst bild)
 * Söktext per bild: 75 byte (filnamn + överordnade katalognamn) (35 ppm av högupplöst bild)
-* Storlek av bilder.js för 50k bilder: cirka 4 Mbyte
+* Storlek av bilder.json för 50k bilder: cirka 4 Mbyte
 
 ### Sökning
 
-Sökning genomförs genom att fylla i sökrutan. Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filnamn. De kombineras automatiskt med OCH och ELLER. Underscore, _, kan användas för att binda ihop ord, t ex Numa_Karlsson, för att slippa en mängd falska Karlsson. (Falska Numor lär det vara mindre risk för).
+Sökning genomförs genom att fylla i sökrutan. Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filnamn. De kombineras automatiskt med OCH och ELLER. Underscore, _, kan användas för att binda ihop ord, t ex Numa_Karlsson, för att slippa en mängd falska Karlsson.
 
 Sökningen kräver att man anger rätt VERSALER och gemener, t ex ger varken "KARLSSON" eller "karlsson" någon träff, däremot "Karlsson".
 De ord man anger kan vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson.
@@ -317,8 +321,8 @@ Sökning går endast mot den katalog man valt. Välj Home om du vill söka i all
 
 ### Knappar
 
-#### Horisontala Navigeringsknappar
-Dessa utgörs av Home, 2022 osv. Man hoppar till en katalog närmare *roten* (Home).
+#### Up
+Man hoppar till en katalog närmare *roten* (Home).
 
 #### Sortering av rader
 Görs med Date eller Event
@@ -336,10 +340,10 @@ För de bildfiler där man angett Medlemsnummer, kan man klicka på denna länk 
 De bilder man markerat laddas ner till klientens Download-katalog.
 
 #### All
-Alla bilder markeras.
+Alla bilder i aktuell folder markeras.
 
 #### None
-Alla bilder avmarkeras.
+Alla bilder i aktuell folder avmarkeras. Vill man avmarkera alla, gå till Home först.
 
 #### Share
 Aktuell avgränsning, dvs både strukturellt och med sökord, kan hämtas på klippbordet som en [URL](https://en.wikipedia.org/wiki/URL)
@@ -347,13 +351,7 @@ Det finns två typer:
 * query + folder - länk innehållande söktext och katalog
 * image - länk till en bild med full upplösning
 
-#### Prev (Not implemented)
-I storbildsläget visas föregående bild.
-
-#### Next (Not implemented)
-I storbildsläget visas nästa bild.
-
-#### Play/Pause (Not implemented)
+#### Play
 Markerade bilder visas i ett evigt bildspel.
 
 ### Vad innebär ABC?
@@ -395,12 +393,9 @@ Så här uppdaterar man databasen med nya bildsamlingar.
 Starta Pythonprogrammet bilder.py. Följande kommer att ske:
 * small-katalogen skapas. Syskon till Home
 * Thumbnails skapas och läggs i small-katalogen.
-* Cache av bilder.js (med bredd och höjd för varje bild) läggs i varje katalog som innehåller en thumbnail
-* Alla bilder.js sammanställs till den totala public/bilder.js
-* Cacharna finns pga att det tar cirka 100 ms att skapa en thumbnail.
-* Att skapa om alla cachar tar drygt en timme.
-	* Detta kan framtvingas genom att ta bort katalogen small
-	* Vill man bara skapa om vissa kataloger tar man bort dessa i small.
+* Cache av src/json/bilder.json (med bredd och höjd för varje bild)
+* Cachen finns pga att det tar cirka 100 ms att skapa en thumbnail.
+* Att skapa om cachen tar drygt en timme.
 
 Utskrift då allt är uppdaterat.  
 Den ignorerade filen kan man ta bort eller flytta till "files" + registrera i "file_index.json".  
@@ -448,9 +443,6 @@ Cache: Pruned 53 folders and 644 files
 
 56.98 seconds
 ```
-
-* D = Directory in Small created
-* . = Image in Small created
 
 ### Tidsuppskattningar.
 
@@ -531,6 +523,9 @@ https://serverfault.com/questions/914048/htaccess-allow-viewing-of-index-html-vi
 
 .htaccess
 
+Besvarar frågan själv:
+GCS är ingen webserver. Det innebär att den har ingen aning om att index.html bör var default. Därför måste filnamnet anges.
+
 ```
 <Files "">
 Order allow,deny
@@ -594,12 +589,12 @@ Rilton:
 
 Använder **yaml ovan**, blir renare, men **json** går lika bra. Blir lite mer *indentering*, *krullparenteser*, *dubbelfnuttar*, *kommatecken* och *rader* bara.
 
-### Alternativ till **npm run dev**
+### Alternativ till **npm run dev** Rekommenderas!
 Denna tar 3.5 min med svelte och 7 min med sveltekit.
 Den går igenom 45.000 bilder i onödan och jag vet inte hur man hindrar det. 
 
 ```
-npm run build (kompilerar .svelte till .js)
+npm run build (kompilerar .svelte till .js) Tar 25 sekunder
 cd public
 python -m http.server
 localhost:8000
@@ -621,9 +616,11 @@ md5 tar 32 tecken. Chrome klarar url:er upp till 2MB.
 Det innebär att maximum (2MB/33) = 62K bilder kan hanteras  
 Den begränsning på ca 16KB jag upplevde, sitter nog i pythons hhtp.server.
 GCS har ingen http-server inblandad, så begränsningen ligger inte där.
-Däremot har andra browsrar begränsningar. T ex Edge har bara 2kB.
+Däremot har andra browsrar begränsningar. T ex Edge klarar bara 2kB.
 
 ## Hålen vid visning i swimlanes
 
 Dessa uppstår pga att dubletter existerar. Eftersom (x,y) lagras en gång per md5, kommer båda bilderna att få samma koordinat. 
 Detta kan undvikas genom att flytta (x,y) till listan $images. Istf [md5] blir innehållet [{md5,x,y}] i listan. Index kan troligen flyttas också eller t o m tas bort eftersom det framgår av positionen i $images.
+(Dessa hål visas inte längre. Varje bild har nu egna koordinater)
+

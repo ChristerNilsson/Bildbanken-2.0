@@ -27,11 +27,6 @@
 			if (exif.ExifVersion) {
 				big.exifState = 2
 				big = big
-				// if (exif.DateTimeOriginal) {
-				// 	exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
-				// } else {
-				// 	exif.DateTimeOriginal = "2000-00-00 00:00:00"
-				// }
 			}
 		})
 	}
@@ -96,11 +91,7 @@
 		big = big
 	}
 
-	// function keydown(event) {if (event.key == 'Escape') state='NORMAL'}
-
-	function share () {
-		navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')
-	}
+	function share () {navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')}
 
 	document.onmousemove = mousemove
 
@@ -108,20 +99,20 @@
 
 </script>
 
-<!-- <svelte:window on:keydown={keydown}/> -->
-
 <button on:click={share}> Share </button>
 
 <span style="top:8%">{big.filename}</span>
 <span style="top:12%">{path}</span>
-{#if big.exifState >= 1}
+<!-- {#if big.exifState >= 1} -->
 	<span style="top:20%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
-{/if}
-{#if big.exifState == 2}
-	<span style="top:16%;"> {big.timestamp.replace(" "," • ")} </span>
-	<span style="top:24%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
-	<span style="top:28%;"> © {exif.Copyright} </span>
-{/if}
+<!-- {/if} -->
+<span style="top:16%;"> {big.timestamp.replace(" "," • ")} </span>
+<!-- {#if big.exifState == 2} -->
+	{#if exif && exif.Model}
+		<span style="top:24%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
+		<span style="top:28%;"> © {exif.Copyright} </span>
+	{/if}
+<!-- {/if} -->
 
 <img 
 	id='picture'

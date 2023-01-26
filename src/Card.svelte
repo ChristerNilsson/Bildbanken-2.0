@@ -65,7 +65,6 @@
 		on:click = {() => {
 			const host = location.origin + location.pathname
 			const ih = $invHome[card.md5]
-			// window.open(host + `?bs=${ih.bs}&bw=${ih.bw}&bh=${ih.bh}&md5=${card.md5}&path=${ih.path}&filename=${ih.filename}`)
 			window.open(host + `?md5=${card.md5}`)
 		}}
 		on:keydown = {() =>{}}
@@ -81,33 +80,33 @@
 			&nbsp;{card.index}
 
 			{#if card.letters}
-				&nbsp;&nbsp;{card.letters}
+				&nbsp;{card.letters}
 			{/if}
 
-			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" bind:checked={$selected[card.md5]} />
+			&nbsp;<input class="largerCheckbox" type="checkbox" bind:checked={$selected[card.md5]} />
 
 			&nbsp;© Lars OA Hedlund
 
 			{#each FS as F}
-				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
+				&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
 			{/each}
 			{#each LS as L}
-				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][L]}">Link</a>
+				&nbsp;<a target="_blank" href="{fileWrapper[0][L]}">Link</a>
 			{/each}
 			{#each IS as I}
-				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][I]}">Invite</a>
+				&nbsp;<a target="_blank" href="{fileWrapper[0][I]}">Invite</a>
 			{/each}
 			{#each RS as R}
-				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][R]}">Result</a>
+				&nbsp;<a target="_blank" href="{fileWrapper[0][R]}">Result</a>
 			{/each}
 			{#each MS as M}
-				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>
+				&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>
 			{/each}
 			{#each TS as T}
-				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>
+				&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>
 			{/each}
 			{#each VS as V}
-				&nbsp;&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
+				&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
 			{/each}
 
 			<span style="flex:2; text-align:center; white-space:nowrap;">  </span>
