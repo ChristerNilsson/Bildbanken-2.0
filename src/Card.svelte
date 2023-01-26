@@ -8,6 +8,8 @@
 	export let round
 	export let fileWrapper
 	export let prettyFilename
+	// export let state
+	// export let visaBig
 
 	$: ih = $invHome[card.md5]
 	$: filename = ih.path + "/" + ih.filename
@@ -65,6 +67,8 @@
 		on:click = {() => {
 			const host = location.origin + location.pathname
 			const ih = $invHome[card.md5]
+			// state = 'PICTURE'
+			// visaBig(card.md5)
 			window.open(host + `?md5=${card.md5}`)
 		}}
 		on:keydown = {() =>{}}

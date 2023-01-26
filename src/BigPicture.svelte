@@ -11,10 +11,7 @@
 	let exif = null
 
 	let path = big.path.replaceAll("_"," ").replace('.jpg','').replaceAll("/",' • ')
-	let filename = big.filename //_.last(big.filename)
-//	let path = names.slice(1,names.length-1).join(' • ')
-	// let path = names.join(' • ')
-	
+	let filename = big.filename
 
 	function getExif() {
 		const img = document.getElementById("picture")
@@ -91,7 +88,9 @@
 		big = big
 	}
 
-	function share () {navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')}
+	function share () {
+		navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')
+	}
 
 	document.onmousemove = mousemove
 
@@ -103,16 +102,12 @@
 
 <span style="top:8%">{big.filename}</span>
 <span style="top:12%">{path}</span>
-<!-- {#if big.exifState >= 1} -->
-	<span style="top:20%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
-<!-- {/if} -->
+<span style="top:20%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
 <span style="top:16%;"> {big.timestamp.replace(" "," • ")} </span>
-<!-- {#if big.exifState == 2} -->
-	{#if exif && exif.Model}
-		<span style="top:24%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
-		<span style="top:28%;"> © {exif.Copyright} </span>
-	{/if}
-<!-- {/if} -->
+{#if exif && exif.Model}
+	<span style="top:24%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
+	<span style="top:28%;"> © {exif.Copyright} </span>
+{/if}
 
 <img 
 	id='picture'
