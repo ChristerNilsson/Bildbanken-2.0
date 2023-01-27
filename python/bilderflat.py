@@ -172,11 +172,12 @@ def flat(root, res={}, path=""):
 	for name in [f for f in scandir(root + "/" + path)]:
 		namn = name.name
 		path1 = path + "/" + namn
+		# path1 = path1.replace(' ','_')
 		if name.is_dir():
-			res[path1] = ""
+			res[path1.replace(' ','_')] = ""
 			flat(root, res, path1)
 		elif is_jpg(namn):
-			res[path1] = ""
+			res[path1.replace(' ','_')] = ""
 		else:
 			print("*** Ignored file:", "public/Home" + path1)
 	return res
@@ -301,6 +302,20 @@ def getTimestamp(path):
 	# print(mdate,path)
 	return mdate
 
+def spaces2underscores(node,res={}):
+	# if type(node) is list: return node
+	for key in node:
+		key1 = key.replace(' ','_')
+		# res[key.replace(' ','_')] = spaces2underscores(node[key],res)
+		if is_jpg(key1):
+			res[key1] = node[key]
+		else:
+			res[key1] = {}
+			res[key1]= spaces2underscores(node[key],res[key1])
+
+	return res
+
+
 ######################
 
 start = time.time()
@@ -360,6 +375,8 @@ if update:
 	if antal['images'] > 0: print('Deleted:', antal['images'], 'images')
 
 	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
+
+	cache = spaces2underscores(cache)
 
 	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)
