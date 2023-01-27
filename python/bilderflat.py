@@ -21,6 +21,7 @@ from PIL import Image
 import hashlib
 import shutil
 import re
+from dateutil import parser
 
 QUALITY = 95
 WIDTH = 475
@@ -180,10 +181,14 @@ def flat(root, res={}, path=""):
 			print("*** Ignored file:", "public/Home" + path1)
 	return res
 
+# sizes = []
+
 def flatten(node, res={}, path=''):
+	# global sizes
 	for key in node:
 		path1 = path + "/" + key
 		if is_jpg(key):
+			# sizes.append([node[key][2],path1])
 
 			# if len(node[key]) == 5:
 			# 	node[key].append(key)
@@ -271,7 +276,6 @@ def getTimestamp(path):
 	obj = bigImg._getexif()
 	exifdate = None
 	if obj:
-		#if 306 in obj: exifdate = obj[306] # andrahandsval
 		if 36867 in obj: exifdate = obj[36867] # förstahandsval
 		if exifdate:
 			arr = exifdate.split(" ")
@@ -282,10 +286,19 @@ def getTimestamp(path):
 	folderDate = getFileDate(path[0:p])
 	fileDate = getFileDate(path[p:])
 
+
+	# if exifdate and fileDate:
+	# 	a = parser.parse(fileDate)
+	# 	b = parser.parse(exifdate)
+	# 	delta = (a-b).days
+	# 	if abs(delta) > 1 :
+	# 		print(delta, fileDate, exifdate, path)
+
+
 	if exifdate: return exifdate
 	if fileDate: return fileDate + ' 00:00:00'
 	if folderDate and folderDate <= mdate: return folderDate + ' 00:00:00'
-	print(mdate,path)
+	# print(mdate,path)
 	return mdate
 
 ######################
@@ -305,6 +318,10 @@ a = flat(Original, {}) # Readonly!           Skickas INTE till GCS
 b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
 c = flat(small)  # Används bara för räkning. Skickas dock till GCS
 d = flatten(cache, {}) #                     Skickas till GCS
+
+# sizes.sort()
+# for i in range(4000):
+# 	print(sizes[i])
 
 print()
 ca = countFolders(a)
