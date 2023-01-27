@@ -174,10 +174,10 @@ def flat(root, res={}, path=""):
 		path1 = path + "/" + namn
 		# path1 = path1.replace(' ','_')
 		if name.is_dir():
-			res[path1.replace(' ','_')] = ""
+			res[path1] = ""
 			flat(root, res, path1)
 		elif is_jpg(namn):
-			res[path1.replace(' ','_')] = ""
+			res[path1] = ""
 		else:
 			print("*** Ignored file:", "public/Home" + path1)
 	return res
@@ -376,7 +376,7 @@ if update:
 
 	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
 
-	cache = spaces2underscores(cache)
+	# cache = spaces2underscores(cache)
 
 	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)

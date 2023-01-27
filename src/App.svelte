@@ -265,11 +265,12 @@ $: consumeParameters($invHome)
 				if (is_jpg(key)) {
 					total += 1
 					let s = ''
-					const newpath = newPath //.toLowerCase()
+					const newpath = newPath.replaceAll(' ','_') //.toLowerCase()
 					for (const i in range(words.length)) {
 						const word = words[i]
 						if (word.length == 0) continue
 						count += 1
+						// Home/2022/ removed
 						if (newpath.slice(10).includes(word)) s += ALFABET[i]
 					}
 					if (s.length > 0 || words.length == 0) {
@@ -333,9 +334,9 @@ $: consumeParameters($invHome)
 		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 43
-		log('placera',{images,innerWidth,rows,antal,offset,COLS,GAP,WIDTH})
+		// log('placera',{images,innerWidth,rows,antal,offset,COLS,GAP,WIDTH})
 		for (const i in range(images.length)) {
-			tick()
+			// tick()
 			const image = images[i]
 			const ih = $invHome[image.md5]
 			let index = 0 // sök fram index för minsta kolumnen
