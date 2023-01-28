@@ -402,7 +402,7 @@ $: consumeParameters($invHome)
 <svelte:window bind:scrollY={y}/>
 
 {#if state == 'NORMAL'}
-	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {MAX_DOWNLOAD} />
+	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {pop} />
 	<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {WIDTH} />
 	<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />

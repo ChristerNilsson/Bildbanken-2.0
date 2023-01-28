@@ -13,7 +13,9 @@
 	export let spreadWidth
 	export let path
 	export let is_jpg
-	export let MAX_DOWNLOAD
+	// export let MAX_DOWNLOAD
+	export let pop
+
 	// export let state
 
 	function clear() {
@@ -70,12 +72,6 @@
 		saveAs(blob, `${_.last(stack)}_${res.length}_keywords.txt`)
 	}
 
-	function play() {
-		const host = location.origin + location.pathname
-		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('_')
-		window.open(host + "?ids=" + ids)
-	}
-
 	function help() {
 		window.open("https://github.com/ChristerNilsson/2022-014-Bildbanken2#readme")
 	}
@@ -90,10 +86,16 @@
 </div>
 
 <div style="width:{WIDTH}px; height:34px">
-	<button on:click={clear}       style="left:{0}px;         width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
-	<button on:click={share}       style="left:{WIDTH/4}px;   width:{spreadWidth(1/4,WIDTH)}px">Share</button>
-	<button on:click={play}        style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Play</button>
-	<button on:click={help}        style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
+	{#if _.last(stack) == "Home"}
+		<button style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} disabled >Up</button>
+	{:else}
+		<button style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} >Up</button>
+	{/if}
+	<button on:click={clear} style="left:{1*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
+	<button on:click={share} style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Share</button>
+	<button on:click={help}  style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
+
+	<!-- <button on:click={play}        style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Play</button> -->
 	<!-- <button on:click={keywords}    style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Keywords</button> -->
 </div>
 

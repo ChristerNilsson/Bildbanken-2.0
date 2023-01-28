@@ -8,8 +8,8 @@
 
 	export let WIDTH
 	export let spreadWidth
-	export let stack
-	export let pop
+	// export let stack
+	// export let pop
 	export let MAX_DOWNLOAD
 
 	function countSelection(selected,invHome) {
@@ -53,19 +53,22 @@
 			.catch((err) => {console.log(err)})
 	}
 
+	function play() {
+		const host = location.origin + location.pathname
+		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('_')
+		window.open(host + "?ids=" + ids)
+	}
+
 </script>
 
 <div style="width:{WIDTH}px; height:34px">
 
-	{#if _.last(stack) == "Home"}
-		<button style="left:0px;          width:{spreadWidth(0.17,WIDTH)}px" on:click = {pop} disabled >Up</button>
-	{:else}
-		<button style="left:0px;          width:{spreadWidth(0.17,WIDTH)}px" on:click = {pop} >Up</button>
-	{/if}
+	<button style="left:{0.0*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {none}>      None</button>
+	<button style="left:{0.2*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px; background-color:white" disabled>{n}</button>
+	<button style="left:{0.4*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {all}>        All</button>
+	<button style="left:{0.6*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {play} >      Play</button>
+	<button style="left:{0.8*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {downloadAll}>Download</button>
 
-	<button style="left:{0.17*WIDTH}px; width:{spreadWidth(0.16,WIDTH)}px" on:click = {none}>None</button>
-	<button style="left:{0.33*WIDTH}px; width:{spreadWidth(0.52,WIDTH)}px" on:click = {downloadAll}>Download {n} image(s)</button>
-	<button style="left:{0.85*WIDTH}px; width:{spreadWidth(0.15,WIDTH)}px" on:click = {all}>All</button>
 </div>
 
 <style>
