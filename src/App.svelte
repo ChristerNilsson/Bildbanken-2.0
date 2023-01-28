@@ -85,7 +85,7 @@
 	let visibleKeys = {}
 
 	// innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
-	$: visibleKeys = getVisibleKeys($images,path.length)
+	// $: visibleKeys = getVisibleKeys(_.last(path),path.length)
 
 	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
@@ -168,7 +168,7 @@ $: consumeParameters($invHome)
 
 	}
 
-	$: [text0, text1, $images] = search(_.last(path), sokruta, stack.join('/'), $Home)
+	$: [text0, text1, $images,visibleKeys] = search(_.last(path), sokruta, stack.join('/'), $Home)
 
 	$: placera($images,visibleKeys,innerWidth)
 	$: WIDTH = calcWidth(innerWidth)
@@ -238,48 +238,55 @@ $: consumeParameters($invHome)
 	}
 
 	// Gå igenom knapplistan, räkna antalet träffar.
-	function getVisibleKeys(images,level) {
-		const result = {}
-		// log('images.length',images.length,{level})
-		for (const image of images) {
-			const ih = $invHome[image.md5]
-			const arr = ih.path.split("/")
-			if (level >= arr.length) break
-			const key = arr[level]
-			result[key] ||= 0
-			result[key] += 1
-		}
-		log(result)
-		return result
-	}
+	// function getVisibleKeys(node,level) {
+		
+	// 	const result = {}
+	// 	// log('images.length',images.length,{level})
+	// 	for (const image of images) {
+	// 		const ih = $invHome[image.md5]
+	// 		const arr = ih.path.split("/")
+	// 		if (level >= arr.length) break
+	// 		const key = arr[level]
+	// 		result[key] ||= 0
+	// 		result[key] += 1
+	// 	}
+	// 	log(result)
+	// 	return result
+	// }
 
 	function search(node,words,path) {
-		// log('search')
 		const result = []
+		const visibleKeys = {}
  
 		// rekursiv pga varierande djup i trädet
-		function recursiveSearch (node,words,path) { // node är nuvarande katalog. words är de sökta orden
-			tick()
+		function recursiveSearch (node,words,arrPath0,level) { // node är nuvarande katalog. words är de sökta orden
+			// tick()
 			// if (levels==0) return
 			for (const key in node) {
-				const newPath = path + "/" + key
+				const arrPath1 = arrPath0.concat(key)
 				if (is_jpg(key)) {
+					// if (arrPath1.length<3) log({arrPath1})
+					const accKey = arrPath1[level]
+					visibleKeys[accKey] ||= 0
+					visibleKeys[accKey] += 1
 					total += 1
 					let s = ''
-					const newpath = newPath.replaceAll(' ','_') //.toLowerCase()
+					// const newpath = newPath.replaceAll(' ','_') 
+					// Home/2022/ removed
+					const sPath = arrPath1.slice(2).join('/').replaceAll(' ','_') // .toLowerCase()
+					// log({sPath})
 					for (const i in range(words.length)) {
 						const word = words[i]
 						if (word.length == 0) continue
 						count += 1
-						// Home/2022/ removed
-						if (newpath.slice(10).includes(word)) s += ALFABET[i]
+						if (sPath.includes(word)) s += ALFABET[i] // slice(10)
 					}
 					if (s.length > 0 || words.length == 0) {
 						result.push({md5:node[key].md5, letters:s,x:0,y:0})
 						stat[s] = (stat[s] || 0) + 1
 					}
 				} else {
-					recursiveSearch(node[key], words, newPath)
+					recursiveSearch(node[key], words, arrPath1, level)
 				}
 			}
 		}
@@ -296,7 +303,10 @@ $: consumeParameters($invHome)
 		const start = new Date()
 
 		// const levels = 99
-		recursiveSearch(node, words, path)
+		const arr = path.split('/')
+		// log({arr})
+		recursiveSearch(node, words, arr, arr.length)
+		// log({visibleKeys})
 
 		function g(a,b) {
 			const iha = $invHome[a.md5]
@@ -316,7 +326,7 @@ $: consumeParameters($invHome)
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result]
+		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result,visibleKeys]
 	}
 
 	// Räknar ut vilken swimlane som är lämpligast.
