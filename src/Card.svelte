@@ -113,8 +113,9 @@
 				&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
 			{/each}
 
-			<span style="flex:2; text-align:center; white-space:nowrap;">  </span>
-			<span style="flex:1; text-align:right; white-space:nowrap;"> {ih.timestamp.slice(0,16)} • {round(ih.bw*ih.bh/1024/1024,1)}MP • {ih.bw}x{ih.bh} • {round(ih.bs/1024,0)}kB</span>
+			<!-- <span style="flex:2; text-align:center; white-space:nowrap;"></span> -->
+			<!-- • {round(ih.bw*ih.bh/1024/1024,1)}MP -->
+			<span style="flex:1; text-align:right; white-space:nowrap;"> {ih.timestamp.slice(0,16)} • {ih.bw}x{ih.bh} • {round(ih.bs/1024,0)}kB</span>
 		</div>	
 	</div>
 </div>
