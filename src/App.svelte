@@ -237,7 +237,7 @@ $: consumeParameters($invHome)
 		stack = stack
 	}
 
-	// Gå igenom listan, plocka ut de knappar som ska synas.
+	// Gå igenom knapplistan, räkna antalet träffar.
 	function getVisibleKeys(images,level) {
 		const result = {}
 		// log('images.length',images.length,{level})
@@ -249,6 +249,7 @@ $: consumeParameters($invHome)
 			result[key] ||= 0
 			result[key] += 1
 		}
+		log(result)
 		return result
 	}
 
@@ -257,9 +258,9 @@ $: consumeParameters($invHome)
 		const result = []
  
 		// rekursiv pga varierande djup i trädet
-		function recursiveSearch (node,words,path,levels) { // node är nuvarande katalog. words är de sökta orden
+		function recursiveSearch (node,words,path) { // node är nuvarande katalog. words är de sökta orden
 			tick()
-			if (levels==0) return
+			// if (levels==0) return
 			for (const key in node) {
 				const newPath = path + "/" + key
 				if (is_jpg(key)) {
@@ -278,7 +279,7 @@ $: consumeParameters($invHome)
 						stat[s] = (stat[s] || 0) + 1
 					}
 				} else {
-					recursiveSearch(node[key], words, newPath, levels - 1)
+					recursiveSearch(node[key], words, newPath)
 				}
 			}
 		}
@@ -294,8 +295,8 @@ $: consumeParameters($invHome)
 
 		const start = new Date()
 
-		const levels = 99
-		recursiveSearch(node, words, path, levels)
+		// const levels = 99
+		recursiveSearch(node, words, path)
 
 		function g(a,b) {
 			const iha = $invHome[a.md5]
