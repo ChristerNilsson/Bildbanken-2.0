@@ -17,7 +17,7 @@
 	import {Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
-	log('Skapad: 2023-01-24 15:30')
+	log('Skapad: 2023-01-28 15:20')
 
 	$: setHome(data)
 
@@ -257,9 +257,25 @@ $: consumeParameters($invHome)
 	function search(node,words,path) {
 		const result = []
 		const visibleKeys = {}
+
+		ymax = 0 // Viktigt! Annars syns inte nya bilder.
+		cards = []
+		count = 0
+
+		words = words.length == 0 ? [] : words.split(" ")
+
+		stat = {}
+		total = 0
+
+		const start = new Date()
+
+		// const levels = 99
+		const arr = path.split('/')
+		const level = arr.length
+
  
 		// rekursiv pga varierande djup i trädet
-		function recursiveSearch (node,words,arrPath0,level) { // node är nuvarande katalog. words är de sökta orden
+		function recursiveSearch (node,words,arrPath0) { // node är nuvarande katalog. words är de sökta orden
 			// tick()
 			// if (levels==0) return
 			for (const key in node) {
@@ -286,26 +302,13 @@ $: consumeParameters($invHome)
 						stat[s] = (stat[s] || 0) + 1
 					}
 				} else {
-					recursiveSearch(node[key], words, arrPath1, level)
+					recursiveSearch(node[key], words, arrPath1)
 				}
 			}
 		}
 
-		ymax = 0 // Viktigt! Annars syns inte nya bilder.
-		cards = []
-		count = 0
-
-		words = words.length == 0 ? [] : words.split(" ")
-
-		stat = {}
-		total = 0
-
-		const start = new Date()
-
-		// const levels = 99
-		const arr = path.split('/')
 		// log({arr})
-		recursiveSearch(node, words, arr, arr.length)
+		recursiveSearch(node, words, arr)
 		// log({visibleKeys})
 
 		function g(a,b) {
