@@ -17,7 +17,7 @@
 	import {Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
-	log('Skapad: 2023-01-28 15:20')
+	log('Skapad: 2023-01-29 11:00')
 
 	$: setHome(data)
 
@@ -58,9 +58,7 @@
 	let skala = 1
 
 	const fileWrapper = [fileIndex]
-	
-	let count = 0
-	
+		
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	const SCROLLBAR = 0 // 12+3+1
@@ -71,7 +69,6 @@
 	let path=[] // = [$Home] // used for navigation
 	let stack=[] //= ["Home"]
 	
-	// let res=[]
 	let stat={}
 	let total=0
 	let buttons = false
@@ -260,7 +257,6 @@ $: consumeParameters($invHome)
 
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
-		count = 0
 
 		words = words.length == 0 ? [] : words.split(" ")
 
@@ -269,47 +265,41 @@ $: consumeParameters($invHome)
 
 		const start = new Date()
 
-		// const levels = 99
 		const arr = path.split('/')
 		const level = arr.length
-
+		const x = 0
+		const y = 0
  
 		// rekursiv pga varierande djup i trädet
-		function recursiveSearch (node,words,arrPath0) { // node är nuvarande katalog. words är de sökta orden
-			// tick()
-			// if (levels==0) return
+		function recursiveSearch (node,arrPath0) { // node är nuvarande delträd. arrPath0=['Home','2022'] osv.
 			for (const key in node) {
+				const md5 = node[key].md5
 				const arrPath1 = arrPath0.concat(key)
+				const accKey = arrPath1[level]
 				if (is_jpg(key)) {
-					// if (arrPath1.length<3) log({arrPath1})
-					const accKey = arrPath1[level]
-					visibleKeys[accKey] ||= 0
-					visibleKeys[accKey] += 1
 					total += 1
-					let s = ''
-					// const newpath = newPath.replaceAll(' ','_') 
-					// Home/2022/ removed
+					let letters = ''
+					// ["Home","2023"] removed
 					const sPath = arrPath1.slice(2).join('/').replaceAll(' ','_') // .toLowerCase()
-					// log({sPath})
 					for (const i in range(words.length)) {
 						const word = words[i]
 						if (word.length == 0) continue
-						count += 1
-						if (sPath.includes(word)) s += ALFABET[i] // slice(10)
+						if (sPath.includes(word)) letters += ALFABET[i]
 					}
-					if (s.length > 0 || words.length == 0) {
-						result.push({md5:node[key].md5, letters:s,x:0,y:0})
-						stat[s] = (stat[s] || 0) + 1
+					if (letters.length > 0 || words.length == 0) {
+						result.push({md5, letters, x, y})
+						stat[letters] ||= 0
+						stat[letters] += 1
+						visibleKeys[accKey] ||= 0
+						visibleKeys[accKey] += 1
 					}
 				} else {
-					recursiveSearch(node[key], words, arrPath1)
+					recursiveSearch(node[key], arrPath1)
 				}
 			}
 		}
 
-		// log({arr})
-		recursiveSearch(node, words, arr)
-		// log({visibleKeys})
+		recursiveSearch(node, arr)
 
 		function g(a,b) {
 			const iha = $invHome[a.md5]

@@ -19,12 +19,12 @@ Du kan avgränsa sökandet på två sätt:
 
 	* **Clear** rensar sökrutan
 	* **Share** kopierar aktuell URL till klippbordet
-	* **Play** Visar ett bildspel med utsökta bilder
 	* **Help** visar denna sida
 	* **Up** går till närmast högre liggande katalog
 	* **None** avmarkerar alla bilder i denna utsökning
-	* **Download** hämtar alla markerade bilder i en zipfil
 	* **All** markerar alla bilder i denna utsökning
+	* **Play** Visar ett bildspel med utsökta bilder
+	* **Download** hämtar alla markerade bilder i en zipfil
 	* Home = aktuell katalog. Här ser du alla bilder
 	* **Date** sorterar på datum, fallande
 	* **Event** sorterar på event, stigande
@@ -71,10 +71,9 @@ Notera att 10 + 24 + 294 = 328.
 * 0 = första framsökta bilden
 * AB innebär att båda orden förekommer i bildtexten
 * Kryssrutan används vid Download
-* Result kan man klicka på. Då får man se turneringsresultatet
 * Invite kan man klicka på. Då får man se inbjudan
+* Result kan man klicka på. Då får man se turneringsresultatet
 * Bilden har tagits av Lars OA Hedlund
-* 2.3 MP = 2.3 miljoner pixlar
 * 2048 x 1194 = bredd och höjd
 * 1508 kb = bildens storlek i kilobytes
 
