@@ -64,7 +64,7 @@
 
 	let skala = 1
 
-	$: fileWrapper = [$fileIndex]
+	// $: fileWrapper = [$fileIndex]
 		
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -287,8 +287,10 @@ $: consumeParameters($invHome)
 						result.push({md5, letters, x, y})
 						stat[letters] ||= 0
 						stat[letters] += 1
-						visibleKeys[accKey] ||= 0
-						visibleKeys[accKey] += 1
+						if (! is_jpg(accKey)) {
+							visibleKeys[accKey] ||= 0
+							visibleKeys[accKey] += 1
+						}
 					}
 				} else {
 					recursiveSearch(node[key], arrPath1)
@@ -324,6 +326,7 @@ $: consumeParameters($invHome)
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images,visibleKeys,innerWidth) {
 		const rows = sokruta=="" ? 4 : 5
+		log({visibleKeys})
 		let antal = rows + 1 + _.size(visibleKeys)
 		if (stack.length==2) antal+=1
 		if (stack.length!=2 && buttons) antal+=1
