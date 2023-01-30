@@ -13,19 +13,29 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import fileIndex from './json/file_index.json'
-	import data from './json/bilder.json'
+	// import data from './json/bilder.json'
 	import {Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
 	log('Skapad: 2023-01-29 11:00')
 
-	$: setHome(data)
+	let data
+
+	async function fetchJSON() {
+		const response = await fetch('./json/bilder.json')
+		const x = await response.json()
+		return x
+	}
+	let promise = fetchJSON()
+
+	// $: setHome(data)
 
 	function setHome(data) {
 		$Home = data
 		$invHome = invertHome($Home)
 		path = [$Home]
 		stack = ["Home"]
+		return ''
 	}
 
 	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
@@ -159,7 +169,7 @@ $: consumeParameters($invHome)
 			}
 		}
 		if (urlParams.has("md5")) {
-			visaBig(urlParams.get("md5"))
+			visaBig(urlParams.get("md5"),ih[urlParams.get("md5")])
 			state = 'PICTURE'
 		}
 
@@ -193,10 +203,9 @@ $: consumeParameters($invHome)
 		return path
 	}
 
-	function visaBig(md5) {
+	function visaBig(md5,ih) {
 		document.body.style = "overflow:hidden"
 
-		const ih = $invHome[md5]
 
 		big.exifState = 0
 		big.mouseState = 0
@@ -394,16 +403,21 @@ $: consumeParameters($invHome)
 
 <svelte:window bind:scrollY={y}/>
 
-{#if state == 'NORMAL'}
-	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {pop} />
-	<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
-	<NavigationHorisontal {stack} {WIDTH} />
-	<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-	<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
-{:else}
-	{#if state == 'PICTURE'}
-		<BigPicture {big} {prettyFilename} />
+{#await promise }
+	<p>Loading...</p>
+{:then data}
+	{setHome(data)}
+	{#if state == 'NORMAL'}
+		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {pop} />
+		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
+		<NavigationHorisontal {stack} {WIDTH} />
+		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
+		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
 	{:else}
-		<Play bind:state />
+		{#if state == 'PICTURE'}
+			<BigPicture {big} {prettyFilename} />
+		{:else}
+			<Play bind:state />
+		{/if}
 	{/if}
-{/if}
+{/await}

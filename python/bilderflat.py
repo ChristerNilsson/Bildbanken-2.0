@@ -34,8 +34,9 @@ Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
 Home     = ROOT + "public/Home"    # cirka 2.000.000 bytes per bild
 small    = ROOT + "public/small"   # cirka 	  25.000 bytes per bild
 #JSON     = ROOT + "public/json/"  # cirka       120 bytes per bild (bilder.json)
-JSON     = ROOT + "src/json/"      # cirka       120 bytes per bild (bilder.json)
+JSON     = ROOT + "public/json/"      # cirka       120 bytes per bild (bilder.json)
 MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
+FILE_INDEX = JSON + 'file_index.txt'
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
 def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
@@ -46,6 +47,7 @@ def dumpjson(data,f):
 	s = s.replace("],","],\n") # Varje key (katalog,fil) på egen rad.
 	s = s.replace(":{",":\n{")
 	s = s.replace('},"','},\n"')
+	# s = s.replace('","','",\n"')
 	f.write(s)
 	print('json',time.time()-start)
 
@@ -312,9 +314,17 @@ def spaces2underscores(node,res={}):
 		else:
 			res[key1] = {}
 			res[key1]= spaces2underscores(node[key],res[key1])
-
 	return res
 
+# def readFileIndex():
+# 	with open(FILE_INDEX, 'r', encoding="utf8") as f:
+# 		lines = f.readlines()
+# 	res = {}
+# 	for line in lines:
+# 		line = line.strip()
+# 		arr = line.split(' : ')
+# 		res[arr[0]] = arr[1]
+# 	return res
 
 ######################
 
@@ -328,6 +338,7 @@ letters = list("+!§()0123456789_,.-¤")
 
 md5Register = loadJSON(MD5) # givet md5key får man listan med sex element
 cache = loadJSON(JSON + 'bilder.json')
+# fileIndex = readFileIndex()
 
 a = flat(Original, {}) # Readonly!           Skickas INTE till GCS
 b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
