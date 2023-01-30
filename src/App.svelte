@@ -17,9 +17,10 @@
 	import {Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
-	log('Skapad: 2023-01-29 11:00')
+	log('Skapad: 2023-01-30 10:15')
 
-	let data
+	// let data
+	let md5
 
 	async function fetchJSON() {
 		const response = await fetch('./json/bilder.json')
@@ -31,6 +32,7 @@
 	// $: setHome(data)
 
 	function setHome(data) {
+		log('setHome',data)
 		$Home = data
 		$invHome = invertHome($Home)
 		path = [$Home]
@@ -84,7 +86,7 @@
 	let buttons = false
 
 	let sokruta = ""
-	let big = {md5:""}
+	// let big = {md5:""}
 	
 	let text0 = ""
 	let text1 = ""
@@ -163,16 +165,13 @@ $: consumeParameters($invHome)
 		if (urlParams.has("query")) sokruta = urlParams.get("query")
 		if (urlParams.has("ids")) {
 			const ids = urlParams.get("ids").split('_')
-			for (const md5 of ids) {
-				$selected[md5] = true
-				state = 'PLAY'
-			}
+			for (const md5 of ids) $selected[md5] = true
+			state = 'PLAY'
 		}
 		if (urlParams.has("md5")) {
-			visaBig(urlParams.get("md5"),ih[urlParams.get("md5")])
+			md5 = urlParams.get("md5")
 			state = 'PICTURE'
 		}
-
 	}
 
 	$: [text0, text1, $images,visibleKeys] = search(_.last(path), sokruta, stack.join('/'), $Home)
@@ -203,29 +202,28 @@ $: consumeParameters($invHome)
 		return path
 	}
 
-	function visaBig(md5,ih) {
-		document.body.style = "overflow:hidden"
+	// function visaBig(md5,ih) {
+	// 	document.body.style = "overflow:hidden"
 
+	// 	big.exifState = 0
+	// 	big.mouseState = 0
 
-		big.exifState = 0
-		big.mouseState = 0
+	// 	big.bs = ih.bs
+	// 	big.bw = ih.bw
+	// 	big.bh = ih.bh
 
-		big.bs = ih.bs
-		big.bw = ih.bw
-		big.bh = ih.bh
+	// 	big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
+	// 	big.width = big.bw * big.skala
+	// 	big.height = big.bh * big.skala
+	// 	big.left = (innerWidth-big.width)/2
+	// 	big.top = (innerHeight-big.height)/2
 
-		big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
-		big.width = big.bw * big.skala
-		big.height = big.bh * big.skala
-		big.left = (innerWidth-big.width)/2
-		big.top = (innerHeight-big.height)/2
-
-		big.md5 = md5
-		big.path = ih.path
-		big.filename = ih.filename
-		big.timestamp = ih.timestamp
-		big = big
-	}
+	// 	big.md5 = md5
+	// 	big.path = ih.path
+	// 	big.filename = ih.filename
+	// 	big.timestamp = ih.timestamp
+	// 	big = big
+	// }
 
 	function push(key) {
 		if (!is_jpg(key)) {
@@ -415,7 +413,7 @@ $: consumeParameters($invHome)
 		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
 	{:else}
 		{#if state == 'PICTURE'}
-			<BigPicture {big} {prettyFilename} />
+			<BigPicture {md5} {prettyFilename} />
 		{:else}
 			<Play bind:state />
 		{/if}

@@ -1,29 +1,50 @@
 <script>
 	import _ from "lodash"
 	import {log,round} from './lib/utils.js'
+	import {invHome} from './lib/stores.js'
 
-	export let big
+	export let md5
 	export let prettyFilename
-	// export let state
 
 	const INCR = 0.08
 
 	let exif = null
 
-	let path = big.path.replaceAll("_"," ").replace('.jpg','').replaceAll("/",' • ')
+	let big = makeBig($invHome[md5])
 	let filename = big.filename
+	let path = big.path.replaceAll("_"," ").replace('.jpg','').replaceAll("/",' • ')
+
+	function makeBig(ih) {
+		const skala = Math.min(innerHeight/ih.bh, innerWidth/ih.bw)
+		const width = ih.bw * skala
+		const height = ih.bh * skala
+		return {
+			md5: ih.md5,
+			path: ih.path,
+			filename: ih.filename,
+			timestamp: ih.timestamp,
+			bs: ih.bs,
+			bw: ih.bw,
+			bh: ih.bh,
+			skala : skala,
+			width : width,
+			height : height,
+			left : (innerWidth-width)/2,
+			top : (innerHeight-height)/2,
+			mouseState: 0,
+			exifState: 0,
+		}
+	}
 
 	function getExif() {
 		const img = document.getElementById("picture")
 		big.bw = img.naturalWidth
 		big.bh = img.naturalHeight
 		big.exifState = 1
-		big = big
 		EXIF.getData(img, function() {
 			exif = EXIF.getAllTags(this)
 			if (exif.ExifVersion) {
 				big.exifState = 2
-				big = big
 			}
 		})
 	}
@@ -57,7 +78,6 @@
 		big.width  = big.skala * big.bw
 		big.height = big.skala * big.bh
 
-		big = big
 		return false 
 	}
 
@@ -68,7 +88,6 @@
 		big.mouseState = 1
 		big.startX = e.x
 		big.startY = e.y
-		big = big
 	}
 
 	function mousemove(e) {
@@ -80,12 +99,10 @@
 		} else {
 			big.mousestate=0
 		}
-		big = big
 	}
 
 	function mouseup(e) {
 		big.mouseState = 0
-		big = big
 	}
 
 	function share () {
