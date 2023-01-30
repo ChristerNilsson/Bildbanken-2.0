@@ -326,7 +326,6 @@ $: consumeParameters($invHome)
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images,visibleKeys,innerWidth) {
 		const rows = sokruta=="" ? 4 : 5
-		log({visibleKeys})
 		let antal = rows + 1 + _.size(visibleKeys)
 		if (stack.length==2) antal+=1
 		if (stack.length!=2 && buttons) antal+=1
@@ -338,9 +337,7 @@ $: consumeParameters($invHome)
 		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 43
-		// log('placera',{images,innerWidth,rows,antal,offset,COLS,GAP,WIDTH})
 		for (const i in range(images.length)) {
-			// tick()
 			const image = images[i]
 			const ih = $invHome[image.md5]
 			let index = 0 // sök fram index för minsta kolumnen
