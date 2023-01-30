@@ -4,6 +4,7 @@ export let    Home  = writable({}) // json-strukturen. Objekt i objekt. Pekar p�
 export let invHome  = writable({}) // objekt med md5 som nyckel. Pekar på utökad lista, gemensam med Home
 export let images   = writable([]) // lista över framsökta md5 i aktuell folder.
 export let selected = writable({}) // Objekt nycklad med md5. True eller false. Kopplad till checkbox.
+export let fileIndex =writable({}) // Mappar index till filer/urlar som används vid länkning.
 
 	// $Home, ursprungliga listan med sju element, skapad av Pythonkoden:
 	// {[sw,sh,bs,bw,bh,md5,timestamp]}

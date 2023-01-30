@@ -1,12 +1,12 @@
 <script>
 	import _ from "lodash"
-	import {log} from './lib/utils.js'
-	import {Home,invHome,images,selected} from './lib/stores.js'
+	import {log,round} from './lib/utils.js'
+	import {fileIndex,invHome,images,selected} from './lib/stores.js'
 
 	export let WIDTH
 	export let card
-	export let round
-	export let fileWrapper
+	// export let round
+	// export let fileWrapper
 	export let prettyFilename
 	// export let state
 	// export let visaBig
@@ -92,16 +92,16 @@
 			&nbsp;© Lars OA Hedlund
 
 			{#each FS as F}
-				&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
+				&nbsp;<a target="_blank" href="{$fileIndex[F]}">Result</a> <!-- deprecated -->
 			{/each}
 			{#each LS as L}
-				&nbsp;<a target="_blank" href="{fileWrapper[0][L]}">Link</a>
+				&nbsp;<a target="_blank" href="{$fileIndex[L]}">Link</a>
 			{/each}
 			{#each IS as I}
-				&nbsp;<a target="_blank" href="{fileWrapper[0][I]}">Invite</a>
+				&nbsp;<a target="_blank" href="{$fileIndex[I]}">Invite</a>
 			{/each}
 			{#each RS as R}
-				&nbsp;<a target="_blank" href="{fileWrapper[0][R]}">Result</a>
+				&nbsp;<a target="_blank" href="{$fileIndex[R]}">Result</a>
 			{/each}
 			{#each MS as M}
 				&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>

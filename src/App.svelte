@@ -12,35 +12,12 @@
 	import BigPicture from "./BigPicture.svelte"
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
-	import fileIndex from './json/file_index.json'
-	// import data from './json/bilder.json'
-	import {Home,invHome,images,selected} from './lib/stores.js'
+	import {fileIndex,Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
 	log('Skapad: 2023-01-30 10:15')
 
-	// let data
-	// let fileIndex
 	let md5
-
-	// https://dmitripavlutin.com/javascript-fetch-async-await/
-
-	// async function fetchBoth() {
-	// 	const [r1,r2] = await Promise.all([
-	// 		fetch('./json/file_index.json'),
-	// 		fetch('./json/bilder.json')
-	// 	])
-	// 	const a1 = await r1.json()
-	// 	const a2 = await r2.json()
-	// 	return [a1,a2]
-	// }
-	// fetchBoth().then(([a1, a2]) => {
-	// 	// fileIndex = a1
-	// 	setHome(a1,a2)
-	// }).catch(error => {
-	// 	log('fecth error')
-	// })
-
 
 	async function fetchJSON() {
 		const response = await fetch('./json/bilder.json')
@@ -49,11 +26,10 @@
 	}
 	let promise = fetchJSON()
 
-	// $: setHome(data)
-
 	function setHome(data) {
-		log('setHome',data)
-		$Home = data
+		// log('setHome',data)
+		$Home = data.root
+		$fileIndex = data.fileIndex
 		$invHome = invertHome($Home)
 		path = [$Home]
 		stack = ["Home"]
@@ -86,10 +62,9 @@
 		}
 	}
 
-	// let selected = []
 	let skala = 1
 
-	$: fileWrapper = [fileIndex]
+	$: fileWrapper = [$fileIndex]
 		
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -106,15 +81,10 @@
 	let buttons = false
 
 	let sokruta = ""
-	// let big = {md5:""}
 	
 	let text0 = ""
 	let text1 = ""
-	// let images = [] // bilder i nuvarande katalogträd som uppfyller sökorden.
-	let visibleKeys = {}
-
-	// innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
-	// $: visibleKeys = getVisibleKeys(_.last(path),path.length)
+	let visibleKeys = {} // innehåller antal bilder per katalog söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
 
 	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
@@ -430,7 +400,7 @@ $: consumeParameters($invHome)
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} {cards} {round} {fileWrapper} {prettyFilename} />
+		<Infinite {WIDTH} {cards} {prettyFilename} />
 	{:else}
 		{#if state == 'PICTURE'}
 			<BigPicture {md5} {prettyFilename} />
