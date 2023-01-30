@@ -316,15 +316,15 @@ def spaces2underscores(node,res={}):
 			res[key1]= spaces2underscores(node[key],res[key1])
 	return res
 
-# def readFileIndex():
-# 	with open(FILE_INDEX, 'r', encoding="utf8") as f:
-# 		lines = f.readlines()
-# 	res = {}
-# 	for line in lines:
-# 		line = line.strip()
-# 		arr = line.split(' : ')
-# 		res[arr[0]] = arr[1]
-# 	return res
+def readFileIndex():
+	with open(FILE_INDEX, 'r', encoding="utf8") as f:
+		lines = f.readlines()
+	res = {}
+	for line in lines:
+		line = line.strip()
+		arr = line.split(' : ')
+		res[arr[0]] = arr[1]
+	return res
 
 ######################
 
@@ -338,12 +338,12 @@ letters = list("+!§()0123456789_,.-¤")
 
 md5Register = loadJSON(MD5) # givet md5key får man listan med sex element
 cache = loadJSON(JSON + 'bilder.json')
-# fileIndex = readFileIndex()
+fileIndex = readFileIndex()
 
 a = flat(Original, {}) # Readonly!           Skickas INTE till GCS
 b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
 c = flat(small)  # Används bara för räkning. Skickas dock till GCS
-d = flatten(cache, {}) #                     Skickas till GCS
+d = flatten(cache['root'], {}) #                     Skickas till GCS
 
 # sizes.sort()
 # for i in range(4000):
@@ -387,8 +387,7 @@ if update:
 
 	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
 
-	# cache = spaces2underscores(cache)
-
+	cache['fileIndex'] = fileIndex
 	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)
 

@@ -168,16 +168,14 @@ Gemensamt för dessa filer är att endast .jpg-filens path är sökbar. Innehål
 
 07.Numa_Karlsson_M585772_V724273589_F10000.jpg
 
-För att F-nummer ska fungera måste filnamnet/urlen registreras i filen public/file_index.js
+För att F-nummer ska fungera måste filnamnet/urlen registreras i filen public/json/file_index.txt
 (Orsaken till detta är att man inte kan ha ett filnamn eller en url i ett filnamn, däremot går ett heltal bra)
 
 Här visas hur samma pdf kan hanteras på två olika sätt:
-
+file_index.txt:
 ```c
-fileIndex = {
-	10000 : "https://www.wasask.se/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
-	10001 : "files/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
-}
+10000 : "https://www.wasask.se/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
+10001 : "files/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
 ```
 
 Om det handlar om en fil, så måste den även placeras i katalogen public/files.
