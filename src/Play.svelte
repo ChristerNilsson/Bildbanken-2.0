@@ -33,8 +33,8 @@
 	setTimeout(f,delay*1000)
 
 	$: skala  = Math.min((innerHeight-GAP)/bh, (innerWidth)/bw)
-	$: width  = Math.round(bw * skala * 0.95)
-	$: height = Math.round(bh * skala * 0.95)
+	$: width  = Math.round(bw * skala * 0.98)
+	$: height = Math.round(bh * skala * 0.98)
 	$: left   = Math.round((innerWidth - width)/2)
 	$: top    = GAP
 
