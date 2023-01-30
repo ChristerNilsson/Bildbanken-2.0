@@ -20,7 +20,27 @@
 	log('Skapad: 2023-01-30 10:15')
 
 	// let data
+	// let fileIndex
 	let md5
+
+	// https://dmitripavlutin.com/javascript-fetch-async-await/
+
+	// async function fetchBoth() {
+	// 	const [r1,r2] = await Promise.all([
+	// 		fetch('./json/file_index.json'),
+	// 		fetch('./json/bilder.json')
+	// 	])
+	// 	const a1 = await r1.json()
+	// 	const a2 = await r2.json()
+	// 	return [a1,a2]
+	// }
+	// fetchBoth().then(([a1, a2]) => {
+	// 	// fileIndex = a1
+	// 	setHome(a1,a2)
+	// }).catch(error => {
+	// 	log('fecth error')
+	// })
+
 
 	async function fetchJSON() {
 		const response = await fetch('./json/bilder.json')
@@ -40,7 +60,7 @@
 		return ''
 	}
 
-	countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
+	// countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
 
 	const range = _.range
 
@@ -69,7 +89,7 @@
 	// let selected = []
 	let skala = 1
 
-	const fileWrapper = [fileIndex]
+	$: fileWrapper = [fileIndex]
 		
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
