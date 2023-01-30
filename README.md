@@ -21,8 +21,8 @@ Du kan avgränsa sökandet på två sätt:
 	* **Share** kopierar aktuell URL till klippbordet
 	* **Help** visar denna sida
 	* **Up** går till närmast högre liggande katalog
-	* **None** avmarkerar alla bilder i denna utsökning
-	* **All** markerar alla bilder i denna utsökning
+	* **Plus** markerar alla bilder i denna utsökning
+	* **Minus** avmarkerar alla bilder i denna utsökning
 	* **Play** Visar ett bildspel med utsökta bilder
 	* **Download** hämtar alla markerade bilder i en zipfil
 	* Home = aktuell katalog. Här ser du alla bilder
@@ -30,9 +30,6 @@ Du kan avgränsa sökandet på två sätt:
 	* **Event** sorterar på event, stigande
 	* **2022 (4936)** visar de 4936 bilder som tagits detta år
 	* Klicka på en bild om du vill se högre upplösning
-		* Nu kan du zooma (med mushjulet) och panorera (hasa med musen)
-		* Bakom bilden finns tekniska data
-			* T ex bländare, exponeringstid, objektiv, fotograf, tidpunkt
 
 ## Sökning
 
@@ -48,7 +45,7 @@ Tom söksträng innebär att alla bilder matchar.
 
 Sökning går endast mot den katalog man valt. Välj Home om du vill söka i alla kataloger.
 
-## Exempel
+### Exempel
 
 ![Example](help.jpg)
 
@@ -83,6 +80,26 @@ Vill man avgränsa sig kan man t ex söka på Anna_Cramling eller klicka på Sch
 Klickar man på [Up] får man se alla år och kan då klicka på 2011 för att se hur Anna såg ut då.
 
 Klicka på en bild för att se den i högsta upplösningen.
+
+## Visa bild
+* Klicka på bilden du vill se med full upplösning
+* Du kan *zooma* med mushjulet
+	* Notera att den del av bilden musen står på, står still
+* Du kan *panorera* genom att hasa med musen
+* Bakom bilden finns tekniska data
+	* T ex bländare, exponeringstid, objektiv, fotograf, tidpunkt
+* **Share** ger dig en direktlänk till bilden
+	* Du kan även kopiera adressfältet (urlen)
+
+## Download
+
+* Ställ dig på lämplig katalog
+* Klicka på **Plus** eller varje bild för sig
+* Eventuella dubletter påverkar antalet
+* Avmarkera bilderna i aktuell katalog med **Minus**
+* Avmarkera alla bilder genom att klicka på antalet
+* Ladda ner genom att klicka på **Download**
+* Bilderna hamnar i en flat, zippad katalog
 
 ## Bildspel
 
