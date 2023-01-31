@@ -66,9 +66,9 @@
 
 <div style="width:{WIDTH}px; height:34px">
 
-	<button style="left:{0.0*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {none}>       Minus</button>
+	<button style="left:{0.0*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {none}>       Del</button>
 	<button style="left:{0.2*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px; background-color:white" on:click = {zero}  >{n}</button>
-	<button style="left:{0.4*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {all}>        Plus</button>
+	<button style="left:{0.4*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {all}>        Add</button>
 	<button style="left:{0.6*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {play} >      Play</button>
 	<button style="left:{0.8*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {downloadAll}>Download</button>
 

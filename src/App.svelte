@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
-	log('Skapad: 2023-01-30 10:15')
+	log('Skapad: 2023-01-31 10:00')
 
 	let md5
 
@@ -166,18 +166,18 @@ $: consumeParameters($invHome)
 
 	$: [text0, text1, $images,visibleKeys] = search(_.last(path), sokruta, stack.join('/'), $Home)
 
-	$: placera($images,visibleKeys,innerWidth)
+	$: placera($images,visibleKeys,innerWidth,antal)
 	$: WIDTH = calcWidth(innerWidth)
 
 	function resize() {
 		cards = []
 		ymax = 0
 		WIDTH = calcWidth(innerWidth)
-		placera($images,visibleKeys,innerWidth)
+		placera($images,visibleKeys,innerWidth,antal)
 	}
 
 	window.onresize = resize
-
+	
 	const f= (skala,left,x,width) => Math.round((1-skala) * (x-left))
 	//           skala left x   width
 	assert(  0,f(1.1,  200, 200,400))
@@ -250,7 +250,7 @@ $: consumeParameters($invHome)
 
 	function search(node,words,path) {
 		const result = []
-		const visibleKeys = {}
+		let visibleKeys = {}
 
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
@@ -315,27 +315,24 @@ $: consumeParameters($invHome)
 		const st = []
 		let antal = 0
 		for (const key of keys) {
-			st.push(`${key}:${stat[key]}`) 
+			st.push(`${key}:${stat[key]}`)
 			antal += stat[key]
 		}
+		// visibleKeys = visibleKeys
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result,visibleKeys]
 	}
+
+$: antal = 7 + _.size(visibleKeys)
 
 	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
-	function placera(images,visibleKeys,innerWidth) {
-		const rows = sokruta=="" ? 4 : 5
-		let antal = rows + 1 + _.size(visibleKeys)
-		if (stack.length==2) antal+=1
-		if (stack.length!=2 && buttons) antal+=1
-
+	function placera(images,visibleKeys,innerWidth,antal) {
 		offset = 34 * antal // 30 + 2 * margin=2
-
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
-
-		const cols = [offset]
-		for (const i in range(COLS)) cols.push(0)
+		const cols = _.map(range(COLS), (element) => 0)
+		// log('placera',{COLS,WIDTH,cols})
+		cols[0] = offset
 		const textHeights = 43
 		for (const i in range(images.length)) {
 			const image = images[i]
@@ -347,7 +344,7 @@ $: consumeParameters($invHome)
 			image.x = (GAP + WIDTH)*index
 			image.y = cols[index]
 			image.index = i
-			cols[index] += Math.round(WIDTH*ih.sh/ih.sw) + textHeights // h/w
+			cols[index] += Math.round(WIDTH*ih.sh/ih.sw) + textHeights
 		}
 	}
 
@@ -397,7 +394,7 @@ $: consumeParameters($invHome)
 	{setHome(data)}
 	{#if state == 'NORMAL'}
 		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {is_jpg} {pop} />
-		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
+		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} />
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
 		<Infinite {WIDTH} {cards} {prettyFilename} />

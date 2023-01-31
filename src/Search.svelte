@@ -1,6 +1,5 @@
 <script>
 	import { saveAs } from 'file-saver'
-	import {selected} from './lib/stores.js'
 	import {log} from './lib/utils.js'
 	import _ from 'lodash'
 
@@ -13,10 +12,7 @@
 	export let spreadWidth
 	export let path
 	export let is_jpg
-	// export let MAX_DOWNLOAD
 	export let pop
-
-	// export let state
 
 	function clear() {
 		sokruta = ""
@@ -34,6 +30,7 @@
 	let hash = {}
 	const letters = "+!§()0123456789_,.-¤"
 	const stoppord = []
+	// $rowsSearch = ((sokruta.split(" ").length <= 3) && (sokruta.length > 0)) ? 5 : 4
 
 	function flatWords(node) {
 		for (const key of _.keys(node)) {
@@ -76,8 +73,6 @@
 		window.open("https://github.com/ChristerNilsson/2022-014-Bildbanken2#readme")
 	}
 
-	// window.onload = () => document.getElementById("search").focus()
-
 </script>
 
 <input autocomplete="off" id="search" bind:value={sokruta} placeholder='Search' style="width:{WIDTH-2*GAP}px">
@@ -94,16 +89,11 @@
 	<button on:click={clear} style="left:{1*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
 	<button on:click={share} style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Share</button>
 	<button on:click={help}  style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
-
-	<!-- <button on:click={play}        style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Play</button> -->
-	<!-- <button on:click={keywords}    style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Keywords</button> -->
 </div>
 
-{#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
-	<div class="center" style="width:{WIDTH}px">
-		{text0}
-	</div>
-{/if}
+<div class="center" style="width:{WIDTH}px">
+	{text0.startsWith(':') ? '' : text0}
+</div>
 
 <style>
 	.center {

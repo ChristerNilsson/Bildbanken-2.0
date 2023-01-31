@@ -1,6 +1,8 @@
 <script>
 	import _ from "lodash"
 	import {log} from './lib/utils.js'
+	// import {rowsVertical} from './lib/stores.js'
+
 	export let buttons
 	export let visibleKeys
 	export let push
@@ -8,9 +10,12 @@
 	export let WIDTH
 	export let spaceShip
 	export let stack
+	// export let rowsVertical
 
 	buttons = false
 
+	// $: $rowsVertical = (buttons ? 1 : 0)
+	
 	function sortera(keys,i) {
 		// log({keys,i})
 		const path = stack.join("/")
@@ -48,6 +53,10 @@
 		<div style="width:{WIDTH}px">
 			<button class="header" style="left:0px; width:{90}px" on:click = {()=>keys=sortera(keys,0)}>Date</button>
 			<button class="header" style="left:{90}px; width:{WIDTH-90-8}px" on:click = {()=>keys=sortera(keys,1)}>Event</button>
+		</div>
+	{:else}
+		<div style="width:{WIDTH}px">
+			<button class="header" style="left:0px; width:{WIDTH-2}px" on:click = {()=>keys=sortera(keys,0)}>Folders</button>
 		</div>
 	{/if}
 
