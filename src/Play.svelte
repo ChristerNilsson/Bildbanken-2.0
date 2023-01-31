@@ -10,6 +10,7 @@
 	const GAP = 30
 	let i=0
 	let paused = false
+	let seconds = delay
 
 	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
@@ -27,10 +28,15 @@
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
 
 	const f = () => {
-		i = paused ? i : i+1
-		setTimeout(f,delay*1000)
+		if (seconds==0) {
+			i = paused ? i : i+1
+			seconds = delay
+		} else {
+			seconds--
+		}
+		setTimeout(f,1000)
 	}
-	setTimeout(f,delay*1000)
+	setTimeout(f,1000)
 
 	$: skala  = Math.min((innerHeight-GAP)/bh, (innerWidth)/bw)
 	$: width  = Math.round(bw * skala * 0.98)
@@ -38,21 +44,32 @@
 	$: left   = Math.round((innerWidth - width)/2)
 	$: top    = GAP
 
+	function g(i1) {
+		i = i1
+		seconds = delay
+	}
+
 	function keydown(event) {
 		const key = event.key
 		if (key == ' ') paused = ! paused
-		if (key == 'ArrowLeft')  i -= 1
-		if (key == 'ArrowRight') i += 1
-		if (key == 'ArrowUp')   delay++
-		if (key == 'ArrowDown') delay = delay <= 5 ? delay : delay-1
-		if (key == 'Home') i = 0
-		if (key == 'End') i = n-1
+		if (key == 'ArrowLeft') g(i-1)
+		if (key == 'ArrowRight') g(i+1)
+		if (key == 'ArrowUp')   {
+			delay++
+			g(i)
+		}
+		if (key == 'ArrowDown') {
+			delay = delay <= 5 ? delay : delay-1
+			g(i)
+		}
+		if (key == 'Home') g(0)
+		if (key == 'End') g(n-1)
 	}
 
 	window.onscroll = (e)=> {
 		e.preventDefault()
 		e.stopPropagation()
-		return false 
+		return false
 	}
 
 </script>
@@ -69,7 +86,7 @@
 		</td><td style='text-align:center' width=80%>
 			{paused ? 'Paused (Keys: Space Home Left Right Up Down End)' : key}
 		</td><td style='text-align:right' width=10%>
-			{delay}s
+			{seconds}s
 		</td></tr>
 	</table>
 
