@@ -34,9 +34,10 @@ Du kan avgränsa sökandet på två sätt:
 ## Sökning
 
 Sökning genomförs genom att fylla i sökrutan.  
-Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filnamn  
+Dessa ord, avgränsade av blanktecken, matchas mot texterna i foldrar och filnamn  
 De kombineras automatiskt med **och** och **eller**  
-Underscore (_) kan användas för att binda ihop ord, t ex *Anna_Cramling*  
+Underscore kan användas för att binda ihop två eller flera ord, t ex *Anna_Cramling*.  
+Det innebär att både *Anna* och *Cramling* måste vara med i bildtexten.
 
 Sökningen är känslig för VERSALER och gemener.
 De ord man anger kan vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson  
@@ -52,20 +53,20 @@ Sökning går endast mot den folder man valt. Välj Home om du vill söka i alla
 Först gjordes ett urval genom att klicka på 2022.  
 Då reducerades antalet bilder till 7109.  
 
-Därefter skrevs söktexten "Anna Cramling" in.  
+Därefter skrevs söktexten *Anna Cramling* in.  
 Det reducerade antalet bilder till 317.  
 Sökningen tog 14 millisekunder.
 
-Bara de bilder som gett träff på Anna eller Cramling, visas.
+Bara de bilder som gett träff på *Anna* eller *Cramling*, visas.
 
-Kolumnnamnen [Date] och [Event] sorterar framsökta foldrar.
+Kolumnnamnen **Date** och **Event** sorterar framsökta foldrar.
 
 AB:17 innebär att båda orden förekom i 17 bilder.  
-A:7 innebär att enbart Anna förekom i ytterligare 7 bilder.  
-B:293 innebär att enbart Cramling förekom i 293 bilder (troligen Pia eller Dan Cramling).  
+A:7 innebär att enbart *Anna* förekom i ytterligare 7 bilder.  
+B:293 innebär att enbart *Cramling* förekom i 293 bilder (troligen Pia eller Dan Cramling).  
 Notera att 17 + 7 + 293 = 317.
 
-* Rilton Cup Stockholm (8) innebär att åtta bilder med Anna och/eller Cramling finns i den foldern.
+* Rilton Cup Stockholm (8) innebär att åtta bilder med *Anna* och/eller *Cramling* finns i den foldern.
 * Rilton Cup började spelas 2022-12-27
 * 0 = första framsökta bilden
 * AB innebär att båda orden förekommer i bildtexten
@@ -78,15 +79,15 @@ Notera att 17 + 7 + 293 = 317.
 * 2751 kB = bildens storlek i kilobytes
 
 Man kan se alla 317 bilderna genom att skrolla nedåt.  
-Vill man avgränsa sig kan man t ex söka på Anna_Cramling eller klicka på Schack-SM Uppsala. 
+Vill man avgränsa sig kan man t ex söka på *Anna_Cramling* eller klicka på Schack-SM Uppsala. 
 
-Klickar man på [Up] får man se alla år och kan då klicka på 2011 för att se hur Anna såg ut då.
+Klickar man på **Up** får man se alla år och kan då klicka på **2011** för att se hur Anna såg ut då.
 
 Klicka på en bild för att se den i högsta upplösningen.
 
-Klicka på Add och Play för att se ett bildspel.
+Klicka på **Add** och **Play** för att se ett bildspel.
 
-Klicka på Download för att ladda ner en zipfil.  
+Klicka på **Download** för att ladda ner en zipfil.  
 (1 minut, 595 MB)
 
 ## Visa bild

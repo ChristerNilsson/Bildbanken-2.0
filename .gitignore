@@ -1,0 +1,15 @@
+/node_modules/
+build
+public
+/json/
+big
+zip
+*.pdf
+.idea
+.DS_Store
+/Gigantisk/
+.vercel
+Original
+Home
+small
+
