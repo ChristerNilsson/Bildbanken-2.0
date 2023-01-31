@@ -64,7 +64,7 @@
 		<div>
 			<span>
 				{#if ! is_jpg(key)}
-					<button class="row" value={key} on:click = {() => push(key)}>
+					<button title="{clean(key)} ({visibleKeys[key]})" class="row" value={key} on:click = {() => push(key)}>
 						{clean(key)} ({visibleKeys[key]})
 					</button>
 				{/if}

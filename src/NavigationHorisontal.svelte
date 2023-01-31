@@ -25,7 +25,7 @@
 <div style="width:{WIDTH-1}px">
 	<div>
 		<span>
-			<button style="width:{WIDTH-1}px">{clean(stack)}</button>
+			<button title="Current folder" style="width:{WIDTH-1}px">{clean(stack)}</button>
 		</span>
 	</div>
 </div>

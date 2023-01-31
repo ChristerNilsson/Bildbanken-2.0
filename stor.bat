@@ -1,1 +1,0 @@
-@if exist public\liten (call swap public public_other) else (echo Redan stor!)

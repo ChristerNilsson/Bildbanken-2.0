@@ -7,7 +7,6 @@
 	export let prettyFilename
 
 	const INCR = 0.08
-
 	let exif = null
 
 	let big = makeBig($invHome[md5])
@@ -59,26 +58,18 @@
 		e.preventDefault()
 		e.stopPropagation()
 		if (exif == null) getExif()
-
 		big.mouseState = 0
-
 		const x = e.x // musens position
 		const y = e.y
-
 		const f = (skala,left,x) => (1-skala) * (x-left)
-	
 		let faktor = 1 + INCR
 		if (e.deltaY > 0) faktor = 1/faktor
-
 		big.left += f(faktor,big.left,x)
 		big.top  += f(faktor,big.top,y)
-
 		big.skala *= faktor
-
 		big.width  = big.skala * big.bw
 		big.height = big.skala * big.bh
-
-		return false 
+		return false
 	}
 
 	function mousedown(e) {
@@ -101,16 +92,9 @@
 		}
 	}
 
-	function mouseup(e) {
-		big.mouseState = 0
-	}
-
-	function share () {
-		navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')
-	}
-
+	function mouseup(e) {big.mouseState = 0}
+	function share () {navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')}
 	document.onmousemove = mousemove
-
 	document.title = prettyFilename(big.filename,false)
 
 </script>

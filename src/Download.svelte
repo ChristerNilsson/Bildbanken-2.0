@@ -59,6 +59,8 @@
 	function play() {
 		const host = location.origin + location.pathname
 		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('_')
+		log("ids",ids)
+		if (ids.length == 0) return
 		window.open(host + "?ids=" + ids)
 	}
 
@@ -66,11 +68,11 @@
 
 <div style="width:{WIDTH}px; height:34px">
 
-	<button style="left:{0.0*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {none}>       Del</button>
-	<button style="left:{0.2*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px; background-color:white" on:click = {zero}  >{n}</button>
-	<button style="left:{0.4*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {all}>        Add</button>
-	<button style="left:{0.6*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {play} >      Play</button>
-	<button style="left:{0.8*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {downloadAll}>Download</button>
+	<button title="Unselect images in the current folder" style="left:{0.0*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {none}>       Del</button>
+	<button title="Unselect all images" style="left:{0.2*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px; background-color:white" on:click = {zero}  >{n}</button>
+	<button title="Select images in the current folder" style="left:{0.4*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {all}>        Add</button>
+	<button title="Show selected images in a slide show" style="left:{0.6*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {play} >      Play</button>
+	<button title="Download selected images" style="left:{0.8*WIDTH}px; width:{spreadWidth(0.2,WIDTH)}px" on:click = {downloadAll}>Download</button>
 
 </div>
 

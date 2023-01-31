@@ -1,6 +1,6 @@
 <script>
 	import { saveAs } from 'file-saver'
-	import {log} from './lib/utils.js'
+	import { log } from './lib/utils.js'
 	import _ from 'lodash'
 
 	export let sokruta
@@ -10,8 +10,8 @@
 	export let WIDTH
 	export let GAP
 	export let spreadWidth
-	export let path
-	export let is_jpg
+	// export let path
+	// export let is_jpg
 	export let pop
 
 	function clear() {
@@ -27,47 +27,47 @@
 		navigator.clipboard.writeText(location.origin + location.pathname + q + q1 + a + q2)
 	}
 
-	let hash = {}
-	const letters = "+!§()0123456789_,.-¤"
-	const stoppord = []
+	// let hash = {}
+	// const letters = "+!§()0123456789_,.-¤"
+	// const stoppord = []
 	// $rowsSearch = ((sokruta.split(" ").length <= 3) && (sokruta.length > 0)) ? 5 : 4
 
-	function flatWords(node) {
-		for (const key of _.keys(node)) {
-			let words = key
-			for (const letter of letters) {
-				words = words.replaceAll(letter," ")
-			}
-			for (const word of words.split(' ')) {
-				const wordLower = word.toLowerCase()
-				if (word.length > 1 && wordLower == word) {
-					hash[word] = word in hash ? hash[word]+1 : 1
-				}
-			}
-			if (! is_jpg(key)) flatWords(node[key])
-		}
-	}
+	// function flatWords(node) {
+	// 	for (const key of _.keys(node)) {
+	// 		let words = key
+	// 		for (const letter of letters) {
+	// 			words = words.replaceAll(letter," ")
+	// 		}
+	// 		for (const word of words.split(' ')) {
+	// 			const wordLower = word.toLowerCase()
+	// 			if (word.length > 1 && wordLower == word) {
+	// 				hash[word] = word in hash ? hash[word]+1 : 1
+	// 			}
+	// 		}
+	// 		if (! is_jpg(key)) flatWords(node[key])
+	// 	}
+	// }
 
-	function convert(hash) {
-		let arr = []
-		for (const key of _.keys(hash)) {
-			if (! stoppord.includes(key)) {
-				arr.push([key,hash[key]])
-			}
-		}
-		arr.sort()
-		return arr
-	}
+	// function convert(hash) {
+	// 	let arr = []
+	// 	for (const key of _.keys(hash)) {
+	// 		if (! stoppord.includes(key)) {
+	// 			arr.push([key,hash[key]])
+	// 		}
+	// 	}
+	// 	arr.sort()
+	// 	return arr
+	// }
 
-	function keywords() {
-		hash = {}
-		flatWords(_.last(path))
-		const keys = convert(hash)
-		const res = []
-		for (const [key,antal] of keys) res.push(key + ': ' + antal)
-		const blob = new Blob([res.join("\n")], {type: "text/plain;charset=utf-8;"})
-		saveAs(blob, `${_.last(stack)}_${res.length}_keywords.txt`)
-	}
+	// function keywords() {
+	// 	hash = {}
+	// 	flatWords(_.last(path))
+	// 	const keys = convert(hash)
+	// 	const res = []
+	// 	for (const [key,antal] of keys) res.push(key + ': ' + antal)
+	// 	const blob = new Blob([res.join("\n")], {type: "text/plain;charset=utf-8;"})
+	// 	saveAs(blob, `${_.last(stack)}_${res.length}_keywords.txt`)
+	// }
 
 	function help() {
 		window.open("https://github.com/ChristerNilsson/2022-014-Bildbanken2#readme")
@@ -82,13 +82,13 @@
 
 <div style="width:{WIDTH}px; height:34px">
 	{#if _.last(stack) == "Home"}
-		<button style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} disabled >Up</button>
+		<button title="This is Home folder" style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} disabled >Up</button>
 	{:else}
-		<button style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} >Up</button>
+		<button title="Go to parent folder" style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} >Up</button>
 	{/if}
-	<button on:click={clear} style="left:{1*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
-	<button on:click={share} style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Share</button>
-	<button on:click={help}  style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
+	<button title="Clear Search Text" on:click={clear} style="left:{1*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
+	<button title="Save the URL on the clipboard" on:click={share} style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Share</button>
+	<button title="View Help Page" on:click={help} style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
 </div>
 
 <div class="center" style="width:{WIDTH}px">

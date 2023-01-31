@@ -46,50 +46,6 @@ Tom söksträng innebär att alla bilder matchar.
 
 Sökning går endast mot den folder man valt. Välj Home om du vill söka i alla foldrar.
 
-### Exempel
-
-![Example](AnnaCramling.jpg)
-
-Först gjordes ett urval genom att klicka på 2022.  
-Då reducerades antalet bilder till 7109.  
-
-Därefter skrevs söktexten *Anna Cramling* in.  
-Det reducerade antalet bilder till 317.  
-Sökningen tog 14 millisekunder.
-
-Bara de bilder som gett träff på *Anna* eller *Cramling*, visas.
-
-Kolumnnamnen **Date** och **Event** sorterar framsökta foldrar.
-
-AB:17 innebär att båda orden förekom i 17 bilder.  
-A:7 innebär att enbart *Anna* förekom i ytterligare 7 bilder.  
-B:293 innebär att enbart *Cramling* förekom i 293 bilder (troligen Pia eller Dan Cramling).  
-Notera att 17 + 7 + 293 = 317.
-
-* Rilton Cup Stockholm (8) innebär att åtta bilder med *Anna* och/eller *Cramling* finns i den foldern.
-* Rilton Cup började spelas 2022-12-27
-* 0 = första framsökta bilden
-* AB innebär att båda orden förekommer i bildtexten
-* Kryssrutan används vid Download
-* Bilden togs av Lars OA Hedlund
-* **Invite** visar Inbjudan
-* **Result** visar turneringsresultatet
-* Bilden togs 2023-01-05 19:01
-* 2048 x 1915 = bredd och höjd
-* 2751 kB = bildens storlek i kilobytes
-
-Man kan se alla 317 bilderna genom att skrolla nedåt.  
-Vill man avgränsa sig kan man t ex söka på *Anna_Cramling* eller klicka på Schack-SM Uppsala. 
-
-Klickar man på **Up** får man se alla år och kan då klicka på **2011** för att se hur Anna såg ut då.
-
-Klicka på en bild för att se den i högsta upplösningen.
-
-Klicka på **Add** och **Play** för att se ett bildspel.
-
-Klicka på **Download** för att ladda ner en zipfil.  
-(1 minut, 595 MB)
-
 ## Visa bild
 * Klicka på bilden du vill se med full upplösning
 * Du kan *zooma* med mushjulet
@@ -97,7 +53,7 @@ Klicka på **Download** för att ladda ner en zipfil.
 * Du kan *panorera* genom att hasa med musen
 * Bakom bilden finns tekniska data
 	* T ex *bländare*, *exponeringstid*, *objektiv*, *fotograf*, *tidpunkt*
-* **Share** ger dig en direktlänk till bilden
+* **Share** ger dig en direktlänk till bilden, på klippbordet
 	* Du kan även kopiera adressfältet (urlen)
 
 ## Download
@@ -123,3 +79,47 @@ Klicka på **Download** för att ladda ner en zipfil.
 * Avsluta genom att stänga fliken
 * Maximalt 1000 bilder kan visas i Chrome eller Safari.
 	* [Microsoft Edge](https://www.geeksforgeeks.org/maximum-length-of-a-url-in-different-browsers/) klarar bara 60 bilder.
+
+## Exempel
+
+![Example](AnnaCramling.jpg)
+
+Först gjordes ett urval genom att klicka på 2022.  
+Då reducerades antalet bilder till 7109.  
+
+Därefter skrevs söktexten *Anna Cramling* in.  
+Det reducerade antalet bilder till 317.  
+Sökningen tog 14 millisekunder.
+
+Bara de bilder som gett träff på *Anna* eller *Cramling*, visas.
+
+Kolumnnamnen **Date** och **Event** sorterar framsökta foldrar.
+
+AB:17 innebär att båda orden förekom i 17 bilder.  
+A:7 innebär att enbart *Anna* förekom i ytterligare 7 bilder.  
+B:293 innebär att enbart *Cramling* förekom i 293 bilder (troligen Pia eller Dan Cramling).  
+Notera att 17 + 7 + 293 = 317.
+
+* Rilton Cup Stockholm (8) innebär att åtta bilder med *Anna* och/eller *Cramling* finns i den foldern.
+* Rilton Cup började spelas 2022-12-27
+* 0 = första framsökta bilden
+* AB innebär att båda orden förekommer i bildtexten
+* Kryssrutan används vid Download eller Play
+* Bilden togs av Lars OA Hedlund
+* **Invite** visar Inbjudan
+* **Result** visar Turneringsresultat
+* Bilden togs 2023-01-05 19:01
+* 2048 x 1915 = bredd och höjd
+* 2751 kB = bildens storlek i kilobytes
+
+Man kan se alla 317 bilderna genom att skrolla med mushjulet, Arrow eller Page.  
+Vill man avgränsa sig kan man t ex söka på *Anna_Cramling* eller klicka på Schack-SM Uppsala. 
+
+Klickar man på **Up** får man se alla år och kan då klicka på **2011** för att se hur Anna såg ut då.
+
+Klicka på en bild för att se den i högsta upplösningen.
+
+Klicka på **Add** och **Play** för att se ett bildspel.
+
+Klicka på **Download** för att ladda ner en zipfil.  
+(1 minut, 595 MB)
