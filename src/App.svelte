@@ -19,17 +19,14 @@
 
 	let md5
 
-	async function fetchJSON() {
-		const response = await fetch('./json/bilder.json')
-		const x = await response.json()
-		return x
-	}
-	let promise = fetchJSON()
+	// Förberett för att använda flera json-filer.
+	const p1 = fetch('./json/bilder.json').then(r => r.json())
+	const p2 = fetch('./json/file_index.json').then(r => r.json())
+	const promise = Promise.all([p1,p2])
 
-	function setHome(data) {
-		// log('setHome',data)
-		$Home = data.root
-		$fileIndex = data.fileIndex
+	function handleJSON(arrJSON) {
+		$Home = arrJSON[0].root
+		$fileIndex = arrJSON[1] //.fileIndex
 		$invHome = invertHome($Home)
 		path = [$Home]
 		stack = ["Home"]
@@ -390,8 +387,8 @@ $: antal = 7 + _.size(visibleKeys)
 
 {#await promise }
 	<p>Loading...</p>
-{:then data}
-	{setHome(data)}
+{:then arrJSON}
+	{handleJSON(arrJSON)}
 	{#if state == 'NORMAL'}
 		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {pop} />
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} />
