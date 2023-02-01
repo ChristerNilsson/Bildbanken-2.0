@@ -25,8 +25,8 @@
 	const promise = Promise.all([p1,p2])
 
 	function handleJSON(arrJSON) {
-		$Home = arrJSON[0].root
-		$fileIndex = arrJSON[1] //.fileIndex
+		$Home      = arrJSON[0]
+		$fileIndex = arrJSON[1]
 		$invHome = invertHome($Home)
 		path = [$Home]
 		stack = ["Home"]

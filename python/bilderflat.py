@@ -211,7 +211,8 @@ def compare(a,b,message):
 	for path in a:
 		if path not in b:
 			if is_jpg(path):
-				if cimages == 0: res[path] = 0
+#				if cimages == 0: res[path] = 0
+				res[path] = 0
 				cimages += 1
 			else:
 				res[path] = 0
@@ -338,7 +339,7 @@ letters = list("+!§()0123456789_,.-¤")
 
 md5Register = loadJSON(MD5) # givet md5key får man listan med sex element
 cache = loadJSON(JSON + 'bilder.json')
-cache = cache['root']
+# cache = cache['root']
 fileIndex = readFileIndex()
 
 a = flat(Original, {}) # Readonly!           Skickas INTE till GCS
@@ -388,9 +389,9 @@ if update:
 
 	if antal['keys'] > 0: print('Deleted:', antal['keys'], 'keys')
 
-	# cache['fileIndex'] = fileIndex
-	with open(JSON + 'bilder.json', 'w', encoding="utf8") as f: dumpjson({'root':cache,'fileIndex':fileIndex},f)
-	with open(MD5, 'w', encoding="utf8") as f: dumpjson(md5Register,f)
+	with open(JSON + 'bilder.json',     'w', encoding="utf8") as f: dumpjson(cache,f)
+	with open(JSON + 'file_index.json', 'w', encoding="utf8") as f: dumpjson(fileIndex,f)
+	with open(MD5,                      'w', encoding="utf8") as f: dumpjson(md5Register,f)
 
 	print()
 	print(round(time.time() - start,3),'seconds')
