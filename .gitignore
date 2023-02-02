@@ -4,6 +4,7 @@ public
 /json/
 big
 zip
+MD5.json
 *.pdf
 .idea
 .DS_Store
