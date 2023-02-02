@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip} from './lib/utils.js'
 
-	log('Skapad: 2023-01-31 10:00')
+	const version = '2023-02-02 11:20'
 
 	let md5
 
@@ -325,12 +325,12 @@ $: antal = 7 + _.size(visibleKeys)
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images,visibleKeys,innerWidth,antal) {
-		offset = 34 * antal // 30 + 2 * margin=2
+		offset = 34 * antal
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = _.map(range(COLS), (element) => 0)
 		// log('placera',{COLS,WIDTH,cols})
 		cols[0] = offset
-		const textHeights = 43
+		const textHeights = 45+5
 		for (const i in range(images.length)) {
 			const image = images[i]
 			const ih = $invHome[image.md5]
@@ -341,7 +341,7 @@ $: antal = 7 + _.size(visibleKeys)
 			image.x = (GAP + WIDTH)*index
 			image.y = cols[index]
 			image.index = i
-			cols[index] += Math.round(WIDTH*ih.sh/ih.sw) + textHeights
+			cols[index] += Math.round(WIDTH*ih.sh/ih.sw + textHeights)
 		}
 	}
 
@@ -385,8 +385,8 @@ $: antal = 7 + _.size(visibleKeys)
 
 <svelte:window bind:scrollY={y}/>
 
-{#await promise }
-	<p>Loading...</p>
+{#await promise}
+	<p>&nbsp;{version}</p>
 {:then arrJSON}
 	{handleJSON(arrJSON)}
 	{#if state == 'NORMAL'}

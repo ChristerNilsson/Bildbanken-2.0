@@ -131,19 +131,19 @@
 	.info {
 		margin:0px;
 		text-align:left;
-		padding-top:1px;
+		padding-top:0px;
 		white-space:nowrap;
 		overflow:hidden;
 		background-color:lightgray;
 	}
 	.card {
-		margin:0px;
-		font-size: 0.9em;
-		max-height: 800px;
+		/* margin:0px; */
+		/* font-size: 12px; */
+		/* max-height: 800px; */
 	}
 	div {
-		margin:0px;
-		padding:0px;
-		font-size: 0.9em;
+		margin: 0px;
+		padding: 0px;
+		font-size: 13px;
 	}
 </style>
