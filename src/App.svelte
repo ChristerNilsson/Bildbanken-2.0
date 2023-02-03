@@ -330,7 +330,7 @@ $: antal = 7 + _.size(visibleKeys)
 		const cols = _.map(range(COLS), (element) => 0)
 		// log('placera',{COLS,WIDTH,cols})
 		cols[0] = offset
-		const textHeights = 45+5
+		const textHeights = 49 // borde vara 49 för iOS och 44 för Windows
 		for (const i in range(images.length)) {
 			const image = images[i]
 			const ih = $invHome[image.md5]

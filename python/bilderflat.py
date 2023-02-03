@@ -34,9 +34,10 @@ Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
 Home     = ROOT + "public/Home"    # cirka 2.000.000 bytes per bild
 small    = ROOT + "public/small"   # cirka 	  25.000 bytes per bild
 #JSON     = ROOT + "public/json/"  # cirka       120 bytes per bild (bilder.json)
-JSON     = ROOT + "public/json/"      # cirka       120 bytes per bild (bilder.json)
+JSON     = ROOT + "public/json/"   # cirka       120 bytes per bild (bilder.json)
 MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
 FILE_INDEX = JSON + 'file_index.txt'
+PUBLIC    = ROOT + "public/"
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
 def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
@@ -191,8 +192,8 @@ def flatten(node, res={}, path=''):
 	for key in node:
 		path1 = path + "/" + key
 		if is_jpg(key):
-			# sizes.append([node[key][2],path1])
 
+			# sizes.append([node[key][2],path1])
 			# if len(node[key]) == 5:
 			# 	node[key].append(key)
 			# getTimestamp(path1)
@@ -200,6 +201,14 @@ def flatten(node, res={}, path=''):
 			res[path1] = node[key]
 		else:
 			res[path1] = ""
+			match = re.search(r'_[LIR]\d\d\d\d\d', key)
+			if match:
+				z = match.regs
+				(p, q) = z[0]
+				hit = key[p:q][2:]
+				if hit not in fileIndex:
+					print('Missing index',hit,'in',key)
+
 		if not type(node[key]) is list:
 			flatten(node[key],res, path1)
 	return res
@@ -325,6 +334,8 @@ def readFileIndex():
 		line = line.strip()
 		arr = line.split(' : ')
 		res[arr[0]] = arr[1]
+		if arr[1].startswith('files/') and not exists(PUBLIC + arr[1]):
+			print('Missing file:',arr[1])
 	return res
 
 ######################
