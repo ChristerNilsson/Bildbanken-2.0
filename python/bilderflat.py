@@ -21,6 +21,7 @@ from PIL import Image
 import hashlib
 import shutil
 import re
+import base64
 from dateutil import parser
 
 QUALITY = 95
@@ -284,12 +285,47 @@ def getFileDate(path):
 		return date
 	return None
 
+# def packedTime(dt):
+# 	alfabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_" # 64-based (year=2290)
+# 	n = len(alfabet)
+# 	def twin(x): return alfabet[x//n] + alfabet[x%n]
+# 	BASEYEAR = 1970 # same as unix time
+# 	res = ''
+# 	mm = (dt.year-BASEYEAR) * 12 + dt.month
+# 	res += twin(mm)
+# 	res += alfabet[dt.day]
+# 	res += alfabet[dt.hour]
+# 	res += alfabet[dt.minute]
+# 	res += alfabet[dt.second]
+# 	ms = round(dt.microsecond/1000)
+# 	res += twin(ms)
+# 	return res
+#assert packedTime(datetime(2023,2,2,12,34,56,123456)) == 'ai2cyU1Z'
+
+def packedTime2(dt): # Klarar 1000 år med sekund-upplösning
+	alfabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+	unix = int(time.mktime(dt.timetuple()))
+	res = ''
+	for i in range(6):
+		res = alfabet[unix % 64] + res
+		unix = unix // 64
+	return res
+assert(packedTime2(datetime(2023,2,2,12,34,56)) == '1zSV_w')
+assert(packedTime2(datetime(2023,2,2,12,34,57)) == '1zSV_x')
+assert(packedTime2(datetime(1970,1,1,1,0,0))=='000000') # DST?
+assert(packedTime2(datetime(2100,1,1,1,0,0))=='3QxBs0')
+assert(packedTime2(datetime(2200,1,1,1,0,0))=='6MDxA0')
+assert(packedTime2(datetime(2300,1,1,1,0,0))=='9IJtI0')
+assert(packedTime2(datetime(2400,1,1,1,0,0))=='cEPpQ0')
+assert(packedTime2(datetime(3000,1,1,1,0,0))=='uhnIM0')
+assert(packedTime2(datetime(3001,1,1,1,0,0))=='ujf_-0')
+
 def getTimestamp(path):
 	bigImg = Image.open(Original + path)
 	obj = bigImg._getexif()
 	exifdate = None
 	if obj:
-		if 36867 in obj: exifdate = obj[36867] # förstahandsval
+		if 36867 in obj: exifdate = obj[36867] # milliseconds in obj[37521]
 		if exifdate:
 			arr = exifdate.split(" ")
 			arr[0] = arr[0].replace(':','-')
