@@ -457,9 +457,9 @@ print()
 resCache = compare2(a,d)
 
 print()
-for key in resCache['missing'].keys(): print('Missing:', key)
+#for key in resCache['missing'].keys(): print('Missing:', key)
 print()
-for key in resCache['surplus'].keys(): print('Surplus:', key)
+#for key in resCache['surplus'].keys(): print('Surplus:', key)
 
 print('Readonly:', round(time.time()-start,3),'seconds')
 print()
