@@ -87,6 +87,33 @@
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
+	const pp = (x) => x < 10 ? '0' + x : x
+
+	function unpack(packed) { // Detta är ej unixtid, pga bugg.
+		const alfabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+		let unix = 0
+		for (const ch of packed) unix = unix * 64 + alfabet.indexOf(ch)
+		const second = unix % 60
+		unix -= second
+		unix = unix / 60
+		const minute = unix % 60
+		unix -= minute
+		unix = unix / 60
+		const hour = unix % 24
+		unix -= hour
+		unix = unix / 24
+		let day = unix % 31
+		unix -= day
+		unix = unix / 31
+		let month = unix % 12
+		unix -= month
+		unix = unix / 12
+		const year = 1970 + unix
+		day+=1
+		month+=1
+		return year + '-' + pp(month) + '-' +pp(day) +' ' + pp(hour)+ ':' + pp(minute)+ ':' + pp(second)
+	}
+
 	function expand(imagedata,path,filename) { // converts 7-element array to object with 9 properties
 		const bild = {}
 
@@ -97,11 +124,11 @@
 		bild.bw        = imagedata[3] // big width
 		bild.bh        = imagedata[4] // big height
 		bild.md5       = imagedata[5] // unique id based om md5
-		bild.timestamp = imagedata[6] // 2023-01-24 12:34:56
 
 		// added properties:
 		bild.path = path         // the folder names only
 		bild.filename = filename // filename with extension .jpg
+		bild.timestamp = unpack(bild.md5.slice(0,6)) // abcXYZ => 2023-01-24 12:34:56
 
 		return bild
 	}
@@ -114,7 +141,7 @@
 					node[key] = expand(node[key],path,key)
 					ih[node[key].md5] = node[key]
 				} else {
-					recurse(node[key],path + '/'  +key)
+					recurse(node[key],path + '/' + key)
 				}
 			}
 		}
@@ -151,7 +178,7 @@ $: consumeParameters($invHome)
 		if (urlParams.has("folder")) consumeFolder(urlParams.get("folder"))
 		if (urlParams.has("query")) sokruta = urlParams.get("query")
 		if (urlParams.has("ids")) {
-			const ids = urlParams.get("ids").split('_')
+			const ids = urlParams.get("ids").split('|')
 			for (const md5 of ids) $selected[md5] = true
 			state = 'PLAY'
 		}

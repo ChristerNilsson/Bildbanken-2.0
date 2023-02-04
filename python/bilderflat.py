@@ -11,6 +11,8 @@
 #   Flytta MD5.json
 #   (Flytta small)
 
+# OBSERVERA: Javascript anv noll-baserad månad. Python använder ettbaserad månad.
+
 import time
 import json
 import yaml
@@ -21,7 +23,7 @@ from PIL import Image
 import hashlib
 import shutil
 import re
-import base64
+import codecs
 from dateutil import parser
 
 QUALITY = 95
@@ -39,6 +41,14 @@ JSON     = ROOT + "public/json/"   # cirka       120 bytes per bild (bilder.json
 MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
 FILE_INDEX = JSON + 'file_index.txt'
 PUBLIC    = ROOT + "public/"
+
+def ass(a,b):
+	if a == b: return
+	print('assert failure')
+	print('  ',a)
+	print('  ',b)
+	# assert(a==b)
+
 
 def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
 def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
@@ -83,11 +93,50 @@ def patch(tree,path,data):
 	else:
 		del ptr[key]
 
+# def makeSmall(Original,Home,small,name):
+#
+# 	with open(Original+name,"rb") as f:
+# 		data = f.read()
+# 		md5hash = hashlib.md5(data).hexdigest()
+#
+# 	filename = "/" + md5hash + ".jpg"
+# 	if md5hash in md5Register and exists(Home + filename) and exists(small + filename):
+# 		lst = md5Register[md5hash]
+# 		patch(cache, name, lst)
+# 		return lst
+#
+# 	bigImg = Image.open(Original+name)
+# 	bigSize = getsize(Original+name)
+#
+# 	if bigImg.width <= 2048:
+# 		shutil.copyfile(Original + name, Home + "/" + md5hash + '.jpg')
+# 	else:
+# 		bigImg = bigImg.resize((2048, round(2048 * bigImg.height / bigImg.width)))
+# 		bigImg.save(Home + "/" + md5hash + '.jpg',quality=QUALITY)
+#
+# 	smallImg = bigImg.resize((WIDTH, round(WIDTH*bigImg.height/bigImg.width)))
+# 	smallImg.save(small + "/" + md5hash + '.jpg',quality=QUALITY)
+# 	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height, md5hash, getTimestamp(name)]
+# 	md5Register[md5hash] = lst
+# 	patch(cache, name, lst)
+# 	return lst
+
 def makeSmall(Original,Home,small,name):
 
 	with open(Original+name,"rb") as f:
 		data = f.read()
-		md5hash = hashlib.md5(data).hexdigest()
+
+	md5hash = hashlib.md5(data).hexdigest()
+	# md5hash = md5hash[0:10]
+	md5hash = codecs.encode(codecs.decode(md5hash, 'hex'), 'base64')
+	md5hash = md5hash.decode("utf-8")
+	md5hash = md5hash[0:6]
+	md5hash = md5hash.replace('+','-').replace('/','_')
+
+	ts = getTimestamp(Original+name).replace('-',' ').replace(':',' ').split(' ')
+	pt = packedTime(ts[0],ts[1],ts[2],ts[3],ts[4],ts[5])
+
+	md5hash = pt + md5hash
 
 	filename = "/" + md5hash + ".jpg"
 	if md5hash in md5Register and exists(Home + filename) and exists(small + filename):
@@ -106,10 +155,12 @@ def makeSmall(Original,Home,small,name):
 
 	smallImg = bigImg.resize((WIDTH, round(WIDTH*bigImg.height/bigImg.width)))
 	smallImg.save(small + "/" + md5hash + '.jpg',quality=QUALITY)
-	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height, md5hash, getTimestamp(name)]
+	lst = [smallImg.width, smallImg.height, bigSize, bigImg.width, bigImg.height, md5hash] # , timestamp]
 	md5Register[md5hash] = lst
 	patch(cache, name, lst)
 	return lst
+
+
 
 def expand(a,d):
 	antal = {'images':0, 'folders':0}
@@ -285,43 +336,35 @@ def getFileDate(path):
 		return date
 	return None
 
-# def packedTime(dt):
-# 	alfabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_" # 64-based (year=2290)
-# 	n = len(alfabet)
-# 	def twin(x): return alfabet[x//n] + alfabet[x%n]
-# 	BASEYEAR = 1970 # same as unix time
-# 	res = ''
-# 	mm = (dt.year-BASEYEAR) * 12 + dt.month
-# 	res += twin(mm)
-# 	res += alfabet[dt.day]
-# 	res += alfabet[dt.hour]
-# 	res += alfabet[dt.minute]
-# 	res += alfabet[dt.second]
-# 	ms = round(dt.microsecond/1000)
-# 	res += twin(ms)
-# 	return res
-#assert packedTime(datetime(2023,2,2,12,34,56,123456)) == 'ai2cyU1Z'
-
-def packedTime2(dt): # Klarar 1000 år med sekund-upplösning
+def packedTime(year,month,day,hour,minute,second): # Klarar fram till år 4108 med sekund-upplösning
+	# Detta är ej unix-tid. Pga av bugg i mktime relaterad till DST.
 	alfabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
-	unix = int(time.mktime(dt.timetuple()))
+	unix = int(year) - 1970
+	unix = unix * 12 + int(month) - 1
+	unix = unix * 31 + int(day) - 1
+	unix = unix * 24 + int(hour)
+	unix = unix * 60 + int(minute)
+	unix = unix * 60 + int(second)
 	res = ''
 	for i in range(6):
 		res = alfabet[unix % 64] + res
 		unix = unix // 64
 	return res
-assert(packedTime2(datetime(2023,2,2,12,34,56)) == '1zSV_w')
-assert(packedTime2(datetime(2023,2,2,12,34,57)) == '1zSV_x')
-assert(packedTime2(datetime(1970,1,1,1,0,0))=='000000') # DST?
-assert(packedTime2(datetime(2100,1,1,1,0,0))=='3QxBs0')
-assert(packedTime2(datetime(2200,1,1,1,0,0))=='6MDxA0')
-assert(packedTime2(datetime(2300,1,1,1,0,0))=='9IJtI0')
-assert(packedTime2(datetime(2400,1,1,1,0,0))=='cEPpQ0')
-assert(packedTime2(datetime(3000,1,1,1,0,0))=='uhnIM0')
-assert(packedTime2(datetime(3001,1,1,1,0,0))=='ujf_-0')
+ass(packedTime(1970,1, 1, 0, 0,  0), '000000')
+ass(packedTime(2023,1,19,20, 8,  0), '1BEpMw')
+ass(packedTime(2023,2, 2,11,34, 56), '1BIVzw')
+ass(packedTime(2023,2, 2,11,34, 57), '1BIVzx')
+ass(packedTime(2100,1, 1, 0, 0,  0), '3V2ZM0')
+ass(packedTime(2200,1, 1, 0, 0,  0), '6UDJg0')
+ass(packedTime(2300,1, 1, 0, 0,  0), '9UcsM0')
+ass(packedTime(2400,1, 1, 0, 0,  0), 'cTNcg0')
+ass(packedTime(3000,1, 1, 0, 0,  0), 'uRdFg0')
+ass(packedTime(3001,1, 1, 0, 0,  0), 'uT8g80')
+ass(packedTime(4000,1, 1, 0, 0,  0), 'YMZ4g0')
+ass(packedTime(4108,1,29, 7,32, 15), '______')
 
 def getTimestamp(path):
-	bigImg = Image.open(Original + path)
+	bigImg = Image.open(path)
 	obj = bigImg._getexif()
 	exifdate = None
 	if obj:
@@ -330,7 +373,7 @@ def getTimestamp(path):
 			arr = exifdate.split(" ")
 			arr[0] = arr[0].replace(':','-')
 			exifdate = ' '.join(arr)
-	mdate = str(datetime.fromtimestamp(int(getmtime(Original + path))))
+	mdate = str(datetime.fromtimestamp(int(getmtime(path))))
 	p = path.rindex('/')
 	folderDate = getFileDate(path[0:p])
 	fileDate = getFileDate(path[p:])

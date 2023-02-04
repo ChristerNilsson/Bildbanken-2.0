@@ -10,8 +10,6 @@
 	export let WIDTH
 	export let GAP
 	export let spreadWidth
-	// export let path
-	// export let is_jpg
 	export let pop
 
 	function clear() {

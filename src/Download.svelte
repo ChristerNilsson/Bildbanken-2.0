@@ -8,8 +8,6 @@
 
 	export let WIDTH
 	export let spreadWidth
-	// export let stack
-	// export let pop
 	export let MAX_DOWNLOAD
 
 	function countSelection(selected,invHome) {
@@ -58,7 +56,7 @@
 
 	function play() {
 		const host = location.origin + location.pathname
-		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('_')
+		const ids = _.filter(_.keys($selected), (key) => $selected[key]).slice(0,MAX_DOWNLOAD).join('|')
 		log("ids",ids)
 		if (ids.length == 0) return
 		window.open(host + "?ids=" + ids)

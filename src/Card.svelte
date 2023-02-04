@@ -5,11 +5,7 @@
 
 	export let WIDTH
 	export let card
-	// export let round
-	// export let fileWrapper
 	export let prettyFilename
-	// export let state
-	// export let visaBig
 
 	$: ih = $invHome[card.md5]
 	$: filename = ih.path + "/" + ih.filename
