@@ -627,24 +627,16 @@ Detta kan undvikas genom att flytta (x,y) till listan $images. Istf [md5] blir i
 0         1         2         3         4         5      
 012345678901234567890123456789012345678901234567890123456789
 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
-day       = 1..v
+day       = 0..u
 hour      = 0..n
 minute    = 0..X
 second    = 0..X
 
 Halvdecenniet bestämmer första tecknet
-1970 0
-1975 1
-1980 2
-1985 3
-1990 4
-1995 5
-2000 6
-2005 7
-2010 8
-2015 9
-2020 a
-2025 b
+1970                             0 1 2 3 4 5
+2000 6 7 8 9 a b c d e f g h i j k l m n o p
+2100 q r s t u v w x y z A B C D E F G H I J
+2200 K L M N O P Q R S T U V W X
 
 Andra tecknet
 
@@ -668,6 +660,6 @@ Exempel:
 
 Största möjliga tidpunkt:
 
-XXvXX = 2229-12-31 23:59:59
+XXunXX = 2269-12-31 23:59:59
 
 ```

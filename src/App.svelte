@@ -13,11 +13,9 @@
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
 	import {fileIndex,Home,invHome,images,selected} from './lib/stores.js'
-	import {assert,comp2,log,spaceShip} from './lib/utils.js'
+	import {assert,comp2,log,spaceShip,unpack} from './lib/utils.js'
 
 	const version = '2023-02-02 11:20'
-
-	const ALFABET64 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
 
 	let md5
 
@@ -89,29 +87,6 @@
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
-	const pp = (x) => x < 10 ? '0' + x : x
-
-	function unpack(packed) { 
-		let unix = 0 // Detta är ej unixtid, pga bugg och DST
-		for (const ch of packed) unix = unix * 64 + ALFABET64.indexOf(ch)
-		const res = []
-		for (const factor of [60,60,24,31,12,9999]) {
-			res.unshift(unix % factor)
-			unix = Math.floor(unix / factor)
-		}
-		res[0] += 1970
-		res[1] += 1
-		res[2] += 1
-		return res[0] + '-' + pp(res[1]) + '-' +pp(res[2]) +' ' + pp(res[3])+ ':' + pp(res[4])+ ':' + pp(res[5])
-
-	}
-	assert(unpack("000000"),"1970-01-01 00-00-00")
-	assert(unpack("100000"),"2003-05-28 13-37-04")
-	assert(unpack("200000"),"2036-10-25 03-14-08")
-	assert(unpack("Z00000"),"4007-11-08 14-41-04")
-	assert(unpack("-00000"),"4041-04-05 04-18-08")
-	assert(unpack("_00000"),"4074-09-01 17-55-12")
-	assert(unpack("______"),"4108-01-29 07-32-15")
 
 	// function unpack(packed) { 
 	// 	let unix = 0

@@ -26,7 +26,7 @@ import re
 import codecs
 from dateutil import parser
 
-ALFABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+ALFABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX' # 60-based
 
 QUALITY = 95
 WIDTH = 475
@@ -136,7 +136,7 @@ def makeSmall(Original,Home,small,name):
 	md5hash = md5hash.replace('+','-').replace('/','_')
 
 	ts = getTimestamp(Original+name).replace('-',' ').replace(':',' ').split(' ')
-	pt = packedTime(ts[0],ts[1],ts[2],ts[3],ts[4],ts[5])
+	pt = packedTime(ts)
 
 	md5hash = pt + md5hash
 
@@ -338,52 +338,30 @@ def getFileDate(path):
 		return date
 	return None
 
-def packedTime(*lst): # Klarar fram till 4108-01-29 07:32:15 med sekund-upplösning
-	# Detta är EJ unix-tid. Pga av bugg i mktime relaterad till DST.
-	lst = list(lst)
-	lst[0] -= 1970
-	lst[1] -= 1
-	lst[2] -= 1
-	unix = 0
-	faktors = [9999,12,31,24,60,60]
-	for i in range(6):
-		unix = unix * faktors[i] + lst[i]
-	res = ''
-	for i in range(6):
-		res = ALFABET[unix % 64] + res
-		unix = unix // 64
-	return res
-ass(packedTime(1970, 1, 1, 0, 0, 0), '000000')
-ass(packedTime(2023, 1,19,20, 8, 0), '1BEpMw')
-ass(packedTime(2023, 2, 2,11,34,56), '1BIVzw')
-ass(packedTime(2023, 2, 2,11,34,57), '1BIVzx')
-ass(packedTime(2100, 1, 1, 0, 0, 0), '3V2ZM0')
-ass(packedTime(2200, 1, 1, 0, 0, 0), '6UDJg0')
-ass(packedTime(2300, 1, 1, 0, 0, 0), '9UcsM0')
-ass(packedTime(2400, 1, 1, 0, 0, 0), 'cTNcg0')
-ass(packedTime(3000, 1, 1, 0, 0, 0), 'uRdFg0')
-ass(packedTime(3001, 1, 1, 0, 0, 0), 'uT8g80')
-ass(packedTime(4000, 1, 1, 0, 0, 0), 'YMZ4g0')
-ass(packedTime(4108, 1,29, 7,32,15), '______')
+def packedTime(lst): # Klarar timestamp < 2270-01-01 00:00:00 med sekund-upplösning (300 år)
+	lst = [int(item) for item in lst]
+	ym = (lst[0]-1970) * 12 + lst[1] - 1
+	res = [ym//60, ym%60, lst[2]-1, lst[3], lst[4], lst[5]]
+	return ''.join([ALFABET[i] for i in res])
+ass(packedTime([1970, 1, 1, 0, 0, 0]), '000000')
+ass(packedTime([2023, 1,19,20, 8, 0]), 'aAik80')
+ass(packedTime([2023, 2, 2,11,34,56]), 'aB1byU')
+ass(packedTime([2023, 2, 2,11,34,57]), 'aB1byV')
+ass(packedTime([2100, 1, 1, 0, 0, 0]), 'q00000')
+ass(packedTime([2200, 1, 1, 0, 0, 0]), 'K00000')
+ass(packedTime([2269,12,31,23,59,59]), 'XXunXX')
 
 def unpack(packed):
-	unix = 0
-	for ch in packed : unix = unix * 64 + ALFABET.index(ch)
-	res = []
-	for x in [60,60,24,31,12,9999]:
-		res.insert(0,unix % x)
-		unix = unix // x
-	res[0] += 1970
-	res[1] += 1
-	res[2] += 1
-	return res
+	t = [ALFABET.index(ch) for ch in packed]
+	ym = t[0] * 60 + t[1]
+	return [1970 + ym//12, 1 + ym%12, t[2]+1, t[3], t[4], t[5]]
 ass(unpack("000000"),[1970, 1, 1, 0, 0, 0])
-ass(unpack("100000"),[2003, 5,28,13,37, 4])
-ass(unpack("200000"),[2036,10,25, 3,14, 8])
-ass(unpack("Z00000"),[4007,11, 8,14,41, 4])
-ass(unpack("-00000"),[4041, 4, 5, 4,18, 8])
-ass(unpack("_00000"),[4074, 9, 1,17,55,12])
-ass(unpack("______"),[4108, 1,29, 7,32,15])
+ass(unpack('aAik80'),[2023, 1,19,20, 8, 0])
+ass(unpack('aB1byU'),[2023, 2, 2,11,34,56])
+ass(unpack('aB1byV'),[2023, 2, 2,11,34,57])
+ass(unpack('q00000'),[2100, 1, 1, 0, 0, 0])
+ass(unpack('K00000'),[2200, 1, 1, 0, 0, 0])
+ass(unpack("XXunXX"),[2269,12,31,23,59,59])
 
 def getTimestamp(path):
 	bigImg = Image.open(path)
