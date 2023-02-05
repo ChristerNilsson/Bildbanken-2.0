@@ -610,8 +610,8 @@ Detta beror på att listan @images, med dublett md5, används för att sätta x 
 ## Bildspelet
 
 Det bygger på att en url med md5:orna skapas.  
-md5 tar 32 tecken. Chrome klarar url:er upp till 2MB.  
-Det innebär att maximum (2MB/33) = 62K bilder kan hanteras  
+md5 tar 12 tecken. Chrome klarar url:er upp till 2MB.  
+Det innebär att maximum (2MB/13) = 161K bilder kan hanteras  
 Den begränsning på ca 16KB jag upplevde, sitter nog i pythons hhtp.server.
 GCS har ingen http-server inblandad, så begränsningen ligger inte där.
 Däremot har andra browsrar begränsningar. T ex Edge klarar bara 2kB.
@@ -622,3 +622,52 @@ Dessa uppstår pga att dubletter existerar. Eftersom (x,y) lagras en gång per m
 Detta kan undvikas genom att flytta (x,y) till listan $images. Istf [md5] blir innehållet [{md5,x,y}] i listan. Index kan troligen flyttas också eller t o m tas bort eftersom det framgår av positionen i $images.
 (Dessa hål visas inte längre. Varje bild har nu egna koordinater)
 
+## 60-baserad timestamp
+```
+0         1         2         3         4         5      
+012345678901234567890123456789012345678901234567890123456789
+0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
+day       = 1..v
+hour      = 0..n
+minute    = 0..X
+second    = 0..X
+
+Halvdecenniet bestämmer första tecknet
+1970 0
+1975 1
+1980 2
+1985 3
+1990 4
+1995 5
+2000 6
+2005 7
+2010 8
+2015 9
+2020 a
+2025 b
+
+Andra tecknet
+
+		0 1 2 3 4 årtalet modulo 5
+JAN 0 c o A M
+FEB 1 d p B N
+MAR 2 e q C O
+APR 3 f r D P
+MAJ 4 g s E Q
+JUN 5 h t F R
+JUL 6 i u G S
+AUG 7 j v H T
+SEP 8 k w I U
+OKT 9 l x J V
+NOV a m y K W
+DEC b n z L X
+
+Exempel: 
+1970 JAN = 00
+2023 FEB = aB
+
+Största möjliga tidpunkt:
+
+XXvXX = 2229-12-31 23:59:59
+
+```

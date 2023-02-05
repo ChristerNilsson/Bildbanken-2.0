@@ -26,6 +26,8 @@ import re
 import codecs
 from dateutil import parser
 
+ALFABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+
 QUALITY = 95
 WIDTH = 475
 YEAR = datetime.today().year
@@ -336,32 +338,52 @@ def getFileDate(path):
 		return date
 	return None
 
-def packedTime(year,month,day,hour,minute,second): # Klarar fram till år 4108 med sekund-upplösning
-	# Detta är ej unix-tid. Pga av bugg i mktime relaterad till DST.
-	alfabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
-	unix = int(year) - 1970
-	unix = unix * 12 + int(month) - 1
-	unix = unix * 31 + int(day) - 1
-	unix = unix * 24 + int(hour)
-	unix = unix * 60 + int(minute)
-	unix = unix * 60 + int(second)
+def packedTime(*lst): # Klarar fram till 4108-01-29 07:32:15 med sekund-upplösning
+	# Detta är EJ unix-tid. Pga av bugg i mktime relaterad till DST.
+	lst = list(lst)
+	lst[0] -= 1970
+	lst[1] -= 1
+	lst[2] -= 1
+	unix = 0
+	faktors = [9999,12,31,24,60,60]
+	for i in range(6):
+		unix = unix * faktors[i] + lst[i]
 	res = ''
 	for i in range(6):
-		res = alfabet[unix % 64] + res
+		res = ALFABET[unix % 64] + res
 		unix = unix // 64
 	return res
-ass(packedTime(1970,1, 1, 0, 0,  0), '000000')
-ass(packedTime(2023,1,19,20, 8,  0), '1BEpMw')
-ass(packedTime(2023,2, 2,11,34, 56), '1BIVzw')
-ass(packedTime(2023,2, 2,11,34, 57), '1BIVzx')
-ass(packedTime(2100,1, 1, 0, 0,  0), '3V2ZM0')
-ass(packedTime(2200,1, 1, 0, 0,  0), '6UDJg0')
-ass(packedTime(2300,1, 1, 0, 0,  0), '9UcsM0')
-ass(packedTime(2400,1, 1, 0, 0,  0), 'cTNcg0')
-ass(packedTime(3000,1, 1, 0, 0,  0), 'uRdFg0')
-ass(packedTime(3001,1, 1, 0, 0,  0), 'uT8g80')
-ass(packedTime(4000,1, 1, 0, 0,  0), 'YMZ4g0')
-ass(packedTime(4108,1,29, 7,32, 15), '______')
+ass(packedTime(1970, 1, 1, 0, 0, 0), '000000')
+ass(packedTime(2023, 1,19,20, 8, 0), '1BEpMw')
+ass(packedTime(2023, 2, 2,11,34,56), '1BIVzw')
+ass(packedTime(2023, 2, 2,11,34,57), '1BIVzx')
+ass(packedTime(2100, 1, 1, 0, 0, 0), '3V2ZM0')
+ass(packedTime(2200, 1, 1, 0, 0, 0), '6UDJg0')
+ass(packedTime(2300, 1, 1, 0, 0, 0), '9UcsM0')
+ass(packedTime(2400, 1, 1, 0, 0, 0), 'cTNcg0')
+ass(packedTime(3000, 1, 1, 0, 0, 0), 'uRdFg0')
+ass(packedTime(3001, 1, 1, 0, 0, 0), 'uT8g80')
+ass(packedTime(4000, 1, 1, 0, 0, 0), 'YMZ4g0')
+ass(packedTime(4108, 1,29, 7,32,15), '______')
+
+def unpack(packed):
+	unix = 0
+	for ch in packed : unix = unix * 64 + ALFABET.index(ch)
+	res = []
+	for x in [60,60,24,31,12,9999]:
+		res.insert(0,unix % x)
+		unix = unix // x
+	res[0] += 1970
+	res[1] += 1
+	res[2] += 1
+	return res
+ass(unpack("000000"),[1970, 1, 1, 0, 0, 0])
+ass(unpack("100000"),[2003, 5,28,13,37, 4])
+ass(unpack("200000"),[2036,10,25, 3,14, 8])
+ass(unpack("Z00000"),[4007,11, 8,14,41, 4])
+ass(unpack("-00000"),[4041, 4, 5, 4,18, 8])
+ass(unpack("_00000"),[4074, 9, 1,17,55,12])
+ass(unpack("______"),[4108, 1,29, 7,32,15])
 
 def getTimestamp(path):
 	bigImg = Image.open(path)
@@ -417,6 +439,12 @@ def readFileIndex():
 			print('Missing file:',arr[1])
 	return res
 
+def checkUniq(reg):
+	hash = {}
+	for key in reg:
+		hash[key[0:9]] = 0 # uniq, but no margins
+	return len(hash)
+
 ######################
 
 start = time.time()
@@ -428,6 +456,7 @@ hash = {}
 letters = list("+!§()0123456789_,.-¤")
 
 md5Register = loadJSON(MD5) # givet md5key får man listan med sex element
+#print(checkUniq(md5Register))
 cache = loadJSON(JSON + 'bilder.json')
 # cache = cache['root']
 fileIndex = readFileIndex()

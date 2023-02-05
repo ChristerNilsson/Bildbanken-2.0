@@ -17,6 +17,8 @@
 
 	const version = '2023-02-02 11:20'
 
+	const ALFABET64 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+
 	let md5
 
 	// Förberett för att använda flera json-filer.
@@ -81,7 +83,7 @@
 	
 	let text0 = ""
 	let text1 = ""
-	let visibleKeys = {} // innehåller antal bilder per katalog söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
+	let visibleKeys = {} // innehåller antal bilder per katalog söksträngen finns i. T ex {"2022":7,"2021":3}
 
 	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
@@ -89,30 +91,51 @@
 
 	const pp = (x) => x < 10 ? '0' + x : x
 
-	function unpack(packed) { // Detta är ej unixtid, pga bugg.
-		const alfabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
-		let unix = 0
-		for (const ch of packed) unix = unix * 64 + alfabet.indexOf(ch)
-		const second = unix % 60
-		unix -= second
-		unix = unix / 60
-		const minute = unix % 60
-		unix -= minute
-		unix = unix / 60
-		const hour = unix % 24
-		unix -= hour
-		unix = unix / 24
-		let day = unix % 31
-		unix -= day
-		unix = unix / 31
-		let month = unix % 12
-		unix -= month
-		unix = unix / 12
-		const year = 1970 + unix
-		day+=1
-		month+=1
-		return year + '-' + pp(month) + '-' +pp(day) +' ' + pp(hour)+ ':' + pp(minute)+ ':' + pp(second)
+	function unpack(packed) { 
+		let unix = 0 // Detta är ej unixtid, pga bugg och DST
+		for (const ch of packed) unix = unix * 64 + ALFABET64.indexOf(ch)
+		const res = []
+		for (const factor of [60,60,24,31,12,9999]) {
+			res.unshift(unix % factor)
+			unix = Math.floor(unix / factor)
+		}
+		res[0] += 1970
+		res[1] += 1
+		res[2] += 1
+		return res[0] + '-' + pp(res[1]) + '-' +pp(res[2]) +' ' + pp(res[3])+ ':' + pp(res[4])+ ':' + pp(res[5])
+
 	}
+	assert(unpack("000000"),"1970-01-01 00-00-00")
+	assert(unpack("100000"),"2003-05-28 13-37-04")
+	assert(unpack("200000"),"2036-10-25 03-14-08")
+	assert(unpack("Z00000"),"4007-11-08 14-41-04")
+	assert(unpack("-00000"),"4041-04-05 04-18-08")
+	assert(unpack("_00000"),"4074-09-01 17-55-12")
+	assert(unpack("______"),"4108-01-29 07-32-15")
+
+	// function unpack(packed) { 
+	// 	let unix = 0
+	// 	for (const ch of packed) unix = unix * 64 + alfabet.indexOf(ch)
+	// 	const second = unix % 60
+	// 	unix -= second
+	// 	unix = unix / 60
+	// 	const minute = unix % 60
+	// 	unix -= minute
+	// 	unix = unix / 60
+	// 	const hour = unix % 24
+	// 	unix -= hour
+	// 	unix = unix / 24
+	// 	let day = unix % 31
+	// 	unix -= day
+	// 	unix = unix / 31
+	// 	let month = unix % 12
+	// 	unix -= month
+	// 	unix = unix / 12
+	// 	const year = 1970 + unix
+	// 	day+=1
+	// 	month+=1
+	// 	return year + '-' + pp(month) + '-' +pp(day) +' ' + pp(hour)+ ':' + pp(minute)+ ':' + pp(second)
+	// }
 
 	function expand(imagedata,path,filename) { // converts 7-element array to object with 9 properties
 		const bild = {}
