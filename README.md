@@ -134,4 +134,4 @@ Korrekt kommando rensas automatiskt.
 |@SB|Start = Beginning|ling not found in Cramling||
 |@SA|Start = Anywhere|ling is found in Cramling|*|
 
-[Katalogträd](https://storage.googleapis.com/bildbanken2/index.html/?tree=)
+[Katalogträd](https://storage.googleapis.com/bildbanken2/index.html?tree=)
