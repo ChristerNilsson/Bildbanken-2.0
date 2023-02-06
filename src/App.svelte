@@ -299,7 +299,8 @@ $: consumeParameters($invHome)
 					total += 1
 					let letters = ''
 					// ["Home","2023"] removed
-					const sPath = arrPath1.slice(2).join('/').replaceAll(' ','_') // .toLowerCase()
+					let sPath = arrPath1.slice(2).join('/').replaceAll(' ','_') // .toLowerCase()
+					sPath = sPath + ' ' + md5
 					for (const i in range(words.length)) {
 						const word = words[i]
 						if (word.length == 0) continue
