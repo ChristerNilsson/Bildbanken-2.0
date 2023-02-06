@@ -16,7 +16,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-06 14:20'
+	const version = '2023-02-06 16:48'
 
 	let md5
 
@@ -245,14 +245,11 @@ $: consumeParameters($invHome)
 					if (!$settings.caseSensitive) sPath = sPath.toLowerCase()
 					sPath = sPath + ' ' + md5
 					for (const i in range(words.length)) {
-						const word = words[i]
+						let word = words[i]
 						if (word.length == 0) continue
-
-						if ($settings.start == 'b') { // beginning
-							if (sPath.startsWith(word)) letters += ALFABET[i]
-						} else { // anywhere
-							if (sPath.includes(word)) letters += ALFABET[i]
-						}
+						// log($settings.start,sPath,word)
+						if ($settings.start == 'b') word = '_' + word // beginning
+						if (sPath.includes(word)) letters += ALFABET[i]
 					}
 					if (letters.length > 0 || words.length == 0) {
 						result.push({md5, letters, x, y})

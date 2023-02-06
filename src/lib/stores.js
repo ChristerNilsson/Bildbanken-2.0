@@ -5,7 +5,7 @@ export let invHome      = writable({}) // objekt med md5 som nyckel. Pekar på u
 export let images       = writable([]) // lista över framsökta md5 i aktuell folder.
 export let selected     = writable({}) // Objekt nycklad med md5. True eller false. Kopplad till checkbox.
 export let fileIndex    = writable({}) // Mappar index till filer/urlar som används vid länkning.
-export let settings     = writable({caseSensitive:true, start:'b'})
+export let settings     = writable({caseSensitive:false, start:'a'})
 
 // CT settings.caseSensitive= true 
 // CF settings.caseSensitive=false

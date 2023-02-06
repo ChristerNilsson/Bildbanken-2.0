@@ -75,9 +75,9 @@
 
 	function keydown(event) {
 		if (event.key == "Enter") {
-			event.preventDefault()
-			event.stopPropagation()
 			if (sokruta.startsWith('@')) {
+				event.preventDefault()
+				event.stopPropagation()
 				const cmd = sokruta.substring(1)
 				let success= true
 				if (cmd == 'CT') {
@@ -96,9 +96,6 @@
 					sokruta = ""
 					document.getElementById("search").focus()
 				}
-			// } else {
-			// 	stack.push(sokruta)
-			// 	sokruta = ""
 			}
 		}
 	}
