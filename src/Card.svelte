@@ -41,7 +41,7 @@
 		path = path.replaceAll(/_I\d+/g,'')
 		path = path.replaceAll(/_R\d+/g,'')
 		path = path.replaceAll(/_M\d+/g,'')
-		path = path.replaceAll(/_T\d+/g,'')
+		path = path.replaceAll(/[ _]T\d\d\d\d\d/g,'')
 		path = path.replaceAll(/_V\d+/g,'')
 		return path.replaceAll('_', ' ')
 	}

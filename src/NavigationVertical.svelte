@@ -35,7 +35,7 @@
 	
 	function clean(s) {
 		s = s.replaceAll(/_M\d+/g,'')
-		s = s.replaceAll(/_T\d+/g,'')
+		s = s.replaceAll(/[ _]T\d\d\d\d\d/g,'')
 		s = s.replaceAll(/_V\d+/g,'')
 		s = s.replaceAll(/_F\d+/g,'') // deprecated
 		s = s.replaceAll(/_L\d+/g,'')

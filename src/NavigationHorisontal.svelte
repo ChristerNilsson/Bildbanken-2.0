@@ -10,7 +10,7 @@
 		if (n==2) s = stack[1] // 2222
 		if (n>=3) s = stack.slice(2).join(" • ")
 		s = s.replaceAll(/_M\d+/g,'')
-		s = s.replaceAll(/_T\d+/g,'')
+		s = s.replaceAll(/[ _]T\d\d\d\d\d/g,'')
 		s = s.replaceAll(/_V\d+/g,'')
 		s = s.replaceAll(/_F\d+/g,'') // deprecated
 		s = s.replaceAll(/_L\d+/g,'')

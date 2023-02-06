@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected} from './lib/stores.js'
 	import {assert,comp2,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-02 11:20'
+	const version = '2023-02-06 08:00'
 
 	let md5
 
@@ -402,6 +402,7 @@ $: antal = 7 + _.size(visibleKeys)
 		s = s.replace(/_M\d+/,'')
 		s = s.replace(/_V\d+/,'')
 		s = s.replace(/_F\d+/,'')
+		//s = s.replace(/ T\d\d\d\d\d/,'')
 		s = s.replaceAll('_',' ')
 		return s
 	}

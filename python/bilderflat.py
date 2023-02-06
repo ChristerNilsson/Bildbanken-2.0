@@ -42,7 +42,8 @@ small    = ROOT + "public/small"   # cirka 	  25.000 bytes per bild
 JSON     = ROOT + "public/json/"   # cirka       120 bytes per bild (bilder.json)
 MD5      = ROOT + 'MD5.json'       # cirka        65 bytes per bild
 FILE_INDEX = JSON + 'file_index.txt'
-PUBLIC    = ROOT + "public/"
+PUBLIC     = ROOT + "public/"
+TREE       = ROOT + 'tree.txt'
 
 def ass(a,b):
 	if a == b: return
@@ -423,6 +424,11 @@ def checkUniq(reg):
 		hash[key[0:9]] = 0 # uniq, but no margins
 	return len(hash)
 
+def tree(d,f):
+	for path in d:
+		if not is_jpg(path):
+			f.write(path + '\n')
+
 ######################
 
 start = time.time()
@@ -489,6 +495,8 @@ if update:
 	with open(JSON + 'bilder.json',     'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(JSON + 'file_index.json', 'w', encoding="utf8") as f: dumpjson(fileIndex,f)
 	with open(MD5,                      'w', encoding="utf8") as f: dumpjson(md5Register,f)
+	with open(TREE,                     'w', encoding="utf8") as f: tree(d,f)
+
 
 	print()
 	print(round(time.time() - start,3),'seconds')
