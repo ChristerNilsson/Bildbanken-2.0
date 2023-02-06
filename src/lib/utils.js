@@ -25,6 +25,8 @@ export function assert(a,b,msg="") {
 	}
 }
 
+export const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
+
 const pp = (x) => x < 10 ? '0' + x : x
 
 export function unpack(packed) {
@@ -209,3 +211,30 @@ assert(comp2("A","B"),-1)
 assert(comp2("AB","AB"),0)
 assert(comp2("B","A"),1)
 assert(comp2("BC","A"),-1)
+
+export function prettyFilename(path) { // Tag bort eventuella M och V-nummer
+	let i = path.lastIndexOf('/')
+	let s = path.slice(i+1)
+	path = path.slice(0,i)
+
+	if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
+	if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
+
+	const p = s.search(/\d{4}-\d{2}-\d{2}/)
+	if (p >= 0) {
+		const datum = s.slice(p,p+10)
+		if (path.includes(datum)) s = s.slice(0,p-1)
+	}
+	s = s.replace('Pristagare ','')
+	s = s.replace(/[kK]lass [A-Z]+/,'')
+
+	s = s.replace('.jpg','')
+	s = s.replace('.JPG','')
+	s = s.replace(/_M\d+/,'')
+	s = s.replace(/_V\d+/,'')
+	s = s.replace(/_F\d+/,'')
+	//s = s.replace(/ T\d\d\d\d\d/,'')
+	s = s.replaceAll('_',' ')
+	return s
+}
+

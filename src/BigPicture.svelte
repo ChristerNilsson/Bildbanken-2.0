@@ -1,10 +1,9 @@
 <script>
 	import _ from "lodash"
-	import {log,round} from './lib/utils.js'
+	import {log,prettyFilename,round} from './lib/utils.js'
 	import {invHome} from './lib/stores.js'
 
 	export let md5
-	export let prettyFilename
 
 	const INCR = 0.08
 	let exif = null

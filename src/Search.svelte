@@ -1,6 +1,8 @@
 <script>
 	import { saveAs } from 'file-saver'
 	import { log } from './lib/utils.js'
+	import { settings } from './lib/stores.js'
+
 	import _ from 'lodash'
 
 	export let sokruta
@@ -71,9 +73,39 @@
 		window.open("https://github.com/ChristerNilsson/2022-014-Bildbanken2#readme")
 	}
 
+	function keydown(event) {
+		if (event.key == "Enter") {
+			event.preventDefault()
+			event.stopPropagation()
+			if (sokruta.startsWith('@')) {
+				const cmd = sokruta.substring(1)
+				let success= true
+				if (cmd == 'CT') {
+					$settings.caseSensitive= true
+				} else if (cmd == 'CF') {
+					$settings.caseSensitive=false
+				} else if (cmd == 'SB') {
+					$settings.start='b' // beginning
+				} else if (cmd == 'SA') {
+					$settings.start='a' // anywhere
+				} else {
+					success = false
+					log('Unknown command: ' + cmd)
+				}
+				if (success) {
+					sokruta = ""
+					document.getElementById("search").focus()
+				}
+			// } else {
+			// 	stack.push(sokruta)
+			// 	sokruta = ""
+			}
+		}
+	}
+
 </script>
 
-<input autocomplete="off" id="search" bind:value={sokruta} placeholder='Search' style="width:{WIDTH-2*GAP}px">
+<input autocomplete="off" id="search" bind:value={sokruta} placeholder='Search' style="width:{WIDTH-2*GAP}px" on:keydown={keydown}>
 <div class="center" style="width:{WIDTH}px">
 	{text1}
 </div>

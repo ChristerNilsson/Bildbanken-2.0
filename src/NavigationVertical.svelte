@@ -1,12 +1,11 @@
 <script>
 	import _ from "lodash"
-	import {log} from './lib/utils.js'
+	import {is_jpg,log} from './lib/utils.js'
 	// import {rowsVertical} from './lib/stores.js'
 
 	export let buttons
 	export let visibleKeys
 	export let push
-	export let is_jpg
 	export let WIDTH
 	export let spaceShip
 	export let stack

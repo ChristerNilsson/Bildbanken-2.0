@@ -12,10 +12,11 @@
 	import BigPicture from "./BigPicture.svelte"
 	import Play from "./Play.svelte"
 	import Infinite from "./Infinite.svelte"
-	import {fileIndex,Home,invHome,images,selected} from './lib/stores.js'
-	import {assert,comp2,log,spaceShip,unpack} from './lib/utils.js'
+	import Tree from "./Tree.svelte"
+	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
+	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-06 08:00'
+	const version = '2023-02-06 14:20'
 
 	let md5
 
@@ -83,34 +84,7 @@
 	let text1 = ""
 	let visibleKeys = {} // innehåller antal bilder per katalog söksträngen finns i. T ex {"2022":7,"2021":3}
 
-	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
-	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
-
-
-	// function unpack(packed) { 
-	// 	let unix = 0
-	// 	for (const ch of packed) unix = unix * 64 + alfabet.indexOf(ch)
-	// 	const second = unix % 60
-	// 	unix -= second
-	// 	unix = unix / 60
-	// 	const minute = unix % 60
-	// 	unix -= minute
-	// 	unix = unix / 60
-	// 	const hour = unix % 24
-	// 	unix -= hour
-	// 	unix = unix / 24
-	// 	let day = unix % 31
-	// 	unix -= day
-	// 	unix = unix / 31
-	// 	let month = unix % 12
-	// 	unix -= month
-	// 	unix = unix / 12
-	// 	const year = 1970 + unix
-	// 	day+=1
-	// 	month+=1
-	// 	return year + '-' + pp(month) + '-' +pp(day) +' ' + pp(hour)+ ':' + pp(minute)+ ':' + pp(second)
-	// }
 
 	function expand(imagedata,path,filename) { // converts 7-element array to object with 9 properties
 		const bild = {}
@@ -184,6 +158,9 @@ $: consumeParameters($invHome)
 			md5 = urlParams.get("md5")
 			state = 'PICTURE'
 		}
+		if (urlParams.has("tree")) {
+			state = 'TREE'
+		}
 	}
 
 	$: [text0, text1, $images,visibleKeys] = search(_.last(path), sokruta, stack.join('/'), $Home)
@@ -214,29 +191,6 @@ $: consumeParameters($invHome)
 		return path
 	}
 
-	// function visaBig(md5,ih) {
-	// 	document.body.style = "overflow:hidden"
-
-	// 	big.exifState = 0
-	// 	big.mouseState = 0
-
-	// 	big.bs = ih.bs
-	// 	big.bw = ih.bw
-	// 	big.bh = ih.bh
-
-	// 	big.skala = Math.min(innerHeight/big.bh, innerWidth/big.bw)
-	// 	big.width = big.bw * big.skala
-	// 	big.height = big.bh * big.skala
-	// 	big.left = (innerWidth-big.width)/2
-	// 	big.top = (innerHeight-big.height)/2
-
-	// 	big.md5 = md5
-	// 	big.path = ih.path
-	// 	big.filename = ih.filename
-	// 	big.timestamp = ih.timestamp
-	// 	big = big
-	// }
-
 	function push(key) {
 		if (!is_jpg(key)) {
 			path.push(_.last(path)[key])
@@ -253,24 +207,12 @@ $: consumeParameters($invHome)
 		stack = stack
 	}
 
-	// Gå igenom knapplistan, räkna antalet träffar.
-	// function getVisibleKeys(node,level) {
-		
-	// 	const result = {}
-	// 	// log('images.length',images.length,{level})
-	// 	for (const image of images) {
-	// 		const ih = $invHome[image.md5]
-	// 		const arr = ih.path.split("/")
-	// 		if (level >= arr.length) break
-	// 		const key = arr[level]
-	// 		result[key] ||= 0
-	// 		result[key] += 1
-	// 	}
-	// 	log(result)
-	// 	return result
-	// }
-
 	function search(node,words,path) {
+
+		if (words.startsWith('@')) return ['','',[],{}]
+
+		if (!$settings.caseSensitive) words = words.toLowerCase()
+	
 		const result = []
 		let visibleKeys = {}
 
@@ -299,12 +241,18 @@ $: consumeParameters($invHome)
 					total += 1
 					let letters = ''
 					// ["Home","2023"] removed
-					let sPath = arrPath1.slice(2).join('/').replaceAll(' ','_') // .toLowerCase()
+					let sPath = arrPath1.slice(2).join('/').replaceAll(' ','_')
+					if (!$settings.caseSensitive) sPath = sPath.toLowerCase()
 					sPath = sPath + ' ' + md5
 					for (const i in range(words.length)) {
 						const word = words[i]
 						if (word.length == 0) continue
-						if (sPath.includes(word)) letters += ALFABET[i]
+
+						if ($settings.start == 'b') { // beginning
+							if (sPath.startsWith(word)) letters += ALFABET[i]
+						} else { // anywhere
+							if (sPath.includes(word)) letters += ALFABET[i]
+						}
 					}
 					if (letters.length > 0 || words.length == 0) {
 						result.push({md5, letters, x, y})
@@ -382,32 +330,6 @@ $: antal = 7 + _.size(visibleKeys)
 		return result
 	}
 
-	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
-		let i = path.lastIndexOf('/')
-		let s = path.slice(i+1)
-		path = path.slice(0,i)
-
-		if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
-		if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
-
-		const p = s.search(/\d{4}-\d{2}-\d{2}/)
-		if (p >= 0) {
-			const datum = s.slice(p,p+10)
-			if (path.includes(datum)) s = s.slice(0,p-1)
-		}
-		s = s.replace('Pristagare ','')
-		s = s.replace(/[kK]lass [A-Z]+/,'')
-
-		s = s.replace('.jpg','')
-		s = s.replace('.JPG','')
-		s = s.replace(/_M\d+/,'')
-		s = s.replace(/_V\d+/,'')
-		s = s.replace(/_F\d+/,'')
-		//s = s.replace(/ T\d\d\d\d\d/,'')
-		s = s.replaceAll('_',' ')
-		return s
-	}
-
 </script>
 
 <svelte:window bind:scrollY={y}/>
@@ -420,13 +342,19 @@ $: antal = 7 + _.size(visibleKeys)
 		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {pop} />
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} />
 		<NavigationHorisontal {stack} {WIDTH} />
-		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} {cards} {prettyFilename} />
+		<NavigationVertical bind:buttons {visibleKeys} {push} {WIDTH} {spaceShip} {stack} />
+		<Infinite {WIDTH} {cards} />
 	{:else}
 		{#if state == 'PICTURE'}
-			<BigPicture {md5} {prettyFilename} />
+			<BigPicture {md5} />
 		{:else}
-			<Play bind:state />
+			{#if state == 'PLAY'}
+				<Play bind:state />
+			{:else}
+				{#if state == 'TREE'}
+					<Tree/>
+				{/if}
+			{/if}
 		{/if}
 	{/if}
 {/await}

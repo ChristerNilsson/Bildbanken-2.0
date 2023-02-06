@@ -1,11 +1,10 @@
 <script>
 	import _ from "lodash"
-	import {log,round} from './lib/utils.js'
+	import {log,prettyFilename,round} from './lib/utils.js'
 	import {fileIndex,invHome,images,selected} from './lib/stores.js'
 
 	export let WIDTH
 	export let card
-	export let prettyFilename
 
 	$: ih = $invHome[card.md5]
 	$: filename = ih.path + "/" + ih.filename
