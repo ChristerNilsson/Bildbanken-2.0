@@ -427,7 +427,7 @@ def checkUniq(reg):
 def tree(d,f):
 	for path in d:
 		if not is_jpg(path):
-			f.write(path + '\n')
+			f.write(path.replace('/',' • ')[3:] + '\n')
 
 ######################
 
@@ -449,6 +449,8 @@ a = flat(Original, {}) # Readonly!           Skickas INTE till GCS
 b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
 c = flat(small)  # Används bara för räkning. Skickas dock till GCS
 d = flatten(cache, {}) #                     Skickas till GCS
+
+with open(TREE, 'w', encoding="utf8") as f: tree(d, f)
 
 # sizes.sort()
 # for i in range(4000):
@@ -495,7 +497,6 @@ if update:
 	with open(JSON + 'bilder.json',     'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(JSON + 'file_index.json', 'w', encoding="utf8") as f: dumpjson(fileIndex,f)
 	with open(MD5,                      'w', encoding="utf8") as f: dumpjson(md5Register,f)
-	with open(TREE,                     'w', encoding="utf8") as f: tree(d,f)
 
 
 	print()

@@ -16,7 +16,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-06 16:48'
+	const version = '2023-02-06 18:54'
 
 	let md5
 

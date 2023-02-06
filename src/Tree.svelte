@@ -4,13 +4,13 @@
 	import {Home} from './lib/stores.js'
 
 	let lines = []
-	function recurse (node,key0,level=0) {
-		lines.push(' • '.repeat(level)+key0)
+	function recurse (node,path="") {
+		lines.push(path)
 		for (const key in node) {
-			if (!is_jpg(key)) recurse(node[key], key,level+1)
+			if (!is_jpg(key)) recurse(node[key], path==''? key : path + ' • ' + key)
 		}
 	}
-	recurse($Home,'Home')
+	recurse($Home)
 
 </script>
 
