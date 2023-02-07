@@ -2,7 +2,7 @@
 
 	import _ from "lodash"
 	import countapi from 'countapi-js'
-	import { tick } from 'svelte'
+	// import { tick } from 'svelte'
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
 	import Help from "./Help.svelte"
@@ -11,7 +11,6 @@
 	import Search from "./Search.svelte"
 	import BigPicture from "./BigPicture.svelte"
 	import Play from "./Play.svelte"
-	import Infinite from "./Infinite.svelte"
 	import Tree from "./Tree.svelte"
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
@@ -62,8 +61,6 @@
 
 	let skala = 1
 
-	// $: fileWrapper = [$fileIndex]
-		
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	const SCROLLBAR = 0 // 12+3+1
@@ -218,7 +215,6 @@ $: consumeParameters($invHome)
 		words = words.length == 0 ? [] : words.split(" ")
 		if (!settings.all) words = _.map(words, (word) => '_' + word) // beginning
 		stat = {}
-		// total = 0
 
 		const start = new Date()
 		const arr = path.split('/')
@@ -233,7 +229,6 @@ $: consumeParameters($invHome)
 				const arrPath1 = arrPath0.concat(key)
 				const accKey = arrPath1[level]
 				if (is_jpg(key)) {
-					// total += 1
 					let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
 					sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
 					sPath = sPath + '_' + md5
@@ -248,10 +243,8 @@ $: consumeParameters($invHome)
 						result.push({md5, letters, x, y})
 						stat[letters] ||= 0
 						stat[letters] += 1
-						//if (! is_jpg(accKey)) {
 						visibleKeys[accKey] ||= 0
 						visibleKeys[accKey] += 1
-						//}
 					}
 				} else {
 					recursiveSearch(node[key], arrPath1)
@@ -291,7 +284,6 @@ $: antal = 7 + _.size(visibleKeys)
 		offset = 34 * antal
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = _.map(range(COLS), (element) => 0)
-		// log('placera',{COLS,WIDTH,cols})
 		cols[0] = offset
 		const textHeights = 49 // borde vara 49 för iOS och 44 för Windows
 		for (const i in range(images.length)) {
@@ -332,18 +324,17 @@ $: antal = 7 + _.size(visibleKeys)
 		<Download {WIDTH} {spreadWidth} {MAX_DOWNLOAD} />
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {WIDTH} {spaceShip} {stack} />
-		<Infinite {WIDTH} {cards} />
-	{:else}
-		{#if state == 'PICTURE'}
-			<BigPicture {md5} />
-		{:else}
-			{#if state == 'PLAY'}
-				<Play bind:state />
-			{:else}
-				{#if state == 'TREE'}
-					<Tree/>
-				{/if}
-			{/if}
-		{/if}
+		{#each cards as card}
+			<Card {WIDTH} {card} />
+		{/each}
+	{/if}
+	{#if state == 'PICTURE'}
+		<BigPicture {md5} />
+	{/if}
+	{#if state == 'PLAY'}
+		<Play bind:state />
+	{/if}
+	{#if state == 'TREE'}
+		<Tree/>
 	{/if}
 {/await}
