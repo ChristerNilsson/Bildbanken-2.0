@@ -450,11 +450,13 @@ b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
 c = flat(small)  # Används bara för räkning. Skickas dock till GCS
 d = flatten(cache, {}) #                     Skickas till GCS
 
-with open(TREE, 'w', encoding="utf8") as f: tree(d, f)
-
 # sizes.sort()
 # for i in range(4000):
 # 	print(sizes[i])
+# hash = {}
+# for key in b:
+# 	hash[key[0:10]] = 1
+# print(len(hash),len(b))
 
 print()
 ca = countFolders(a)
@@ -497,7 +499,7 @@ if update:
 	with open(JSON + 'bilder.json',     'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(JSON + 'file_index.json', 'w', encoding="utf8") as f: dumpjson(fileIndex,f)
 	with open(MD5,                      'w', encoding="utf8") as f: dumpjson(md5Register,f)
-
+	with open(TREE,                     'w', encoding="utf8") as f:		tree(d, f)
 
 	print()
 	print(round(time.time() - start,3),'seconds')

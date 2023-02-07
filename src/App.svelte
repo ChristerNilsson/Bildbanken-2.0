@@ -16,7 +16,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-06 18:54'
+	const version = '2023-02-07 08:08'
 
 	let md5
 
@@ -163,7 +163,7 @@ $: consumeParameters($invHome)
 		}
 	}
 
-	$: [text0, text1, $images,visibleKeys] = search(_.last(path), sokruta, stack.join('/'), $Home)
+	$: [text0, text1, $images,visibleKeys] = search(_.last(path), sokruta, stack.join('/'), $settings, $Home)
 
 	$: placera($images,visibleKeys,innerWidth,antal)
 	$: WIDTH = calcWidth(innerWidth)
@@ -207,11 +207,11 @@ $: consumeParameters($invHome)
 		stack = stack
 	}
 
-	function search(node,words,path) {
+	function search(node,words,path,settings) {
 
 		if (words.startsWith('@')) return ['','',[],{}]
 
-		if (!$settings.caseSensitive) words = words.toLowerCase()
+		if (!settings.case) words = words.toLowerCase()
 	
 		const result = []
 		let visibleKeys = {}
@@ -220,6 +220,7 @@ $: consumeParameters($invHome)
 		cards = []
 
 		words = words.length == 0 ? [] : words.split(" ")
+		if (!settings.all) words = _.map(words, (word) => '_' + word) // beginning
 
 		stat = {}
 		total = 0
@@ -241,14 +242,12 @@ $: consumeParameters($invHome)
 					total += 1
 					let letters = ''
 					// ["Home","2023"] removed
-					let sPath = arrPath1.slice(2).join('/').replaceAll(' ','_')
-					if (!$settings.caseSensitive) sPath = sPath.toLowerCase()
-					sPath = sPath + ' ' + md5
+					let sPath = arrPath1.slice(2).join('/').replaceAll(' ','_').replaceAll('.','_')
+					sPath = sPath + '_' + md5
+					if (!settings.case) sPath = sPath.toLowerCase()
 					for (const i in range(words.length)) {
 						let word = words[i]
 						if (word.length == 0) continue
-						// log($settings.start,sPath,word)
-						if ($settings.start == 'b') word = '_' + word // beginning
 						if (sPath.includes(word)) letters += ALFABET[i]
 					}
 					if (letters.length > 0 || words.length == 0) {

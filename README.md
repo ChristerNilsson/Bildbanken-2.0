@@ -124,14 +124,15 @@ Klicka på **Add** och **Play** för att se ett bildspel.
 Klicka på **Download** för att ladda ner en zipfil.  
 (1 minut, 595 MB)
 
+## Sökvarianter
+
+* Case: Sökorden måste ha samma case som texten
+* All: Sökorden kan stå var som helst i texten eller måste stå i början
+
 ## Kommandon
 Kommandon inleds med @ och avslutas med Enter.  
 Korrekt kommando rensas automatiskt.
 |Kommando|Betydelse|Exempel|Default|
 |-|-|-|-|
-|@CT|Case-sensitive = True|Cramling||
-|@CF|Case-sensitive = False|cramling|*|
-|@SB|Start = Beginning|ling not found in Cramling||
-|@SA|Start = Anywhere|ling is found in Cramling|*|
 
 [Katalogträd](https://storage.googleapis.com/bildbanken2/index.html?tree=)

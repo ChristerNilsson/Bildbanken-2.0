@@ -80,22 +80,22 @@
 				event.stopPropagation()
 				const cmd = sokruta.substring(1)
 				let success= true
-				if (cmd == 'CT') {
-					$settings.caseSensitive= true
-				} else if (cmd == 'CF') {
-					$settings.caseSensitive=false
-				} else if (cmd == 'SB') {
-					$settings.start='b' // beginning
-				} else if (cmd == 'SA') {
-					$settings.start='a' // anywhere
-				} else {
-					success = false
-					log('Unknown command: ' + cmd)
-				}
-				if (success) {
-					sokruta = ""
-					document.getElementById("search").focus()
-				}
+				// if (cmd == 'CT') {
+				// 	$settings.case = true
+				// } else if (cmd == 'CF') {
+				// 	$settings.case = false
+				// } else if (cmd == 'SB') {
+				// 	$settings.all = false // beginning
+				// } else if (cmd == 'SA') {
+				// 	$settings.all = true // anywhere
+				// } else {
+				// 	success = false
+				// 	log('Unknown command: ' + cmd)
+				// }
+				// if (success) {
+				// 	sokruta = ""
+				// 	document.getElementById("search").focus()
+				// }
 			}
 		}
 	}
@@ -109,13 +109,19 @@
 
 <div style="width:{WIDTH}px; height:34px">
 	{#if _.last(stack) == "Home"}
-		<button title="This is Home folder" style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} disabled >Up</button>
+		<button title="This is Home folder" style="left:0px;width:{spreadWidth(1/5,WIDTH)}px" on:click = {pop} disabled >Up</button>
 	{:else}
-		<button title="Go to parent folder" style="left:0px;width:{spreadWidth(1/4,WIDTH)}px" on:click = {pop} >Up</button>
+		<button title="Go to parent folder" style="left:0px;width:{spreadWidth(1/5,WIDTH)}px" on:click = {pop} >Up</button>
 	{/if}
-	<button title="Clear Search Text" on:click={clear} style="left:{1*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
-	<button title="Save the URL on the clipboard" on:click={share} style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Share</button>
-	<button title="View Help Page" on:click={help} style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
+	<button title="Clear Search Text" on:click={clear} style="left:{1*WIDTH/5}px; width:{spreadWidth(1/5,WIDTH)}px">Clear</button>
+
+	<div style="position:absolute; left:{2*WIDTH/5+40}px; top:70px">Case</div>
+	<input class="largerCheckbox" type="checkbox" style="left:{2*WIDTH/5+20}px; top:70px" bind:checked={$settings.case} />
+	<div style="position:absolute; left:{2*WIDTH/5+40}px; top:85px">All</div>
+	<input class="largerCheckbox" type="checkbox" style="left:{2*WIDTH/5+20}px; top:85px" bind:checked={$settings.all}  />
+
+	<button title="Save the URL on the clipboard" on:click={share} style="left:{3*WIDTH/5}px; width:{spreadWidth(1/5,WIDTH)}px">Share</button>
+	<button title="View Help Page" on:click={help} style="left:{4*WIDTH/5}px; width:{spreadWidth(1/5,WIDTH)}px">Help</button>
 </div>
 
 <div class="center" style="width:{WIDTH}px">
@@ -123,6 +129,11 @@
 </div>
 
 <style>
+	input.largerCheckbox {
+		position:absolute;
+		width: 12px;
+		height: 12px;
+	}
 	.center {
 		margin-top:7px;
 		text-align:center;
