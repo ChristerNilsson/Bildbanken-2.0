@@ -16,7 +16,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-07 08:08'
+	const version = '2023-02-07 13:25'
 
 	let md5
 
@@ -210,23 +210,17 @@ $: consumeParameters($invHome)
 	function search(node,words,path,settings) {
 
 		if (words.startsWith('@')) return ['','',[],{}]
-
 		if (!settings.case) words = words.toLowerCase()
-	
 		const result = []
 		let visibleKeys = {}
-
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
-
 		words = words.length == 0 ? [] : words.split(" ")
 		if (!settings.all) words = _.map(words, (word) => '_' + word) // beginning
-
 		stat = {}
-		total = 0
+		// total = 0
 
 		const start = new Date()
-
 		const arr = path.split('/')
 		const level = arr.length
 		const x = 0
@@ -239,11 +233,11 @@ $: consumeParameters($invHome)
 				const arrPath1 = arrPath0.concat(key)
 				const accKey = arrPath1[level]
 				if (is_jpg(key)) {
-					total += 1
-					let letters = ''
-					// ["Home","2023"] removed
-					let sPath = arrPath1.slice(2).join('/').replaceAll(' ','_').replaceAll('.','_')
+					// total += 1
+					let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
+					sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
 					sPath = sPath + '_' + md5
+					let letters = ''
 					if (!settings.case) sPath = sPath.toLowerCase()
 					for (const i in range(words.length)) {
 						let word = words[i]
@@ -254,10 +248,10 @@ $: consumeParameters($invHome)
 						result.push({md5, letters, x, y})
 						stat[letters] ||= 0
 						stat[letters] += 1
-						if (! is_jpg(accKey)) {
-							visibleKeys[accKey] ||= 0
-							visibleKeys[accKey] += 1
-						}
+						//if (! is_jpg(accKey)) {
+						visibleKeys[accKey] ||= 0
+						visibleKeys[accKey] += 1
+						//}
 					}
 				} else {
 					recursiveSearch(node[key], arrPath1)
@@ -285,8 +279,7 @@ $: consumeParameters($invHome)
 			st.push(`${key}:${stat[key]}`)
 			antal += stat[key]
 		}
-		// visibleKeys = visibleKeys
-		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,result,visibleKeys]
+		return [st.join(' '),`found ${antal} images in ${new Date() - start} ms`,result,visibleKeys]
 	}
 
 $: antal = 7 + _.size(visibleKeys)
