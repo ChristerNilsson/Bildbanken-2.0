@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-08 18:25'
+	const version = '2023-02-08 22:27'
 
 	assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
 
@@ -208,7 +208,6 @@ $: consumeParameters($invHome)
 
 	function search(node,words,path,settings) {
 
-
 		// if (words.startsWith('@')) return ['','',[],{}]
 		if (!settings.case) words = words.toLowerCase()
 		const result = []
@@ -220,51 +219,57 @@ $: consumeParameters($invHome)
 		stat = {}
 
 		const start = new Date()
-		const arr = path.split('/')
-		const level = arr.length
+		// const arr = path.split('/')
+		// const level = arr.length
 		const x = 0
 		const y = 0
  
-		// rekursiv pga varierande djup i trädet
-		function recursiveSearch (node,arrPath0) { // node är nuvarande delträd. arrPath0=['Home','2022'] osv.
-			for (const key in node) {
-				let arrPath1 = arrPath0.concat(key)
-				const accKey = arrPath1[level]
-				if (is_jpg(key)) {
-					const md5 = node[key].md5
+		function recursiveSearch (node, sPath0='', accKey0='') { 
+			// node är nuvarande delträd. 
+			// sPath0 = '2022' osv
+			// accKey används för att ackmulera antal bilder i närmast underliggande noder.
+			// log({sPath0,accKey0})
+			for (const key0 in node) {
+				const accKey1 = accKey0=='' ? key0 : accKey0
+				let key1 = key0.replaceAll(' ','_').replaceAll('.','_')
+				if (!settings.case) key1 = key1.toLowerCase()
+				const sPath1 = sPath0 + '_' + key1
+				//let arrPath1 = arrPath0.concat(key0)
+				if (is_jpg(key0)) {
+					const md5 = node[key0].md5
 					let letters = ''
 					if (words.length==0) {
 						result.push({md5, letters, x, y})
 						stat[letters] ||= 0
 						stat[letters] += 1
-						visibleKeys[accKey] ||= 0
-						visibleKeys[accKey] += 1
+						visibleKeys[accKey1] ||= 0
+						visibleKeys[accKey1] += 1
 					} else {
-						arrPath1 = _.map(arrPath1, (s) => '_' + s)
-						let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
-						sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
-						sPath += '_' + md5
-						if (!settings.case) sPath = sPath.toLowerCase()
+						//arrPath1 = _.map(arrPath1, (s) => '_' + s)
+						//let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
+						//sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
+						const sPath2 = sPath1 + '_' + md5
+						//if (!settings.case) sPath1 = sPath1.toLowerCase()
 						for (const i in range(words.length)) {
 							let word = words[i]
 							if (word.length == 0) continue
-							if (sPath.includes(word)) letters += ALFABET[i]
+							if (sPath2.includes(word)) letters += ALFABET[i]
 						}
 						if (letters.length > 0) { // || words.length == 0) {
 							result.push({md5, letters, x, y})
 							stat[letters] ||= 0
 							stat[letters] += 1
-							visibleKeys[accKey] ||= 0
-							visibleKeys[accKey] += 1
+							visibleKeys[accKey1] ||= 0
+							visibleKeys[accKey1] += 1
 						}
 					}
 				} else {
-					recursiveSearch(node[key], arrPath1)
+					recursiveSearch(node[key0],sPath1,accKey1)
 				}
 			}
 		}
 
-		recursiveSearch(node, arr)
+		recursiveSearch(node)
 
 		function g(a,b) { // sortering 9yy
 			//const iha = $invHome[a.md5]
