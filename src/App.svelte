@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-08 15:30'
+	const version = '2023-02-08 18:15'
 
 	assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
 
@@ -262,6 +262,9 @@ $: consumeParameters($invHome)
 			//const ihb = $invHome[b.md5]
 			const al = a.letters
 			const bl = b.letters
+			//const aa = (10-al.length) + al + b.md5
+			//const bb = (10-bl.length) + bl + a.md5
+			//return spaceShip(aa,bb)
 			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(b.md5,a.md5) //spaceShip(ihb.timestamp,iha.timestamp)
 		}
 
