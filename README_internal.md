@@ -626,40 +626,40 @@ Detta kan undvikas genom att flytta (x,y) till listan $images. Istf [md5] blir i
 ```
 0         1         2         3         4         5      
 012345678901234567890123456789012345678901234567890123456789
-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
-day       = 0..u
-hour      = 0..n
-minute    = 0..X
-second    = 0..X
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy
+day       = 0..U
+hour      = 0..N
+minute    = 0..y
+second    = 0..y
 
 Halvdecenniet bestämmer första tecknet
 1970                             0 1 2 3 4 5
-2000 6 7 8 9 a b c d e f g h i j k l m n o p
-2100 q r s t u v w x y z A B C D E F G H I J
-2200 K L M N O P Q R S T U V W X
+2000 6 7 8 9 A B C D E F G H I J K L M N O P
+2100 Q R S T U V W X Y a b c d e f g h i j k
+2200 l m n o p q r s t u v w x y
 
 Andra tecknet
 
 		0 1 2 3 4 årtalet modulo 5
-JAN 0 c o A M
-FEB 1 d p B N
-MAR 2 e q C O
-APR 3 f r D P
-MAJ 4 g s E Q
-JUN 5 h t F R
-JUL 6 i u G S
-AUG 7 j v H T
-SEP 8 k w I U
-OKT 9 l x J V
-NOV a m y K W
-DEC b n z L X
+JAN 0 C O b n
+FEB 1 D P c o
+MAR 2 E Q d p
+APR 3 F R e q
+MAJ 4 G S f r
+JUN 5 H T g s
+JUL 6 I U h t
+AUG 7 J V i u
+SEP 8 K W j v
+OKT 9 L X k w
+NOV A M Y l x
+DEC B N a m y
 
 Exempel: 
 1970 JAN = 00
-2023 FEB = aB
+2023 FEB = Ac
 
 Största möjliga tidpunkt:
 
-XXunXX = 2269-12-31 23:59:59
+yyUNyy = 2269-12-31 23:59:59
 
 ```

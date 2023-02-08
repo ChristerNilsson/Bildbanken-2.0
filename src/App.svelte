@@ -17,6 +17,8 @@
 
 	const version = '2023-02-07 13:25'
 
+	assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
+
 	let md5
 
 	// Förberett för att använda flera json-filer.
@@ -225,13 +227,13 @@ $: consumeParameters($invHome)
 		// rekursiv pga varierande djup i trädet
 		function recursiveSearch (node,arrPath0) { // node är nuvarande delträd. arrPath0=['Home','2022'] osv.
 			for (const key in node) {
-				const md5 = node[key].md5
 				const arrPath1 = arrPath0.concat(key)
 				const accKey = arrPath1[level]
 				if (is_jpg(key)) {
 					let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
 					sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
-					sPath = sPath + '_' + md5
+					const md5 = node[key].md5
+					sPath += '_' + md5
 					let letters = ''
 					if (!settings.case) sPath = sPath.toLowerCase()
 					for (const i in range(words.length)) {
@@ -254,15 +256,17 @@ $: consumeParameters($invHome)
 
 		recursiveSearch(node, arr)
 
-		function g(a,b) {
-			const iha = $invHome[a.md5]
-			const ihb = $invHome[b.md5]
+		function g(a,b) { // trolig sortering är AZaz istf azAZ och då blir det fel.
+			//const iha = $invHome[a.md5]
+			//const ihb = $invHome[b.md5]
 			const al = a.letters
 			const bl = b.letters
-			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(ihb.timestamp,iha.timestamp)
+			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(b.md5,a.md5) //spaceShip(ihb.timestamp,iha.timestamp)
 		}
 
+		const sss = new Date()
 		result.sort(g)
+		log(new Date() - sss)
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 

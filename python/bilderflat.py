@@ -26,7 +26,7 @@ import re
 import codecs
 from dateutil import parser
 
-ALFABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX' # 60-based
+ALFABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy' # 60-based
 
 QUALITY = 95
 WIDTH = 475
@@ -133,7 +133,7 @@ def makeSmall(Original,Home,small,name):
 	# md5hash = md5hash[0:10]
 	md5hash = codecs.encode(codecs.decode(md5hash, 'hex'), 'base64')
 	md5hash = md5hash.decode("utf-8")
-	md5hash = md5hash[0:6]
+	md5hash = md5hash[0:4]
 	md5hash = md5hash.replace('+','-').replace('/','_')
 
 	ts = getTimestamp(Original+name).replace('-',' ').replace(':',' ').split(' ')
@@ -345,24 +345,24 @@ def packedTime(lst): # Klarar timestamp < 2270-01-01 00:00:00 med sekund-upplös
 	res = [ym//60, ym%60, lst[2]-1, lst[3], lst[4], lst[5]]
 	return ''.join([ALFABET[i] for i in res])
 ass(packedTime([1970, 1, 1, 0, 0, 0]), '000000')
-ass(packedTime([2023, 1,19,20, 8, 0]), 'aAik80')
-ass(packedTime([2023, 2, 2,11,34,56]), 'aB1byU')
-ass(packedTime([2023, 2, 2,11,34,57]), 'aB1byV')
-ass(packedTime([2100, 1, 1, 0, 0, 0]), 'q00000')
-ass(packedTime([2200, 1, 1, 0, 0, 0]), 'K00000')
-ass(packedTime([2269,12,31,23,59,59]), 'XXunXX')
+ass(packedTime([2023, 1,19,20, 8, 0]), 'AbIK80')
+ass(packedTime([2023, 2, 2,11,34,56]), 'Ac1BYv')
+ass(packedTime([2023, 2, 2,11,34,57]), 'Ac1BYw')
+ass(packedTime([2100, 1, 1, 0, 0, 0]), 'Q00000')
+ass(packedTime([2200, 1, 1, 0, 0, 0]), 'l00000')
+ass(packedTime([2269,12,31,23,59,59]), 'yyUNyy')
 
 def unpack(packed):
 	t = [ALFABET.index(ch) for ch in packed]
 	ym = t[0] * 60 + t[1]
 	return [1970 + ym//12, 1 + ym%12, t[2]+1, t[3], t[4], t[5]]
 ass(unpack("000000"),[1970, 1, 1, 0, 0, 0])
-ass(unpack('aAik80'),[2023, 1,19,20, 8, 0])
-ass(unpack('aB1byU'),[2023, 2, 2,11,34,56])
-ass(unpack('aB1byV'),[2023, 2, 2,11,34,57])
-ass(unpack('q00000'),[2100, 1, 1, 0, 0, 0])
-ass(unpack('K00000'),[2200, 1, 1, 0, 0, 0])
-ass(unpack("XXunXX"),[2269,12,31,23,59,59])
+ass(unpack('AbIK80'),[2023, 1,19,20, 8, 0])
+ass(unpack('Ac1BYv'),[2023, 2, 2,11,34,56])
+ass(unpack('Ac1BYw'),[2023, 2, 2,11,34,57])
+ass(unpack('Q00000'),[2100, 1, 1, 0, 0, 0])
+ass(unpack('l00000'),[2200, 1, 1, 0, 0, 0])
+ass(unpack("yyUNyy"),[2269,12,31,23,59,59])
 
 def getTimestamp(path):
 	bigImg = Image.open(path)
@@ -421,7 +421,7 @@ def readFileIndex():
 def checkUniq(reg):
 	hash = {}
 	for key in reg:
-		hash[key[0:9]] = 0 # uniq, but no margins
+		hash[key[0:10]] = 0
 	return len(hash)
 
 def tree(d,f):
@@ -499,7 +499,7 @@ if update:
 	with open(JSON + 'bilder.json',     'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(JSON + 'file_index.json', 'w', encoding="utf8") as f: dumpjson(fileIndex,f)
 	with open(MD5,                      'w', encoding="utf8") as f: dumpjson(md5Register,f)
-	with open(TREE,                     'w', encoding="utf8") as f:		tree(d, f)
+	with open(TREE,                     'w', encoding="utf8") as f:	tree(d, f)
 
 	print()
 	print(round(time.time() - start,3),'seconds')
