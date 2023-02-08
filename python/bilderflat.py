@@ -24,6 +24,7 @@ import hashlib
 import shutil
 import re
 import codecs
+from Levenshtein import distance as levenshtein_distance
 from dateutil import parser
 
 ALFABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy' # 60-based
@@ -303,7 +304,7 @@ def flatWords(node):
 		for letter in letters:
 			words = words.replace(letter," ")
 		for word in words.split(' '):
-			wordLower = word.lower()
+			wordLower = word #.lower()
 			if len(word) > 1 and wordLower == word:
 				hash[word] = hash[word]+1 if word in hash else 1
 		if type(node[key]) is dict: flatWords(node[key])
@@ -429,6 +430,39 @@ def tree(d,f):
 		if not is_jpg(path):
 			f.write(path.replace('/',' • ')[3:] + '\n')
 
+def findBest(bad,good):
+	start = time.time()
+	best = [99, good[0]]
+	for g in good:
+		d = levenshtein_distance(bad,g)
+		if d < best[0]: best = [d,g]
+	return [bad, best[0], best[1], time.time()-start]
+
+def findSpellingErrors():
+	global hash
+	hash = {}
+	flatWords(cache)
+	keys = list(hash.keys())
+	keys.sort()
+	one = []
+	many = []
+	for key in keys:
+		if hash[key] == 1:
+			one.append(key)
+		else:
+			many.append(key)
+	#for item in one: print(item)
+	#print("#########################")
+	#for item in many: print(item)
+
+	for item in one:
+		lst = findBest(item, many)
+		if lst[1]==1: print(lst)
+	# print(len(one), len(many))
+	# print(levenshtein_distance("Adam", "Aam"))
+	# print(levenshtein_distance("Adam", "Axam"))
+	# print(levenshtein_distance("Adam", "Adbam"))
+
 ######################
 
 start = time.time()
@@ -450,13 +484,7 @@ b = flat(Home)   # Används bara för räkning. Skickas dock till GCS
 c = flat(small)  # Används bara för räkning. Skickas dock till GCS
 d = flatten(cache, {}) #                     Skickas till GCS
 
-# sizes.sort()
-# for i in range(4000):
-# 	print(sizes[i])
-# hash = {}
-# for key in b:
-# 	hash[key[0:10]] = 1
-# print(len(hash),len(b))
+# findSpellingErrors()
 
 print()
 ca = countFolders(a)

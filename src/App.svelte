@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-07 13:25'
+	const version = '2023-02-08 15:30'
 
 	assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
 
@@ -227,9 +227,10 @@ $: consumeParameters($invHome)
 		// rekursiv pga varierande djup i trädet
 		function recursiveSearch (node,arrPath0) { // node är nuvarande delträd. arrPath0=['Home','2022'] osv.
 			for (const key in node) {
-				const arrPath1 = arrPath0.concat(key)
+				let arrPath1 = arrPath0.concat(key)
 				const accKey = arrPath1[level]
 				if (is_jpg(key)) {
+					arrPath1 = _.map(arrPath1, (s) => '_' + s)
 					let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
 					sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
 					const md5 = node[key].md5

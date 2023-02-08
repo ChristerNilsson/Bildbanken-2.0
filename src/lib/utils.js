@@ -2,19 +2,7 @@ import _ from 'lodash'
 
 export const log = console.log
 
-const ALFABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX'
-
-// $: log(menu)
-
-// export function assert (msg,a,b) {
-// 	if (!_.isEqual(a,b)) {
-// 		log('Assert',msg, 'failed')
-// 		log('  a:',a)
-// 		log('  b:',b)
-// 	} else {
-// 		// log('Assert',msg,'ok')
-// 	}
-// }
+const ALFABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy'
 
 export function assert(a,b,msg="") {
 	if (!_.isEqual(a,b)) {
@@ -34,37 +22,13 @@ export function unpack(packed) {
 	const ym = t[0] * 60 + t[1]
 	return `${1970 + Math.floor(ym/12)}-${pp(1 + ym%12)}-${pp(t[2]+1)} ${pp(t[3])}:${pp(t[4])}:${pp(t[5])}`
 }
-assert(unpack("000000"),"1970-01-01 00:00:00")
-assert(unpack('aAik80'),"2023-01-19 20:08:00")
-assert(unpack('aB1byU'),"2023-02-02 11:34:56")
-assert(unpack('aB1byV'),"2023-02-02 11:34:57")
-assert(unpack('q00000'),"2100-01-01 00:00:00")
-assert(unpack('K00000'),"2200-01-01 00:00:00")
-assert(unpack("XXunXX"),"2269-12-31 23:59:59")
-
-
-// export function unpack(packed) { 
-// 	let unix = 0 // Detta är ej unixtid, pga bugg och DST
-// 	for (const ch of packed) unix = unix * 64 + ALFABET64.indexOf(ch)
-// 	const res = []
-// 	for (const factor of [60,60,24,31,12,9999]) {
-// 		res.unshift(unix % factor)
-// 		unix = Math.floor(unix / factor)
-// 	}
-// 	res[0] += 1970
-// 	res[1] += 1
-// 	res[2] += 1
-// 	return res[0] + '-' + pp(res[1]) + '-' +pp(res[2]) +' ' + pp(res[3])+ ':' + pp(res[4])+ ':' + pp(res[5])
-
-// }
-// assert(unpack("000000"),"1970-01-01 00-00-00")
-// assert(unpack("100000"),"2003-05-28 13-37-04")
-// assert(unpack("200000"),"2036-10-25 03-14-08")
-// assert(unpack("Z00000"),"4007-11-08 14-41-04")
-// assert(unpack("-00000"),"4041-04-05 04-18-08")
-// assert(unpack("_00000"),"4074-09-01 17-55-12")
-// assert(unpack("______"),"4108-01-29 07-32-15")
-
+// assert(unpack("000000"),"1970-01-01 00:00:00")
+// assert(unpack('aAik80'),"2023-01-19 20:08:00")
+// assert(unpack('aB1byU'),"2023-02-02 11:34:56")
+// assert(unpack('aB1byV'),"2023-02-02 11:34:57")
+// assert(unpack('q00000'),"2100-01-01 00:00:00")
+// assert(unpack('K00000'),"2200-01-01 00:00:00")
+// assert(unpack("XXunXX"),"2269-12-31 23:59:59")
 
 export const splitPath = (s) => s=='' ? [] : s.split('/')
 assert(splitPath(''),     [] )
@@ -237,4 +201,3 @@ export function prettyFilename(path) { // Tag bort eventuella M och V-nummer
 	s = s.replaceAll('_',' ')
 	return s
 }
-
