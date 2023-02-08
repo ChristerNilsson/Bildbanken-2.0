@@ -15,7 +15,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-08 18:15'
+	const version = '2023-02-08 18:25'
 
 	assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
 
@@ -208,7 +208,8 @@ $: consumeParameters($invHome)
 
 	function search(node,words,path,settings) {
 
-		if (words.startsWith('@')) return ['','',[],{}]
+
+		// if (words.startsWith('@')) return ['','',[],{}]
 		if (!settings.case) words = words.toLowerCase()
 		const result = []
 		let visibleKeys = {}
@@ -230,24 +231,32 @@ $: consumeParameters($invHome)
 				let arrPath1 = arrPath0.concat(key)
 				const accKey = arrPath1[level]
 				if (is_jpg(key)) {
-					arrPath1 = _.map(arrPath1, (s) => '_' + s)
-					let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
-					sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
 					const md5 = node[key].md5
-					sPath += '_' + md5
 					let letters = ''
-					if (!settings.case) sPath = sPath.toLowerCase()
-					for (const i in range(words.length)) {
-						let word = words[i]
-						if (word.length == 0) continue
-						if (sPath.includes(word)) letters += ALFABET[i]
-					}
-					if (letters.length > 0 || words.length == 0) {
+					if (words.length==0) {
 						result.push({md5, letters, x, y})
 						stat[letters] ||= 0
 						stat[letters] += 1
 						visibleKeys[accKey] ||= 0
 						visibleKeys[accKey] += 1
+					} else {
+						arrPath1 = _.map(arrPath1, (s) => '_' + s)
+						let sPath = arrPath1.slice(2).join('/') // ["Home","2023"] removed
+						sPath = sPath.replaceAll(' ','_').replaceAll('.','_')
+						sPath += '_' + md5
+						if (!settings.case) sPath = sPath.toLowerCase()
+						for (const i in range(words.length)) {
+							let word = words[i]
+							if (word.length == 0) continue
+							if (sPath.includes(word)) letters += ALFABET[i]
+						}
+						if (letters.length > 0) { // || words.length == 0) {
+							result.push({md5, letters, x, y})
+							stat[letters] ||= 0
+							stat[letters] += 1
+							visibleKeys[accKey] ||= 0
+							visibleKeys[accKey] += 1
+						}
 					}
 				} else {
 					recursiveSearch(node[key], arrPath1)
@@ -257,20 +266,17 @@ $: consumeParameters($invHome)
 
 		recursiveSearch(node, arr)
 
-		function g(a,b) { // trolig sortering är AZaz istf azAZ och då blir det fel.
+		function g(a,b) { // sortering 9yy
 			//const iha = $invHome[a.md5]
 			//const ihb = $invHome[b.md5]
 			const al = a.letters
 			const bl = b.letters
-			//const aa = (10-al.length) + al + b.md5
-			//const bb = (10-bl.length) + bl + a.md5
-			//return spaceShip(aa,bb)
 			return spaceShip(bl.length,al.length) || spaceShip(al,bl) || spaceShip(b.md5,a.md5) //spaceShip(ihb.timestamp,iha.timestamp)
 		}
 
-		const sss = new Date()
+		//const sss = new Date()
 		result.sort(g)
-		log(new Date() - sss)
+		//log(new Date() - sss)
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
@@ -280,6 +286,7 @@ $: consumeParameters($invHome)
 			st.push(`${key}:${stat[key]}`)
 			antal += stat[key]
 		}
+		//log(new Date() - start,words)
 		return [st.join(' '),`found ${antal} images in ${new Date() - start} ms`,result,visibleKeys]
 	}
 
