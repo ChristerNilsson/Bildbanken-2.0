@@ -13,7 +13,7 @@ export function assert(a,b,msg="") {
 	}
 }
 
-export const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
+export const is_jpg = (file) => file.endsWith('jpg') || file.endsWith('JPG')
 
 const pp = (x) => x < 10 ? '0' + x : x
 
