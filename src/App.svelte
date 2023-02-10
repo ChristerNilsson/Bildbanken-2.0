@@ -210,6 +210,8 @@ $: consumeParameters($invHome)
 		cards = []
 		words = words.length == 0 ? [] : words.split(" ")
 		if (!settings.all) words = _.map(words, (word) => '_' + word) // beginning
+		path = path.replaceAll(' ','_').replaceAll('.','_').replaceAll('/','_')
+		if (!settings.case) path = path.toLowerCase()
 		stat = {}
 
 		const start = new Date()
@@ -242,6 +244,7 @@ $: consumeParameters($invHome)
 						for (const i in range(words.length)) {
 							let word = words[i]
 							if (word.length == 0) continue
+							// log({sPath2,word},sPath2.includes(word))
 							if (sPath2.includes(word)) letters += ALFABET[i]
 						}
 						if (letters.length > 0) {
@@ -258,7 +261,8 @@ $: consumeParameters($invHome)
 			}
 		}
 
-		recursiveSearch(node)
+		recursiveSearch(node,path) // Slower, but root..curr folder searchable
+		// recursiveSearch(node) // Quicker, but root..curr folder not searchable
 
 		function g(a,b) {
 			const al = a.letters
