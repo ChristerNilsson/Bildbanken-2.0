@@ -71,3 +71,4 @@
 10070 : http://chess-results.com/tnr661621.aspx?lan=1&art=4
 10071 : files/Results_Rilton_Amateur_Cup.pdf
 10072 : https://wasask.se/flicksm2023.pdf
+10073 : files/Wasa-Blixten_2023-02-09.pdf

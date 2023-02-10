@@ -14,7 +14,7 @@
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
 	import {assert,comp2,is_jpg,log,range,spaceShip,unpack} from './lib/utils.js'
 
-	const version = '2023-02-09 09:51'
+	const version = '2023-02-10 18:04'
 
 	let md5
 
@@ -237,7 +237,8 @@ $: consumeParameters($invHome)
 							visibleKeys[accKey1] += 1
 						}
 					} else {
-						const sPath2 = sPath1 + '_' + md5
+						const timestamp = node[key0].timestamp
+						const sPath2 = sPath1 + '_' + md5 + '_' + timestamp.replace(' ','_')
 						for (const i in range(words.length)) {
 							let word = words[i]
 							if (word.length == 0) continue
@@ -276,7 +277,7 @@ $: consumeParameters($invHome)
 			antal += stat[key]
 		}
 
-		// log(visibleKeys)
+		log(visibleKeys)
 		return [st.join(' '),`found ${antal} images in ${new Date() - start} ms`,result,visibleKeys]
 	}
 
