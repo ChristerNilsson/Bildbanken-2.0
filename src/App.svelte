@@ -2,7 +2,6 @@
 
 	import _ from "lodash"
 	import countapi from 'countapi-js'
-	// import { tick } from 'svelte'
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
 	import Help from "./Help.svelte"
@@ -13,11 +12,9 @@
 	import Play from "./Play.svelte"
 	import Tree from "./Tree.svelte"
 	import {fileIndex,Home,invHome,images,selected,settings} from './lib/stores.js'
-	import {assert,comp2,is_jpg,log,spaceShip,unpack} from './lib/utils.js'
+	import {assert,comp2,is_jpg,log,range,spaceShip,unpack} from './lib/utils.js'
 
 	const version = '2023-02-09 09:51'
-
-	assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
 
 	let md5
 
@@ -36,8 +33,6 @@
 	}
 
 	// countapi.visits(':HOST:',':PATHNAME:').then((result) => {console.log('countapi',result.value)})
-
-	const range = _.range
 
 	const MAX_DOWNLOAD = 1000
 

@@ -1,8 +1,9 @@
 import _ from 'lodash'
 
 export const log = console.log
+export const range = _.range
 
-const ALFABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy'
+const ALFABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy' // base 60
 
 export function assert(a,b,msg="") {
 	if (!_.isEqual(a,b)) {
@@ -12,6 +13,8 @@ export function assert(a,b,msg="") {
 		// debug.assert(!_.isEqual(a,b))
 	}
 }
+
+assert("0 1 2 3 a b c d A B C D".split(' ').sort().join(' '), "0 1 2 3 A B C D a b c d")
 
 export const is_jpg = (file) => file.endsWith('jpg') || file.endsWith('JPG')
 
