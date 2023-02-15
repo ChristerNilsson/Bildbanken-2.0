@@ -72,3 +72,6 @@
 10071 : files/Results_Rilton_Amateur_Cup.pdf
 10072 : https://wasask.se/flicksm2023.pdf
 10073 : files/Wasa-Blixten_2023-02-09.pdf
+10074 : files/Seniorer_GP-finaler_2014.pdf
+10075 : files/Inbjudan_Skollag_DM_2023.pdf
+10076 : files/Resultat_Skollag-DM_Stockholm_kval_lågstadiet_2023-02-13.pdf

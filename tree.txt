@@ -216,7 +216,6 @@
 2014 • 2014-01-06 SM i snabbschack för damer Solna Stockholm
 2014 • 2014-01-12 Tjejträffen Stockholm
 2014 • 2014-02-08 Junior-Lag-DM Stockholm
-2014 • 2014-02-14 GP-finaler Stockholm
 2014 • 2014-03-01 Damschack - OS-träning Damer Stockholm
 2014 • 2014-03-09 Salongernas JGP Stockholm
 2014 • 2014-03-09 Salongernas JGP Stockholm • Klass AB och C
@@ -294,7 +293,7 @@
 2015 • 2015-01-10 Tjejträffen Stockholm
 2015 • 2015-01-25 Flick-SM Stockholm
 2015 • 2015-02-07 Utflykt Waxholm
-2015 • 2015-02-13 GP-finaler Stockholm
+2015 • 2015-02-14 GP-finaler 2014 Stockholm
 2015 • 2015-02-22 Taste of Chess Stockholm
 2015 • 2015-03-14 Tyresö JGP Stockholm
 2015 • 2015-03-14 Tyresö JGP Stockholm • Blandat
@@ -394,7 +393,7 @@
 2016 • 2016-02-07 Junior-Lag-DM Stockholm
 2016 • 2016-02-07 Junior-Lag-DM Stockholm • Elitserien
 2016 • 2016-02-07 Junior-Lag-DM Stockholm • Superettan
-2016 • 2016-02-18 GP-finaler Stockholm
+2016 • 2016-02-13 GP-finaler 2015 Stockholm
 2016 • 2016-02-19 Elite Hotels Open Växjö
 2016 • 2016-02-20 Skol-NM Kosta Växjö
 2016 • 2016-03-04 Compo Cup Stockholm
@@ -522,12 +521,12 @@
 2017 • 2017--2018 Allsvenskan
 2017 • 2017--2018 Lag-DM Stockholm
 2017 • 2017-01-08 Tjejträffen Stockholm
-2017 • 2017-01-20 GP-finaler Stockholm
 2017 • 2017-01-21 Flick-SM Göteborg
 2017 • 2017-01-28 Junior-Lag-DM Stockholm
 2017 • 2017-01-28 Junior-Lag-DM Stockholm • Elitserien
 2017 • 2017-01-28 Junior-Lag-DM Stockholm • Superettan
 2017 • 2017-02-10 Elite Hotels Open Växjö
+2017 • 2017-02-18 GP-finaler 2016 Stockholm
 2017 • 2017-03-06 Stockholm Chess Challenge
 2017 • 2017-03-11 Tyresö JGP Stockholm
 2017 • 2017-03-13 Schack56an final Stockholm
@@ -649,6 +648,7 @@
 2018 • 2018-01-20 Flick-SM Västerås • Klass B
 2018 • 2018-01-20 Flick-SM Västerås • Klass C
 2018 • 2018-01-20 Flick-SM Västerås • Klass D
+2018 • 2018-01-20 GP-finaler 2017 Stockholm
 2018 • 2018-02-05 Skollag-DM Stockholm
 2018 • 2018-02-05 Skollag-DM Stockholm • Gymnasiet, 2018
 2018 • 2018-02-05 Skollag-DM Stockholm • Högstadiet, 2018
@@ -661,7 +661,6 @@
 2018 • 2018-02-18 Junior-Lag-DM Stockholm
 2018 • 2018-02-18 Junior-Lag-DM Stockholm • Elitserien
 2018 • 2018-02-18 Junior-Lag-DM Stockholm • Superettan
-2018 • 2018-02-23 GP-finaler Stockholm
 2018 • 2018-02-26 Sportlovsturneringen på Salongerna, Stockholm
 2018 • 2018-03-10 Snabbschacks-SM för Knattar och Miniorer Stockholm
 2018 • 2018-03-10 Snabbschacks-SM för Knattar och Miniorer Stockholm • Diverse
@@ -910,6 +909,7 @@
 2019 • 2019-02-12 Tjejträning med Pia Cramling
 2019 • 2019-02-16 Västgöta Open Skara
 2019 • 2019-02-22 Fredagsträning Kristallens SK Katarina Södra Skola
+2019 • 2019-02-23 GP-finaler Stockholm
 2019 • 2019-03-03 100-mannaschacket Stockholm
 2019 • 2019-03-11 Schackfyrans kval Stockholm
 2019 • 2019-03-12 Schack56an final Stockholm
@@ -1126,7 +1126,7 @@
 2020 • 2020-02-08 Elite Hotels Open Växjö • Diverse 2020
 2020 • 2020-02-08 Elite Hotels Open Växjö • Elite Hotels Open 2020
 2020 • 2020-02-08 Elite Hotels Open Växjö • Lilla Elite Hotels Open 2020
-2020 • 2020-02-15 GP-finaler Stockholm
+2020 • 2020-02-15 GP-finaler 2019 Stockholm
 2020 • 2020-02-17 Skollag-DM Stockholm
 2020 • 2020-02-17 Skollag-DM Stockholm • 2020, Lågstadiet
 2020 • 2020-02-17 Skollag-DM Stockholm • 2020, Mellanstadiet
@@ -1502,3 +1502,5 @@
 2023 • 2023-01-28 Flick-SM Göteborg_I10072_T10912
 2023 • 2023-01-29 Junior-Lag-DM Stockholm
 2023 • 2023-01-29 Junior-Lag-DM Stockholm • Elitserien_T11295
+2023 • 2023-02-13 Skollag-DM Stockholm
+2023 • 2023-02-13 Skollag-DM Stockholm • kval lågstadiet_I10075_R10076
