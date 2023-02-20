@@ -527,6 +527,7 @@ if update:
 	with open(JSON + 'bilder.json',     'w', encoding="utf8") as f: dumpjson(cache,f)
 	with open(JSON + 'file_index.json', 'w', encoding="utf8") as f: dumpjson(fileIndex,f)
 	with open(MD5,                      'w', encoding="utf8") as f: dumpjson(md5Register,f)
+	d = flatten(cache, {})  # Skickas till GCS
 	with open(TREE,                     'w', encoding="utf8") as f:	tree(d, f)
 
 	print()
