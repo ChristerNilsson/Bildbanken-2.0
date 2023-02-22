@@ -76,3 +76,5 @@
 10075 : files/Inbjudan_Skollag_DM_2023.pdf
 10076 : files/Resultat_Skollag-DM_Stockholm_kval_lågstadiet_2023-02-13.pdf
 10077 : files/Inbjudan_Juniorlag_DM_2023_Superettan.pdf
+10078 : files/Inbjudan_Skollag_DM_2023.pdf
+10079 : files/Resultat_Skollag_DM_2023_mellanstadiet_kval_1_2023-02-20.pdf
