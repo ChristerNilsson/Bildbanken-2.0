@@ -1497,6 +1497,8 @@
 2022 • 2022-12-27 Rilton Cup Stockholm • Rilton Diverse
 2022 • 2022-12-27 Rilton Cup Stockholm • Rilton Elo_R10067_I10069
 2022 • 2022-12-29 Stockholms Schackförbunds och Pia Cramlings tjejschacktävling i samband med Rilton
+2022 • 2022--2023 Allsvenskan Division II_T10430
+2022 • 2022--2023 Allsvenskan Stockholmsserien_T10725
 2023
 2023 • 2023-01-07 Tjejträffen Stockholm
 2023 • 2023-01-28 Flick-SM Göteborg_I10072_T10912
@@ -1504,9 +1506,11 @@
 2023 • 2023-01-29 Junior-Lag-DM Stockholm • Elitserien_T11295
 2023 • 2023-02-13 Skollag-DM Stockholm
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 1_I10078_R10079
-2023 • 2023-02-13 Skollag-DM Stockholm • kval lågstadiet_I10075_R10076
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 2_T10078_R10080
+2023 • 2023-02-13 Skollag-DM Stockholm • kval lågstadiet_I10075_R10076
 2023 • 2023-02-18 Västgöta Open Skara
 2023 • 2023-02-18 Västgöta Open Skara_I10080_R10081
 2023 • 2023-02-19 Junior-Lag-DM Stockholm
 2023 • 2023-02-19 Junior-Lag-DM Stockholm • Superettan_I10077_T11296
+2023 • 2023-02-27 Sportlovsturneringen på Salongerna, Stockholm_I10081_R10082
+2023 • 2023-03-03 Sportlovsturneringen II på Salongerna, Stockholm_R10083

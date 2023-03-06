@@ -92,7 +92,7 @@
 	}
 
 	function mouseup(e) {big.mouseState = 0}
-	function share () {navigator.clipboard.writeText(location.origin + "/Home/" + big.md5 + '.jpg')}
+	function share () {navigator.clipboard.writeText(location.origin + location.pathname.replace('index.html','') + "Home/" + big.md5 + '.jpg')}
 	document.onmousemove = mousemove
 	document.title = prettyFilename(big.filename,false)
 
