@@ -2,6 +2,7 @@
 	import _ from "lodash"
 	import {log,prettyFilename,round} from './lib/utils.js'
 	import {invHome} from './lib/stores.js'
+	import { saveAs } from "file-saver"
 
 	export let md5
 
@@ -93,12 +94,14 @@
 
 	function mouseup(e) {big.mouseState = 0}
 	function share () {navigator.clipboard.writeText(location.origin + location.pathname.replace('index.html','') + "Home/" + big.md5 + '.jpg')}
+	function downloadOne() {saveAs("Home/" + big.md5 + ".jpg", big.filename)}
 	document.onmousemove = mousemove
 	document.title = prettyFilename(big.filename,false)
 
 </script>
 
 <button on:click={share}> Share </button>
+<button on:click={downloadOne}> Download </button>
 
 <span style="top:8%">{big.filename}</span>
 <span style="top:12%">{path}</span>

@@ -1272,6 +1272,8 @@
 2022 • 2022--2023 Allsvenskan • Elitserien
 2022 • 2022--2023 Allsvenskan • Stockholmsserien T10725
 2022 • 2022--2023 Allsvenskan • Superettan
+2022 • 2022--2023 Allsvenskan Division II_T10430
+2022 • 2022--2023 Allsvenskan Stockholmsserien_T10725
 2022 • 2022--2023 Lag-DM Stockholm
 2022 • 2022--2023 Lag-DM Stockholm • Division 1_T10509
 2022 • 2022--2023 Lag-DM Stockholm • Division 2_T10510
@@ -1404,13 +1406,6 @@
 2022 • 2022-07-02_Schack-SM Uppsala_I10044 • Weekend-2 • Grupp 4_T10360
 2022 • 2022-07-02_Schack-SM Uppsala_I10044 • Weekend-2 • Grupp 5_T10361
 2022 • 2022-08-03_Sports Heart_I10045
-2022 • 2022-08-07_Uppsala Chesstival_I10046
-2022 • 2022-08-07_Uppsala Chesstival_I10046 • GM-gruppen_T9385
-2022 • 2022-08-07_Uppsala Chesstival_I10046 • Ungdomar - U10_T10352
-2022 • 2022-08-07_Uppsala Chesstival_I10046 • Ungdomar - U16_T10350
-2022 • 2022-08-07_Uppsala Chesstival_I10046 • Uppsala Chess Academy, 2022
-2022 • 2022-08-07_Uppsala Chesstival_I10046 • Uppsala Open_T9388
-2022 • 2022-08-07_Uppsala Chesstival_I10046 • Weekend grupp 1-grupp 3, 2022
 2022 • 2022-08-19 Junior-DM_I10047_T10448
 2022 • 2022-08-22 Firandet av Pia Cramling på Stockholms Schacksalonger
 2022 • 2022-08-27 Lidköping Open_I10049_R10009
@@ -1455,14 +1450,6 @@
 2022 • 2022-10-31 Höstlovsturneringen på Salongerna, Stockholm_I10058 • utan klocka_R10017
 2022 • 2022-11-04 Stockholms GP by Elite Hotels_I10060_T10374
 2022 • 2022-11-10 KM i blixt Wasa_R10043
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Diverse
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Klass A_T10774
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Klass B_T10775
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Klass C_T10776
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Klass D_T10777
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Klass E_T10778
-2022 • 2022-11-12 Trojanska Hästens JGP II Täby Stockholm_I10061 • Klass F_T10779
 2022 • 2022-11-19 Dam-Weekend med Pia Cramling Elite Palace Hotel i Stockholm_I10063_T10641
 2022 • 2022-11-19 Knatte-Lag-DM Stockholm_I10062_R10026
 2022 • 2022-11-20 JDM i blixt Stockholm_I10064
@@ -1497,8 +1484,21 @@
 2022 • 2022-12-27 Rilton Cup Stockholm • Rilton Diverse
 2022 • 2022-12-27 Rilton Cup Stockholm • Rilton Elo_R10067_I10069
 2022 • 2022-12-29 Stockholms Schackförbunds och Pia Cramlings tjejschacktävling i samband med Rilton
-2022 • 2022--2023 Allsvenskan Division II_T10430
-2022 • 2022--2023 Allsvenskan Stockholmsserien_T10725
+2022 • 2022-08-07_Uppsala Chess Festival_I10046
+2022 • 2022-08-07_Uppsala Chess Festival_I10046 • GM-gruppen_T9385
+2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Ungdomar - U10_T10352
+2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Ungdomar - U16_T10350
+2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Uppsala Chess Academy, 2022
+2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Uppsala Open_T9388
+2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Weekend grupp 1-grupp 3, 2022
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Diverse
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Klass A_T10774
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Klass B_T10775
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Klass C_T10776
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Klass D_T10777
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Klass E_T10778
+2022 • 2022-11-12 Trojanska Hästen JGP II Täby Stockholm_I10061 • Klass F_T10779
 2023
 2023 • 2023-01-07 Tjejträffen Stockholm
 2023 • 2023-01-28 Flick-SM Göteborg_I10072_T10912
@@ -1506,7 +1506,8 @@
 2023 • 2023-01-29 Junior-Lag-DM Stockholm • Elitserien_T11295
 2023 • 2023-02-13 Skollag-DM Stockholm
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 1_I10078_R10079
-2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 2_T10078_R10080
+2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 2_I10078_R10080
+2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 3_I10078_R10084
 2023 • 2023-02-13 Skollag-DM Stockholm • kval lågstadiet_I10075_R10076
 2023 • 2023-02-18 Västgöta Open Skara
 2023 • 2023-02-18 Västgöta Open Skara_I10080_R10081
