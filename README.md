@@ -66,6 +66,12 @@ Sökning går endast mot den folder man valt. Välj Home om du vill söka i alla
 * Ladda ner genom att klicka på **Download**
 * Bilderna hamnar i en flat, zippad folder
 
+## Download av enstaka bild
+
+* Klicka på en bild
+* Klicka på **Download**
+* Bilden laddas ner som en jpg-fil med beskrivande filnamn
+
 ## Bildspel
 
 * Markera de bilder du vill visa. Samma hantering som vid Download
