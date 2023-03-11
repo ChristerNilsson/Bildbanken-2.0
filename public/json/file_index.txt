@@ -83,3 +83,5 @@
 10082 : files/Slutresultat_Sportlovsturneringen_2023.pdf
 10083 : files/Slutresultat_Sportlovsturneringen_II_2023.pdf
 10084 : files/Resultat_Skollag_DM_2023_mellanstadiet_kval_3_2023-03-06.pdf
+10085 : files/Inbjudan_Slutsammandrag_Elitserien_superettan_2023-03-10.pdf
+10086 : files/Resultat_Skollag-DM_Högstadiets_final_2023_03_10.pdf

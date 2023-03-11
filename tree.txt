@@ -70,6 +70,8 @@
 0000 Klubbar • Stockholms Schackförbund • Veckans_Bild
 0000 Klubbar • Stockholms Schackförbund • Vårkongresser
 0000 Klubbar • Sveriges Schackförbund
+0000 Klubbar • Trojanska Hästen
+0000 Klubbar • Trojanska Hästen • Juniorträning 2017-04-01
 0000 Klubbar • Tyresö SK
 0000 Klubbar • Uppsala ASS
 0000 Klubbar • Uppsala SSS
@@ -120,8 +122,6 @@
 0000 Klubbar • Wasa SK • Wasajuniorerna
 0000 Klubbar • Wasa SK • Wasajuniorerna • Juniorträning-Matteusskolan_2015
 0000 Klubbar • Östersunds SS
-0000 Klubbar • Trojanska Hästen
-0000 Klubbar • Trojanska Hästen • Juniorträning 2017-04-01
 2011
 2011 • 2011--2012 Allsvenskan
 2011 • 2011-12-27 Rilton Cup Stockholm_R10033
@@ -463,7 +463,7 @@
 2016 • 2016-07-27 Sommarblixt på Salongerna Stockholm
 2016 • 2016-08-05 CellaVision Chess Cup Lund
 2016 • 2016-08-21 Stockholm Open
-2016 • 2016-08-23 Stockholm Open-blixten
+2016 • 2016-08-23 Stockholm-Open-blixten
 2016 • 2016-09-11 Svenska Cupen Linköping
 2016 • 2016-09-21 Tjejträning med Ingrid Carlsen
 2016 • 2016-09-23 Västerås Open
@@ -1415,10 +1415,10 @@
 2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Uppsala Chess Academy, 2022
 2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Uppsala Open_T9388
 2022 • 2022-08-07_Uppsala Chess Festival_I10046 • Weekend grupp 1-grupp 3, 2022
-2022 • 2022-08-19 Junior-DM_I10047_T10448
+2022 • 2022-08-19 Junior-DM Stockholm_I10047_T10448
 2022 • 2022-08-22 Firandet av Pia Cramling på Stockholms Schacksalonger
 2022 • 2022-08-27 Lidköping Open_I10049_R10009
-2022 • 2022-08-29 Stockholm Open-blixten_I10048_T10445
+2022 • 2022-08-29 Stockholm-Open-blixten_I10048_T10445
 2022 • 2022-09-02 SK_Rockaden, Stockholm 100 År, Jubileumsfesten på Kristinehovs Malmgård
 2022 • 2022-09-03 SM i blixt för damer Stockholm_I10042_T10083
 2022 • 2022-09-03 SM i snabbschack för damer Stockholm_I10042_T10082
@@ -1452,7 +1452,7 @@
 2022 • 2022-10-20 Kristallens öppna Elorankade höstblixt_I10055_T10610
 2022 • 2022-10-22 Snabbschacks-DM Stockholm_I10056_T10651
 2022 • 2022-10-28 Uppsala Young Champions_10059_T9379
-2022 • 2022-10-30 Lag-DM i blixt, Stockholm_I10057_R10008
+2022 • 2022-10-30 Lag-DM i blixt Stockholm_I10057_R10008
 2022 • 2022-10-31 Höstlovsturneringen på Salongerna, Stockholm_I10058
 2022 • 2022-10-31 Höstlovsturneringen på Salongerna, Stockholm_I10058 • Diverse
 2022 • 2022-10-31 Höstlovsturneringen på Salongerna, Stockholm_I10058 • med klocka_R10016
@@ -1507,6 +1507,7 @@
 2023 • 2023-01-29 Junior-Lag-DM Stockholm
 2023 • 2023-01-29 Junior-Lag-DM Stockholm • Elitserien_T11295
 2023 • 2023-02-13 Skollag-DM Stockholm
+2023 • 2023-02-13 Skollag-DM Stockholm • Högstadiet Final_I10078_R10086
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 1_I10078_R10079
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 2_I10078_R10080
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 3_I10078_R10084
