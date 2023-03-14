@@ -1268,6 +1268,7 @@
 2022
 2022 • 2022--2023 Allsvenskan
 2022 • 2022--2023 Allsvenskan • 2022-05-13 Elitseriesammandraget Södertälje_T10421
+2022 • 2022--2023 Allsvenskan • 2023-03-10 Elitseriesammandraget Södertälje_I10085_T10421
 2022 • 2022--2023 Allsvenskan • Division I T10424
 2022 • 2022--2023 Allsvenskan • Division II T10430
 2022 • 2022--2023 Allsvenskan • Division III T10438
@@ -1512,6 +1513,7 @@
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 2_I10078_R10080
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 3_I10078_R10084
 2023 • 2023-02-13 Skollag-DM Stockholm • kval lågstadiet_I10075_R10076
+2023 • 2023-02-13 Skollag-DM Stockholm • Gymnasiet final_T10078_R10087
 2023 • 2023-02-18 Västgöta Open Skara
 2023 • 2023-02-18 Västgöta Open Skara_I10080_R10081
 2023 • 2023-02-19 Junior-Lag-DM Stockholm
