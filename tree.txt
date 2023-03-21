@@ -1143,13 +1143,13 @@
 2020 • 2020-07-08 Juniorträning - SK Rockaden Stockholm Olle Eleby
 2021
 2021 • 2021--2022 Allsvenskan
+2021 • 2021--2022 Allsvenskan • 2022-05-13 Elitseriesammandraget Södertälje_T08401
 2021 • 2021--2022 Allsvenskan • Division I
 2021 • 2021--2022 Allsvenskan • Division II
 2021 • 2021--2022 Allsvenskan • Division III
 2021 • 2021--2022 Allsvenskan • Elitserien
 2021 • 2021--2022 Allsvenskan • Stockholmsserien
 2021 • 2021--2022 Allsvenskan • Superettan
-2021 • 2021--2022 Allsvenskan • 2022-05-13 Elitseriesammandraget Södertälje_T8401
 2021 • 2021--2022 Lag-DM Stockholm
 2021 • 2021--2022 Lag-DM Stockholm • Division 1_T9191
 2021 • 2021--2022 Lag-DM Stockholm • Division 2_T9192
@@ -1520,3 +1520,13 @@
 2023 • 2023-02-19 Junior-Lag-DM Stockholm • Superettan_I10077_T11296
 2023 • 2023-02-27 Sportlovsturneringen på Salongerna, Stockholm_I10081_R10082
 2023 • 2023-03-03 Sportlovsturneringen II på Salongerna, Stockholm_R10083
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Diverse
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Pristagare Klass AB_T11514
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Pristagare Klass C_T11515
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Pristagare Klass D_T11516
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Pristagare Klass E_T11517
+2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Pristagare Klass F_T11518
+2023 • 2023-03-20 Skollag-DM Stockholm
+2023 • 2023-03-20 Skollag-DM Stockholm • final lågstadiet_I10075_R10089
+2023 • 2023-03-20 Skollag-DM Stockholm • final mellanstadiet_I10075_R10089

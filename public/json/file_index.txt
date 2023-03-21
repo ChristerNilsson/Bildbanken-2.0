@@ -86,3 +86,5 @@
 10085 : files/Inbjudan_Slutsammandrag_Elitserien_superettan_2023-03-10.pdf
 10086 : files/Resultat_Skollag-DM_Högstadiets_final_2023_03_10.pdf
 10087 : files/Resultat_Skollag-DM_Gymnasiets_final_2023_03_13.pdf
+10088 : files/TrojanskaJGP2023.pdf
+10089 : files/Slutresultat_Skollag_DM_2023_finaler_lågstadiet_och_mellanstadiet.pdf
