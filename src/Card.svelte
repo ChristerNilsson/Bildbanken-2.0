@@ -19,7 +19,7 @@
 
 	function getNumbers(path,letter) { // Används för filnummer = MTV FLIR member tournament video file (deprecated) link invite result
 		let matches
-		if (letter=='F') matches = path.matchAll(/[F]\d+/g) // deprecated
+		if (letter=='F') matches = path.matchAll(/[F]\d+/g) // Facts
 		if (letter=='L') matches = path.matchAll(/[L]\d+/g)
 		if (letter=='I') matches = path.matchAll(/[I]\d+/g)
 		if (letter=='R') matches = path.matchAll(/[R]\d+/g)
@@ -35,7 +35,7 @@
 		path = path.split('/')
 		path = path.slice(2,path.length-1)
 		path = path.join(" • ")
-		path = path.replaceAll(/_F\d+/g,'') // deprecated
+		path = path.replaceAll(/_F\d+/g,'') // Facts
 		path = path.replaceAll(/_L\d+/g,'')
 		path = path.replaceAll(/_I\d+/g,'')
 		path = path.replaceAll(/_R\d+/g,'')
@@ -87,7 +87,7 @@
 			&nbsp;© Lars OA Hedlund
 
 			{#each FS as F}
-				&nbsp;<a target="_blank" href="{$fileIndex[F]}">Result</a> <!-- deprecated -->
+				&nbsp;<a target="_blank" href="{$fileIndex[F]}">Facts</a>
 			{/each}
 			{#each LS as L}
 				&nbsp;<a target="_blank" href="{$fileIndex[L]}">Link</a>

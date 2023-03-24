@@ -257,7 +257,7 @@ def flatten(node, res={}, path=''):
 			res[path1] = node[key]
 		else:
 			res[path1] = ""
-			match = re.search(r'_[LIR]\d\d\d\d\d', key)
+			match = re.search(r'_[GLIRF]\d\d\d\d\d', key)
 			if match:
 				z = match.regs
 				(p, q) = z[0]

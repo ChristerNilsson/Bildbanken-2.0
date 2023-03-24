@@ -1272,8 +1272,12 @@
 2022 • 2022--2023 Allsvenskan • Division I T10424
 2022 • 2022--2023 Allsvenskan • Division II T10430
 2022 • 2022--2023 Allsvenskan • Division III T10438
+2022 • 2022--2023 Allsvenskan • Division III_T10438
+2022 • 2022--2023 Allsvenskan • Division II_T10430
+2022 • 2022--2023 Allsvenskan • Division I_T10424
 2022 • 2022--2023 Allsvenskan • Elitserien
 2022 • 2022--2023 Allsvenskan • Stockholmsserien T10725
+2022 • 2022--2023 Allsvenskan • Stockholmsserien_T10725
 2022 • 2022--2023 Allsvenskan • Superettan
 2022 • 2022--2023 Allsvenskan Division II_T10430
 2022 • 2022--2023 Allsvenskan Stockholmsserien_T10725
@@ -1530,3 +1534,6 @@
 2023 • 2023-03-20 Skollag-DM Stockholm
 2023 • 2023-03-20 Skollag-DM Stockholm • final lågstadiet_I10075_R10089
 2023 • 2023-03-20 Skollag-DM Stockholm • final mellanstadiet_I10075_R10089
+0000 Diverse
+0000 Diverse • 2022
+0000 Diverse • 2022 • Ljusinstallationen REMI_F10090
