@@ -92,3 +92,4 @@
 10091 : files/snabbsm_knattar_miniorer_2023.pdf
 10092 : files/Resultat_GP_final_2022.pdf
 10093 : files/Inbjudan_till_finalspel_i_Senior_GP_2022.pdf
+10094 : files/Inbjudan_Compo_Cup_2023.pdf
