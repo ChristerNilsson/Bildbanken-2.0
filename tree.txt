@@ -1,6 +1,8 @@
 0000 Diverse
 0000 Diverse • 2022
 0000 Diverse • 2022 • Ljusinstallationen REMI_F10090
+0000 Diverse • 2023
+0000 Diverse • 2023 • Nytt avtal för Rilton Cup_F10096
 0000 Evenemang
 0000 Evenemang • 2013
 0000 Evenemang • 2013 • 2013-06-16 Rix FM - festival i Kungsan Stockholm
@@ -16,9 +18,9 @@
 0000 Evenemang • 2018
 0000 Evenemang • 2018 • 2018-05-02 Näringslivet för integration Stockholm
 0000 Evenemang • 2018 • 2018-06-01 Näringslivet möter förorten Stockholm
-0000 Evenemang • 2018 • 2018-11-14 Näringslivet möter förorten november Stockholm
+0000 Evenemang • 2018 • 2018-11-14 Näringslivet möter förorten november Stockholm_V370290839
 0000 Evenemang • 2019
-0000 Evenemang • 2019 • 2019-04-25 Näringslivet för integration Stockholm
+0000 Evenemang • 2019 • 2019-04-25 Näringslivet för integration Stockholm_V366996561
 0000 Evenemang • 2019 • 2019-09-22 Klock-simultan med Erik Blomqvist och Juan Bellon Stockholm
 0000 Evenemang • 2019 • 2019-11-13 Näringslivet möter förorten Stockholm
 0000 Evenemang • 2020
@@ -30,7 +32,7 @@
 0000 Evenemang • 2021 • 2021-11-10 Näringslivet möter förorten Stockholm
 0000 Evenemang • 2022
 0000 Evenemang • 2022 • 2022-04-21 Schackfest på Kulturhuset simultan med Pia Cramling
-0000 Evenemang • 2022 • 2022-05-31 Näringslivet möter förorten Stockholm
+0000 Evenemang • 2022 • 2022-05-31 Näringslivet möter förorten Stockholm_L10027_V724530654
 0000 Evenemang • 2022 • 2022-06-18 Schackläger på Ingarö Wasa SK
 0000 Evenemang • 2022 • 2022-08-21_Stockholms Kulturfestival
 0000 Evenemang • 2022 • 2022-11-24 Näringslivet möter förorten Stockholm_L10027
@@ -776,7 +778,7 @@
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Mästarklassen
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Mästarklassen-Elit
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Problemlösnings-SM
-2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Schackfyran-mästaren riksfinal 2018
+2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Schackfyran-mästaren riksfinal 2018_T05539_V444538757
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Sverigemästarklassen
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Veteran-Allmän , 2018
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Veteran-SM 50+ , 2018
@@ -786,28 +788,28 @@
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Weekend-2 • Grupp 1
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Weekend-2 • Grupp 2
 2018 • 2018-06-30 Schack-SM Ronneby_L10005 • Weekend-2 • Grupp 3
-2018 • 2018-08-03 CellaVision Chess Cup Lund
-2018 • 2018-08-03 CellaVision Chess Cup Lund • CellaVision Chess Cup 2018
-2018 • 2018-08-03 CellaVision Chess Cup Lund • CellaVision Chess Cup Diverse 2018
-2018 • 2018-08-03 CellaVision Chess Cup Lund • Lilla CellaVision Chess Cup 2018
-2018 • 2018-08-10 Kadettallsvenskan Final Norrköping
+2018 • 2018-08-03 CellaVision Chess Cup Lund_T05289_V374651011
+2018 • 2018-08-03 CellaVision Chess Cup Lund_T05289_V374651011 • CellaVision Chess Cup 2018
+2018 • 2018-08-03 CellaVision Chess Cup Lund_T05289_V374651011 • CellaVision Chess Cup Diverse 2018
+2018 • 2018-08-03 CellaVision Chess Cup Lund_T05289_V374651011 • Lilla CellaVision Chess Cup 2018
+2018 • 2018-08-10 Kadettallsvenskan Final Norrköping_T05595_V443363171
 2018 • 2018-08-13 Stockholm Open
 2018 • 2018-08-20 Stockholm-Open-blixten
-2018 • 2018-08-25 Lidköping Open
+2018 • 2018-08-25 Lidköping Open_V374666712
 2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack
 2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack • Diverse
 2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack • Från invigningen
 2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack • Pia Cramling´s Invitational
 2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack • Pia Cramling´s Ladies Open
 2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack • Pristagare
-2018 • 2018-09-09 Svenska Cupen Linköping
-2018 • 2018-09-15 Kristallens JGP Stockholm
-2018 • 2018-09-15 Kristallens JGP Stockholm • Diverse
-2018 • 2018-09-15 Kristallens JGP Stockholm • Pristagare Klass A
-2018 • 2018-09-15 Kristallens JGP Stockholm • Pristagare Klass B
-2018 • 2018-09-15 Kristallens JGP Stockholm • Pristagare Klass C
-2018 • 2018-09-15 Kristallens JGP Stockholm • Pristagare Klass D
-2018 • 2018-09-16 Schack i skolan på Comic Con Stockholm
+2018 • 2018-09-09 Svenska Cupen Linköping_T06083_V374669551
+2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073
+2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Diverse
+2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Pristagare Klass A
+2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Pristagare Klass B
+2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Pristagare Klass C
+2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Pristagare Klass D
+2018 • 2018-09-16 Schack i skolan på Comic Con Stockholm_V371616397
 2018 • 2018-09-22 Lag-DM i blixt Stockholm
 2018 • 2018-09-23 JDM i blixt Stockholm
 2018 • 2018-09-23 JDM i blixt Stockholm • Diverse
@@ -819,47 +821,47 @@
 2018 • 2018-09-28 Västerås Open • Lilla Västerås Open 2018
 2018 • 2018-09-28 Västerås Open • Spellokalen, översiktsbilder 2018
 2018 • 2018-09-28 Västerås Open • Västerås Open 2018
-2018 • 2018-10-06 Minior-Lag-DM Stockholm
+2018 • 2018-10-06 Minior-Lag-DM Stockholm_T06515_V376156506
 2018 • 2018-10-07 Snabbschacks-DM Stockholm
-2018 • 2018-10-12 Skol-SM Lidköping
-2018 • 2018-10-12 Skol-SM Lidköping • Bästa skola
-2018 • 2018-10-12 Skol-SM Lidköping • Bästa tjej
-2018 • 2018-10-12 Skol-SM Lidköping • Från tävlingsspelet
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass A
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass B
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass C
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass D
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass E
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass F
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass G
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass H
-2018 • 2018-10-12 Skol-SM Lidköping • Pristagare Klass I
-2018 • 2018-10-12 Skol-SM Lidköping • Sveriges Schackförbunds Ungdomsledarstipendiater 2018
-2018 • 2018-10-12 Skol-SM Lidköping • Översiktsbilder
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Diverse
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass AB
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass C
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass D
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass E
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass F
-2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm • Översiktsbilder
-2018 • 2018-10-26 Uppsala Young Champions
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Bästa skola
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Bästa tjej
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Från tävlingsspelet
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass A
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass B
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass C
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass D
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass E
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass F
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass G
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass H
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Pristagare Klass I
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Sveriges Schackförbunds Ungdomsledarstipendiater 2018
+2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Översiktsbilder
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Diverse
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Pristagare Klass AB
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Pristagare Klass C
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Pristagare Klass D
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Pristagare Klass E
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Pristagare Klass F
+2018 • 2018-10-20 Trojanska Hästen JGP II Täby Stockholm_T06387_V367612447 • Översiktsbilder
+2018 • 2018-10-26 Uppsala Young Champions_T05574_V368488668
 2018 • 2018-10-29 Höstlovsturneringen på Salongerna, Stockholm
-2018 • 2018-11-02 Hasselbacken Chess Open Stockholm
-2018 • 2018-11-02 Hasselbacken Chess Open Stockholm • Hasselbacken Chess Open 2018
-2018 • 2018-11-02 Hasselbacken Chess Open Stockholm • Hasselbacken Chess Open Diverse, 2018
-2018 • 2018-11-02 Hasselbacken Chess Open Stockholm • Lilla Hasselbacken Chess Open 2018
+2018 • 2018-11-02 Hasselbacken Chess Open Stockholm_T05870_V368492326
+2018 • 2018-11-02 Hasselbacken Chess Open Stockholm_T05870_V368492326 • Hasselbacken Chess Open 2018
+2018 • 2018-11-02 Hasselbacken Chess Open Stockholm_T05870_V368492326 • Hasselbacken Chess Open Diverse, 2018
+2018 • 2018-11-02 Hasselbacken Chess Open Stockholm_T05870_V368492326 • Lilla Hasselbacken Chess Open 2018_T05871_V368998109
 2018 • 2018-11-10 Elitseriesammandraget Scandic Foresta Stockholm
-2018 • 2018-11-17 Rockadenjunioren Stockholm
-2018 • 2018-11-17 Rockadenjunioren Stockholm • Högstadiet
-2018 • 2018-11-17 Rockadenjunioren Stockholm • Lågstadiet
-2018 • 2018-11-23 Juniorallsvenskan Limhamn Malmö
-2018 • 2018-11-23 Juniorallsvenskan Limhamn Malmö • DIV 2
-2018 • 2018-11-23 Juniorallsvenskan Limhamn Malmö • Div 1
-2018 • 2018-12-01 Flickornas JGP-final Stockholm
-2018 • 2018-12-01 Flickornas JGP-final Stockholm • Prislistan
-2018 • 2018-12-01 Flickornas JGP-final Stockholm • Övriga bilder
+2018 • 2018-11-17 Rockadenjunioren Stockholm_V372237091
+2018 • 2018-11-17 Rockadenjunioren Stockholm_V372237091 • Högstadiet
+2018 • 2018-11-17 Rockadenjunioren Stockholm_V372237091 • Lågstadiet
+2018 • 2018-11-23 Juniorallsvenskan Limhamn Malmö_T06571_V368999959
+2018 • 2018-11-23 Juniorallsvenskan Limhamn Malmö_T06571_V368999959 • DIV 2
+2018 • 2018-11-23 Juniorallsvenskan Limhamn Malmö_T06571_V368999959 • Div 1
+2018 • 2018-12-01 Flickornas JGP-final Stockholm_T06667_V372124226
+2018 • 2018-12-01 Flickornas JGP-final Stockholm_T06667_V372124226 • Prislistan
+2018 • 2018-12-01 Flickornas JGP-final Stockholm_T06667_V372124226 • Övriga bilder
 2018 • 2018-12-08 JGP-finaler Stockholm
 2018 • 2018-12-08 JGP-finaler Stockholm • Diverse
 2018 • 2018-12-08 JGP-finaler Stockholm • Klass A
@@ -879,96 +881,96 @@
 2018 • 2018-12-08 JGP-finaler Stockholm • Klass H • A-final
 2018 • 2018-12-08 JGP-finaler Stockholm • Klass H • B-final
 2018 • 2018-12-08 JGP-finaler Stockholm • Klass H • C-final
-2018 • 2018-12-14 Malmö Open
-2018 • 2018-12-14 Malmö Open • MSF Open 2018
-2018 • 2018-12-14 Malmö Open • Malmö Open 2018
-2018 • 2018-12-14 Malmö Open • Malmö Open Diverse, 2018
-2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040
-2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040 • Diverse , 2018-2019
-2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040 • Rilton 1800 , 2018-2019
-2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040 • Rilton Cup , 2018-2019
-2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040 • Rilton Elo , 2018-2019
+2018 • 2018-12-14 Malmö Open_T05873_V371605082
+2018 • 2018-12-14 Malmö Open_T05873_V371605082 • MSF Open 2018
+2018 • 2018-12-14 Malmö Open_T05873_V371605082 • Malmö Open 2018
+2018 • 2018-12-14 Malmö Open_T05873_V371605082 • Malmö Open Diverse, 2018
+2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900
+2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Diverse , 2018-2019
+2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Rilton 1800 , 2018-2019
+2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Rilton Cup , 2018-2019
+2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Rilton Elo , 2018-2019
 2019
 2019 • 2019--2020 Allsvenskan
 2019 • 2019--2020 Allsvenskan • 2019-03-29 Elitseriesammandraget Malmö Rådhushallen
 2019 • 2019--2020 Allsvenskan • 2019-10-18 Elitseriesammandraget Uppsala
 2019 • 2019--2020 Lag-DM Stockholm
-2019 • 2019-01-12 Tjejträffen Stockholm
-2019 • 2019-01-18 Flick-SM Helsingborg
-2019 • 2019-01-18 Flick-SM Helsingborg • Diverse
-2019 • 2019-01-18 Flick-SM Helsingborg • Klass A
-2019 • 2019-01-18 Flick-SM Helsingborg • Klass B
-2019 • 2019-01-18 Flick-SM Helsingborg • Klass C
-2019 • 2019-01-18 Flick-SM Helsingborg • Klass D
-2019 • 2019-01-18 Flick-SM Helsingborg • Pristagare Klass A
-2019 • 2019-01-18 Flick-SM Helsingborg • Pristagare Klass B
-2019 • 2019-01-18 Flick-SM Helsingborg • Pristagare Klass C
-2019 • 2019-01-18 Flick-SM Helsingborg • Pristagare Klass D
+2019 • 2019-01-12 Tjejträffen Stockholm_T06666_V371172092
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Diverse
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Klass A
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Klass B
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Klass C
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Klass D
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Pristagare Klass A
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Pristagare Klass B
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Pristagare Klass C
+2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Pristagare Klass D
 2019 • 2019-01-26 Junior-Lag-DM Stockholm
 2019 • 2019-01-26 Junior-Lag-DM Stockholm • Elitserien
-2019 • 2019-02-04 Skollag-DM Stockholm
-2019 • 2019-02-08 Elite Hotels Open Växjö
-2019 • 2019-02-08 Elite Hotels Open Växjö • Elite Hotels Open 2019
-2019 • 2019-02-08 Elite Hotels Open Växjö • Elite Hotels Open Diverse, 2019
-2019 • 2019-02-08 Elite Hotels Open Växjö • Lilla Elite Hotels Open 2019
+2019 • 2019-02-04 Skollag-DM Stockholm_V444250234
+2019 • 2019-02-08 Elite Hotels Open Växjö_T05875_V373377329
+2019 • 2019-02-08 Elite Hotels Open Växjö_T05875_V373377329 • Elite Hotels Open 2019
+2019 • 2019-02-08 Elite Hotels Open Växjö_T05875_V373377329 • Elite Hotels Open Diverse, 2019
+2019 • 2019-02-08 Elite Hotels Open Växjö_T05875_V373377329 • Lilla Elite Hotels Open 2019
 2019 • 2019-02-12 Tjejträning med Pia Cramling
-2019 • 2019-02-16 Västgöta Open Skara
+2019 • 2019-02-16 Västgöta Open Skara_V374640196
 2019 • 2019-02-22 Fredagsträning Kristallens SK Katarina Södra Skola
 2019 • 2019-02-23 GP-finaler 2018 Stockholm
 2019 • 2019-03-03 100-mannaschacket Stockholm
-2019 • 2019-03-11 Schackfyrans kval Stockholm
+2019 • 2019-03-11 Schackfyrans kval Stockholm_V367219696
 2019 • 2019-03-12 Schack56an final Stockholm
-2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro
-2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro • Diverse
-2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro • Pristagare Knattar
-2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro • Pristagare Miniorer
+2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro_T07029_V374634233
+2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro_T07029_V374634233 • Diverse
+2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro_T07029_V374634233 • Pristagare Knattar
+2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro_T07029_V374634233 • Pristagare Miniorer
 2019 • 2019-04-05 Compo Cup Stockholm
-2019 • 2019-04-06 Wasa JGP Stockholm
-2019 • 2019-04-06 Wasa JGP Stockholm • Diverse
-2019 • 2019-04-06 Wasa JGP Stockholm • Pristagare
-2019 • 2019-04-06 Wasa JGP Stockholm • Pristagare • Klass AB
-2019 • 2019-04-06 Wasa JGP Stockholm • Pristagare • Klass C
-2019 • 2019-04-06 Wasa JGP Stockholm • Pristagare • Klass D
-2019 • 2019-04-06 Wasa JGP Stockholm • Pristagare • Klass E
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420 • Diverse
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420 • Pristagare
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420 • Pristagare • Klass AB
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420 • Pristagare • Klass C
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420 • Pristagare • Klass D
+2019 • 2019-04-06 Wasa JGP Stockholm_T07173_V373770420 • Pristagare • Klass E
 2019 • 2019-04-08 Stockholmsmästerskapet
-2019 • 2019-04-13 Super Fun Girlz Cup Stockholm
-2019 • 2019-04-13 Super Fun Girlz Cup Stockholm • Diverse
-2019 • 2019-04-13 Super Fun Girlz Cup Stockholm • Pristagarna
+2019 • 2019-04-13 Super Fun Girlz Cup Stockholm_V372605477
+2019 • 2019-04-13 Super Fun Girlz Cup Stockholm_V372605477 • Diverse
+2019 • 2019-04-13 Super Fun Girlz Cup Stockholm_V372605477 • Pristagarna
 2019 • 2019-04-14 Blixt-DM Stockholm
 2019 • 2019-04-19 Påskturneringen Norrköping
 2019 • 2019-04-19 Påskturneringen Norrköping • Lilla Påskturneringen 2019
 2019 • 2019-04-19 Påskturneringen Norrköping • Påskturneringen 2019
 2019 • 2019-04-19 Påskturneringen Norrköping • Påskturneringen Diverse 2019
-2019 • 2019-04-26 Stockholm Chess Challenge
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm • Diverse
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass AB
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass C
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass D
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass E
-2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass F
-2019 • 2019-05-04 Alingsås 100 år - partävling
+2019 • 2019-04-26 Stockholm Chess Challenge_V529022103
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062 • Diverse
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062 • Pristagare Klass AB
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062 • Pristagare Klass C
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062 • Pristagare Klass D
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062 • Pristagare Klass E
+2019 • 2019-04-27 Trojanska Hästen JGP I Täby Stockholm_T07188_V439922062 • Pristagare Klass F
+2019 • 2019-05-04 Alingsås 100 år - partävling_V373766908
 2019 • 2019-05-08 TePe-Sigemanturneringen Malmö
 2019 • 2019-05-10 Schackfyran-mästaren Stockholm
 2019 • 2019-05-10 Schackfyran-mästaren Stockholm • Kval 1
 2019 • 2019-05-10 Schackfyran-mästaren Stockholm • Kval 2
 2019 • 2019-05-11 Skollags-SM Stockholm
-2019 • 2019-05-15 Schack i skolan på Comic Con Stockholm
+2019 • 2019-05-15 Schack i skolan på Comic Con Stockholm_V431776292
 2019 • 2019-05-16 50-mannamatchen Wasa - Kristallen Stockholm
 2019 • 2019-05-18 JDM i snabbschack Stockholm
 2019 • 2019-05-18 JDM i snabbschack Stockholm • Diverse
 2019 • 2019-05-18 JDM i snabbschack Stockholm • Klass D
 2019 • 2019-05-18 JDM i snabbschack Stockholm • Klass E
 2019 • 2019-05-24 Schack56an-mästaren final Stockholm
-2019 • 2019-05-25 Schackfyrans Riksfinal Västerås
-2019 • 2019-05-25 Schackfyrans Riksfinal Västerås • Diverse 2019
-2019 • 2019-05-25 Schackfyrans Riksfinal Västerås • Vy-ABB Lagbilder 2019
+2019 • 2019-05-25 Schackfyrans Riksfinal Västerås_V367005201
+2019 • 2019-05-25 Schackfyrans Riksfinal Västerås_V367005201 • Diverse 2019
+2019 • 2019-05-25 Schackfyrans Riksfinal Västerås_V367005201 • Vy-ABB Lagbilder 2019
 2019 • 2019-05-29 Stockholm Elo Challenge
 2019 • 2019-05-30 Schackfyran-mästaren länsfinal för Halland , Tylösand
-2019 • 2019-05-31 Deltalift Open Tylösand Halmstad
-2019 • 2019-05-31 Deltalift Open Tylösand Halmstad • Deltalift Open 2019
-2019 • 2019-05-31 Deltalift Open Tylösand Halmstad • Harplinge Mini Open 2019
-2019 • 2019-05-31 Deltalift Open Tylösand Halmstad • Översiktsbilder 2019
+2019 • 2019-05-31 Deltalift Open Tylösand Halmstad_T05886_V373391026
+2019 • 2019-05-31 Deltalift Open Tylösand Halmstad_T05886_V373391026 • Deltalift Open 2019
+2019 • 2019-05-31 Deltalift Open Tylösand Halmstad_T05886_V373391026 • Harplinge Mini Open 2019
+2019 • 2019-05-31 Deltalift Open Tylösand Halmstad_T05886_V373391026 • Översiktsbilder 2019
 2019 • 2019-06-04 Juniturneringen Stockholm
 2019 • 2019-06-15 4 Springare IM-turnering våren Stockholm
 2019 • 2019-06-16 4 Springare Junior Open 15 år Vår Stockholm
@@ -1006,7 +1008,7 @@
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Minior-SM
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Mästarklassen
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Mästarklassen-Elit
-2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Schackfyran-mästaren riksfinal 2019
+2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Schackfyran-mästaren riksfinal 2019_T07027_V444580257
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Sverigemästarklassen
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Veteran Allmän 2019
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Veteran-SM 50+ 2019
@@ -1025,21 +1027,21 @@
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Weekend-2 • Grupp 3
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Weekend-2 • Grupp 4
 2019 • 2019-07-06 Schack-SM Eskilstuna_L10004 • Weekend-2 • Grupp 5
-2019 • 2019-08-02 CellaVision Chess Cup Lund
-2019 • 2019-08-02 CellaVision Chess Cup Lund • CellaVision Chess Cup 2019
-2019 • 2019-08-02 CellaVision Chess Cup Lund • Diverse 2019
-2019 • 2019-08-02 CellaVision Chess Cup Lund • Lilla CellaVision Chess Cup 2019
-2019 • 2019-08-02 CellaVision Chess Cup Lund • Stipendiater
-2019 • 2019-08-02 CellaVision Chess Cup Lund • Utställningen Chess in Art - Maria Yugina
+2019 • 2019-08-02 CellaVision Chess Cup Lund_T07198_V420839516
+2019 • 2019-08-02 CellaVision Chess Cup Lund_T07198_V420839516 • CellaVision Chess Cup 2019
+2019 • 2019-08-02 CellaVision Chess Cup Lund_T07198_V420839516 • Diverse 2019
+2019 • 2019-08-02 CellaVision Chess Cup Lund_T07198_V420839516 • Lilla CellaVision Chess Cup 2019
+2019 • 2019-08-02 CellaVision Chess Cup Lund_T07198_V420839516 • Stipendiater
+2019 • 2019-08-02 CellaVision Chess Cup Lund_T07198_V420839516 • Utställningen Chess in Art - Maria Yugina
 2019 • 2019-08-09 Sports Heart Värmdövallen Stockholm
 2019 • 2019-08-10 Rockaden Open Stockholm
 2019 • 2019-08-12 Stockholm Open
 2019 • 2019-08-16 Göteborg Open
 2019 • 2019-08-16 Göteborg Open • Göteborg Open 2019
 2019 • 2019-08-16 Göteborg Open • Lilla Göteborg Open 2019
-2019 • 2019-08-16 Kadettallsvenskan Final Göteborg
+2019 • 2019-08-16 Kadettallsvenskan Final Göteborg_T07037_V428975048
 2019 • 2019-08-19 Stockholm-Open-blixten
-2019 • 2019-08-24 Lidköping Open
+2019 • 2019-08-24 Lidköping Open_V427128384
 2019 • 2019-08-31 Pjäsen ELO Stockholm
 2019 • 2019-09-06 Skollags-NM Stockholm
 2019 • 2019-09-06 Skollags-NM Stockholm • Grupp A
@@ -1047,12 +1049,12 @@
 2019 • 2019-09-06 Skollags-NM Stockholm • Prisutdelningen Grupp A
 2019 • 2019-09-06 Skollags-NM Stockholm • Prisutdelningen Grupp B
 2019 • 2019-09-14 Nacka-snabben Stockholm
-2019 • 2019-09-21 Kristallens JGP Stockholm
-2019 • 2019-09-21 Kristallens JGP Stockholm • Diverse
-2019 • 2019-09-21 Kristallens JGP Stockholm • Pristagare Klass A
-2019 • 2019-09-21 Kristallens JGP Stockholm • Pristagare Klass B
-2019 • 2019-09-21 Kristallens JGP Stockholm • Pristagare Klass C
-2019 • 2019-09-21 Kristallens JGP Stockholm • Pristagare Klass D
+2019 • 2019-09-21 Kristallens JGP Stockholm_T07467_V426529155
+2019 • 2019-09-21 Kristallens JGP Stockholm_T07467_V426529155 • Diverse
+2019 • 2019-09-21 Kristallens JGP Stockholm_T07467_V426529155 • Pristagare Klass A
+2019 • 2019-09-21 Kristallens JGP Stockholm_T07467_V426529155 • Pristagare Klass B
+2019 • 2019-09-21 Kristallens JGP Stockholm_T07467_V426529155 • Pristagare Klass C
+2019 • 2019-09-21 Kristallens JGP Stockholm_T07467_V426529155 • Pristagare Klass D
 2019 • 2019-10-04 Schack i skolan Steg 1 och Steg 2 Salongerna
 2019 • 2019-10-05 JDM i blixt Stockholm
 2019 • 2019-10-05 JDM i blixt Stockholm • Diverse
@@ -1062,86 +1064,86 @@
 2019 • 2019-10-05 JDM i blixt Stockholm • Klass D
 2019 • 2019-10-05 JDM i blixt Stockholm • Klass E
 2019 • 2019-10-06 Snabbschacks-DM Stockholm
-2019 • 2019-10-11 Skol-SM Halmstad
-2019 • 2019-10-11 Skol-SM Halmstad • Bästa Skola
-2019 • 2019-10-11 Skol-SM Halmstad • Bästa tjej
-2019 • 2019-10-11 Skol-SM Halmstad • Från prisutdelningen
-2019 • 2019-10-11 Skol-SM Halmstad • Från tävlingsspelet
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass A
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass B
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass C
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass D
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass E
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass F
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass G
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass H
-2019 • 2019-10-11 Skol-SM Halmstad • Pristagare Klass I
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm • Diverse
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass AB
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass C
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass D
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass E
-2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm • Pristagare Klass F
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Bästa Skola
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Bästa tjej
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Från prisutdelningen
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Från tävlingsspelet
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass A
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass B
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass C
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass D
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass E
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass F
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass G
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass H
+2019 • 2019-10-11 Skol-SM Halmstad_T07038_V416643317 • Pristagare Klass I
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Diverse
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Pristagare Klass AB
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Pristagare Klass C
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Pristagare Klass D
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Pristagare Klass E
+2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Pristagare Klass F
 2019 • 2019-10-23 4 Springare IM-turnering, hösten Stockholm
 2019 • 2019-10-23 Uppsala Young Champions och Uppsala GM
 2019 • 2019-10-28 Lag-DM i blixt Stockholm
 2019 • 2019-10-29 4 Springare Junior Open 15 år Höst Stockholm
-2019 • 2019-11-01 Hasselbacken Chess Open Stockholm
-2019 • 2019-11-16 Rockadenjunioren Stockholm
-2019 • 2019-11-16 Rockadenjunioren Stockholm • Högstadiet
-2019 • 2019-11-16 Rockadenjunioren Stockholm • Lågstadiet
-2019 • 2019-11-16 Rockadenjunioren Stockholm • Mellanstadiet
-2019 • 2019-11-24 Juniorallsvenskan Göteborg
-2019 • 2019-11-24 Juniorallsvenskan Göteborg • DIV 1 och DIV 2
-2019 • 2019-11-24 Juniorallsvenskan Göteborg • DIV 3
-2019 • 2019-11-24 Juniorallsvenskan Göteborg • Pristagare DIV 1
-2019 • 2019-11-24 Juniorallsvenskan Göteborg • Pristagare DIV 2
-2019 • 2019-11-24 Juniorallsvenskan Göteborg • Pristagare DIV 3
-2019 • 2019-11-30 Turning Torso Chess Event Malmö
-2019 • 2019-12-08 Minior-Lag-DM Stockholm
-2019 • 2019-12-13 Malmö Open
-2019 • 2019-12-13 Malmö Open • MSF Open 2019
-2019 • 2019-12-13 Malmö Open • Malmö Open 2019
-2019 • 2019-12-27 Rilton Cup Stockholm_R10041
-2019 • 2019-12-27 Rilton Cup Stockholm_R10041 • Rilton 1800
-2019 • 2019-12-27 Rilton Cup Stockholm_R10041 • Rilton Cup
-2019 • 2019-12-27 Rilton Cup Stockholm_R10041 • Rilton Diverse
-2019 • 2019-12-27 Rilton Cup Stockholm_R10041 • Rilton Elo
+2019 • 2019-11-01 Hasselbacken Chess Open Stockholm_T07408_V430843542
+2019 • 2019-11-16 Rockadenjunioren Stockholm_V428042462
+2019 • 2019-11-16 Rockadenjunioren Stockholm_V428042462 • Högstadiet
+2019 • 2019-11-16 Rockadenjunioren Stockholm_V428042462 • Lågstadiet
+2019 • 2019-11-16 Rockadenjunioren Stockholm_V428042462 • Mellanstadiet
+2019 • 2019-11-24 Juniorallsvenskan Göteborg_T07054_V380808869
+2019 • 2019-11-24 Juniorallsvenskan Göteborg_T07054_V380808869 • DIV 1 och DIV 2
+2019 • 2019-11-24 Juniorallsvenskan Göteborg_T07054_V380808869 • DIV 3
+2019 • 2019-11-24 Juniorallsvenskan Göteborg_T07054_V380808869 • Pristagare DIV 1
+2019 • 2019-11-24 Juniorallsvenskan Göteborg_T07054_V380808869 • Pristagare DIV 2
+2019 • 2019-11-24 Juniorallsvenskan Göteborg_T07054_V380808869 • Pristagare DIV 3
+2019 • 2019-11-30 Turning Torso Chess Event Malmö_T07913_V379297670
+2019 • 2019-12-08 Minior-Lag-DM Stockholm_T07854_V440118405
+2019 • 2019-12-13 Malmö Open_T07405_V441371447
+2019 • 2019-12-13 Malmö Open_T07405_V441371447 • MSF Open 2019
+2019 • 2019-12-13 Malmö Open_T07405_V441371447 • Malmö Open 2019
+2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329
+2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton 1800
+2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton Cup
+2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton Diverse
+2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton Elo
 2020
 2020 • 2020--2021 Lag-DM Stockholm
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • France Roosters
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • Germany Bears
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • Italy Gladiators
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • Netherlands Mosquitoes
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • Norway Gnomes
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • Poland Hussars
-2020 • 2020-01-09 Pro Chess League Sweden Wasabis • Spain Raptors
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • France Roosters
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • Germany Bears
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • Italy Gladiators
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • Netherlands Mosquitoes
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • Norway Gnomes
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • Poland Hussars
+2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018 • Spain Raptors
 2020 • 2020-01-10 4 Springare IM och juniortävling på Salongerna Stockholm
-2020 • 2020-01-11 Tjejträffen Stockholm
+2020 • 2020-01-11 Tjejträffen Stockholm_T07903_V416898427
 2020 • 2020-01-17 Damschack - träning på Salongerna med Juan Bellon
-2020 • 2020-01-18 Flick-SM Örebro
+2020 • 2020-01-18 Flick-SM Örebro_T07909_V413932764
 2020 • 2020-01-21 Schack i skolan - Öppet hus på Essingeskolan Stockholm
 2020 • 2020-01-22 Juniorträning Farsta SK på Swedenborgsgatan 24 Stockholm
 2020 • 2020-01-25 Junior-Lag-DM Stockholm
 2020 • 2020-01-25 Junior-Lag-DM Stockholm • Elitserien
 2020 • 2020-01-30 Magnus Carlsen - presskonferens At Six Stockholm
-2020 • 2020-02-08 Elite Hotels Open Växjö
-2020 • 2020-02-08 Elite Hotels Open Växjö • Diverse 2020
-2020 • 2020-02-08 Elite Hotels Open Växjö • Elite Hotels Open 2020
-2020 • 2020-02-08 Elite Hotels Open Växjö • Lilla Elite Hotels Open 2020
+2020 • 2020-02-08 Elite Hotels Open Växjö_T07411_V423941736
+2020 • 2020-02-08 Elite Hotels Open Växjö_T07411_V423941736 • Diverse 2020
+2020 • 2020-02-08 Elite Hotels Open Växjö_T07411_V423941736 • Elite Hotels Open 2020
+2020 • 2020-02-08 Elite Hotels Open Växjö_T07411_V423941736 • Lilla Elite Hotels Open 2020
 2020 • 2020-02-15 GP-finaler 2019 Stockholm
 2020 • 2020-02-17 Skollag-DM Stockholm
 2020 • 2020-02-17 Skollag-DM Stockholm • 2020, Lågstadiet
 2020 • 2020-02-17 Skollag-DM Stockholm • 2020, Mellanstadiet
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm • Diverse
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass AB
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass C
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass D
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass E
-2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass F
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363 • Diverse
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363 • Pristagare Klass AB
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363 • Pristagare Klass C
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363 • Pristagare Klass D
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363 • Pristagare Klass E
+2020 • 2020-02-22 Trojanska Hästen JGP I Täby Stockholm_T08241_V440445363 • Pristagare Klass F
 2020 • 2020-02-28 Tjejmässan i Högdalshallen Stockholm
 2020 • 2020-07-08 Juniorträning - SK Rockaden Stockholm Olle Eleby
 2021
@@ -1158,11 +1160,11 @@
 2021 • 2021--2022 Lag-DM Stockholm • Division 2_T9192
 2021 • 2021--2022 Lag-DM Stockholm • Division 5_T9195
 2021 • 2021--2022 Lag-DM Stockholm • Elitserien_T9190
-2021 • 2021-07-02 Schack-SM Helsingborg
-2021 • 2021-07-02 Schack-SM Helsingborg • Diverse 2021
-2021 • 2021-07-02 Schack-SM Helsingborg • Junior-SM 2021
-2021 • 2021-07-02 Schack-SM Helsingborg • Mästarklass-Elit 2021
-2021 • 2021-07-02 Schack-SM Helsingborg • Sverigemästarklassen 2021
+2021 • 2021-07-02 Schack-SM Helsingborg_T08918_V575986954
+2021 • 2021-07-02 Schack-SM Helsingborg_T08918_V575986954 • Diverse 2021
+2021 • 2021-07-02 Schack-SM Helsingborg_T08918_V575986954 • Junior-SM 2021
+2021 • 2021-07-02 Schack-SM Helsingborg_T08918_V575986954 • Mästarklass-Elit 2021
+2021 • 2021-07-02 Schack-SM Helsingborg_T08918_V575986954 • Sverigemästarklassen 2021
 2021 • 2021-08-09 Uppsala Chess Festival
 2021 • 2021-08-09 Uppsala Chess Festival • Amatörtävlingen - Uppsala Chess Festival
 2021 • 2021-08-09 Uppsala Chess Festival • Diverse - Uppsala Chess Festival
@@ -1179,10 +1181,10 @@
 2021 • 2021-08-09 Uppsala Chess Festival • Weekend grupp 4 - Uppsala Chess Festival
 2021 • 2021-08-09 Uppsala Chess Festival • Weekend grupp 5 - Uppsala Chess Festival
 2021 • 2021-08-09 Uppsala Chess Festival • Weekend grupp 6 - Uppsala Chess Festival
-2021 • 2021-08-21 Turning Torso Chess Event Malmö
-2021 • 2021-08-21 Turning Torso Chess Event Malmö • Dag 1, rond 1-9
-2021 • 2021-08-21 Turning Torso Chess Event Malmö • Dag 2, rond 10-18
-2021 • 2021-08-21 Turning Torso Chess Event Malmö • Diverse
+2021 • 2021-08-21 Turning Torso Chess Event Malmö_T08973_V597915990
+2021 • 2021-08-21 Turning Torso Chess Event Malmö_T08973_V597915990 • Dag 1, rond 1-9
+2021 • 2021-08-21 Turning Torso Chess Event Malmö_T08973_V597915990 • Dag 2, rond 10-18
+2021 • 2021-08-21 Turning Torso Chess Event Malmö_T08973_V597915990 • Diverse
 2021 • 2021-09-11 Kristallens JGP Stockholm
 2021 • 2021-09-11 Kristallens JGP Stockholm • Diverse
 2021 • 2021-09-11 Kristallens JGP Stockholm • Pristagare Klass AB
@@ -1292,21 +1294,21 @@
 2022 • 2022--2023 Lag-DM Stockholm • Division 5_T10513
 2022 • 2022--2023 Lag-DM Stockholm • Elitserien_T10508
 2022 • 2022-02-12 Stockholm-Uppsala Junior ELO Challenge_T9920
-2022 • 2022-02-28 Sportlovsturneringen på Salongerna, Stockholm_R10023
-2022 • 2022-03-06 Flick-Weekend Stockholm_T9974
+2022 • 2022-02-28 Sportlovsturneringen på Salongerna, Stockholm_R10023_V683857303
+2022 • 2022-03-06 Flick-Weekend Stockholm_T09974_V686310512
 2022 • 2022-03-07 Skollag-DM Stockholm
 2022 • 2022-03-07 Skollag-DM Stockholm • finaler högstadiet och gymnasiet_R10025
-2022 • 2022-03-07 Skollag-DM Stockholm • finaler lågstadiet och mellanstadiet_R10025
+2022 • 2022-03-07 Skollag-DM Stockholm • finaler lågstadiet och mellanstadiet_R10025_V818903770
 2022 • 2022-03-07 Skollag-DM Stockholm • kval lågstadiet_R10024
 2022 • 2022-03-07 Skollag-DM Stockholm • kval mellanstadiet_R10024
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Diverse
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass AB_T9930
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass C_T9931
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass D_T9932
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass E_T9933
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Pristagare Klass F_T9934
-2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm • Pristagare med tema Harry Potter
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Diverse
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Pristagare Klass AB_T9930
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Pristagare Klass C_T9931
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Pristagare Klass D_T9932
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Pristagare Klass E_T9933
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Pristagare Klass F_T9934
+2022 • 2022-03-13 Trojanska Hästen JGP I Täby Stockholm_T09930_V688445867 • Pristagare med tema Harry Potter
 2022 • 2022-03-20 Projekt - Vi spelar ihop Jesper Hall
 2022 • 2022-03-24 Schackträning för barn och ungdomar från Ukraina, Salongerna_Stockholm
 2022 • 2022-03-25 Compo Cup Stockholm_T10011
@@ -1315,13 +1317,13 @@
 2022 • 2022-03-26 Junior-Lag-DM Stockholm • Superettan_T9936
 2022 • 2022-04-07 Schackfest på Kulturhuset Damträning
 2022 • 2022-04-11 Påsklovsturneringen_R10022
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022 • Diverse
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022 • Grupp 1_R10011
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022 • Grupp 2_R10012
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022 • Grupp 3_R10013
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022 • Grupp 4_R10014
-2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022 • Junior_R10015
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856 • Diverse
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856 • Grupp 1_R10011
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856 • Grupp 2_R10012
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856 • Grupp 3_R10013
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856 • Grupp 4_R10014
+2022 • 2022-04-12_Tyresö SK 50år, Jubileumsturnering 2022_T09939_V818823856 • Junior_R10015
 2022 • 2022-04-15 Påskturneringen_T9423
 2022 • 2022-05-01 Wasa JGP Stockholm
 2022 • 2022-05-01 Wasa JGP Stockholm • Diverse Klass A, B och E
@@ -1330,17 +1332,17 @@
 2022 • 2022-05-01 Wasa JGP Stockholm • Pristagare Klass C, 2022_T10033
 2022 • 2022-05-01 Wasa JGP Stockholm • Pristagare Klass D, 2022_T10034
 2022 • 2022-05-01 Wasa JGP Stockholm • Pristagare Klass E, 2022_T10035
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Avslutning med prisutdelning och middag 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Invigning med lottning, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Lundaspex, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 1, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 2, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 3, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 4, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 5, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 6, 2022
-2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010 • Rond 7, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Avslutning med prisutdelning och middag 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Invigning med lottning, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Lundaspex, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 1, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 2, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 3, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 4, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 5, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 6, 2022
+2022 • 2022-05-02 TePe-Sigemanturneringen Malmö_R10010_V818138617 • Rond 7, 2022
 2022 • 2022-05-18 Match mellan Stockholms damer och förbundsstyrelsen i Stockholm
 2022 • 2022-05-19 Stockholm Schackförbund och Pia Cramlings Tjejschacktävling på Kulturhuset
 2022 • 2022-05-21 JDM i snabbschack Stockholm
@@ -1538,8 +1540,11 @@
 2023 • 2023-03-20 Skollag-DM Stockholm • final lågstadiet_I10075_R10089
 2023 • 2023-03-20 Skollag-DM Stockholm • final mellanstadiet_I10075_R10089
 2023 • 2023-03-26 GP-finaler 2022 Stockholm_I10093_R10092
+2023 • 2023-03-31 Compo Cup Stockholm_I100094_T11431
+2023 • 2023-04-07 Påskturneringen Norrköping_I10095_T10380
 2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091
 2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Diverse
 2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Pristagare Knattar_T11403
 2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Pristagare Miniorer_T11404
-2023 • 2023-03-31 Compo Cup Stockholm_I100094_T11431
+2023 • 2023-04-22 Kadettallsvenskan Kval Stockholm_I10097_T11626_V820157109
+2023 • 2023-04-23 Blixt-DM Stockholm_I10098_T11499_V820468800

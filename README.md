@@ -84,6 +84,8 @@ Sökning går endast mot den folder man valt. Välj Home om du vill söka i alla
 * Öka hastigheten med **pil ner**
 * Avsluta genom att stänga fliken
 * Maximalt 1000 bilder kan visas i Chrome eller Safari.
+* Visa lågupplösta bilder med **1**
+* Visa högupplösta bilder med **2**
 	* [Microsoft Edge](https://www.geeksforgeeks.org/maximum-length-of-a-url-in-different-browsers/) klarar bara 60 bilder.
 
 ## Exempel

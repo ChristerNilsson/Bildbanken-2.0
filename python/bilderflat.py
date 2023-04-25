@@ -164,8 +164,6 @@ def makeSmall(Original,Home,small,name):
 	patch(cache, name, lst)
 	return lst
 
-
-
 def expand(a,d):
 	antal = {'images':0, 'folders':0}
 	i = 0

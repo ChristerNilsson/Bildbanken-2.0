@@ -11,6 +11,7 @@
 	let i=0
 	let paused = false
 	let seconds = delay
+	let directory = 'Home/' // eller 'small/'
 
 	$: keys = _.filter(_.keys($selected), (key) => $selected[key])
 	$: n = keys.length
@@ -22,7 +23,7 @@
 	const host = location.origin + location.pathname.replace('index.html','')
 	$: log('origin',location.origin)
 	$: log('pathname',location.pathname)
-	$: href = host + 'Home/' + md5 + '.jpg'
+	$: href = host + directory + md5 + '.jpg'
 	$: log(href.replace('https://storage.googleapis.com/',''))
 
 	$: key = _.last(path.split('/')).replaceAll('_',' ').replace('.jpg','').replace('Vy-','')
@@ -52,6 +53,8 @@
 	function keydown(event) {
 		const key = event.key
 		if (key == ' ') paused = ! paused
+		if (key == '1') directory = 'small/'
+		if (key == '2') directory = 'Home/'
 		if (key == 'ArrowLeft') g(i-1)
 		if (key == 'ArrowRight') g(i+1)
 		if (key == 'ArrowUp')   {

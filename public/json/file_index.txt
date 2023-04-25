@@ -93,3 +93,7 @@
 10092 : files/Resultat_GP_final_2022.pdf
 10093 : files/Inbjudan_till_finalspel_i_Senior_GP_2022.pdf
 10094 : files/Inbjudan_Compo_Cup_2023.pdf
+10095 : files/Inbjudan_Påskturneringen_2023.pdf
+10096 : files/Nytt_avtal_mellan_Stockholms_Schackförbund_och_Scandic_gällande_Rilton_Cup.pdf
+10097 : files/Inbjudan_kadett2023.pdf
+10098 : files/Inbjudan_Blixt_DM_2023.pdf
