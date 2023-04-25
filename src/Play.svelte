@@ -87,7 +87,7 @@
 		<tr><td style='text-align:left' width=10%>
 			#{i%n}
 		</td><td style='text-align:center' width=80%>
-			{paused ? 'Paused (Keys: Space Home Left Right Up Down End)' : key}
+			{paused ? 'Paused (Keys: Space 1=Lo 2=Hi Home Left Right Up Down End)' : key}
 		</td><td style='text-align:right' width=10%>
 			{seconds}s
 		</td></tr>
