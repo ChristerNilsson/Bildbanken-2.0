@@ -83,31 +83,14 @@
 			{/if}
 
 			&nbsp;<input class="largerCheckbox" type="checkbox" bind:checked={$selected[card.md5]} />
-
-			&nbsp;© Lars OA Hedlund
-
-			{#each FS as F}
-				&nbsp;<a target="_blank" href="{$fileIndex[F]}">Facts</a>
-			{/each}
-			{#each LS as L}
-				&nbsp;<a target="_blank" href="{$fileIndex[L]}">Link</a>
-			{/each}
-			{#each IS as I}
-				&nbsp;<a target="_blank" href="{$fileIndex[I]}">Invite</a>
-			{/each}
-			{#each RS as R}
-				&nbsp;<a target="_blank" href="{$fileIndex[R]}">Result</a>
-			{/each}
-			{#each MS as M}
-				&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>
-			{/each}
-			{#each TS as T}
-				&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>
-			{/each}
-			{#each VS as V}
-				&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
-			{/each}
-
+			&nbsp;© Lars OA
+			{#each FS as F}&nbsp;<a target="_blank" href="{$fileIndex[F]}">Facts</a>{/each}
+			{#each LS as L}&nbsp;<a target="_blank" href="{$fileIndex[L]}">Link</a>{/each}
+			{#each IS as I}&nbsp;<a target="_blank" href="{$fileIndex[I]}">Invite</a>{/each}
+			{#each RS as R}&nbsp;<a target="_blank" href="{$fileIndex[R]}">Result</a>{/each}
+			{#each MS as M}&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>{/each}
+			{#each TS as T}&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>{/each}
+			{#each VS as V}&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>{/each}
 			<!-- <span style="flex:2; text-align:center; white-space:nowrap;"></span> -->
 			<!-- • {round(ih.bw*ih.bh/1024/1024,1)}MP -->
 			<span style="flex:1; text-align:right; white-space:nowrap;"> {ih.timestamp.slice(0,16)} • {ih.bw}x{ih.bh} • {round(ih.bs/1024,0)}kB</span>
