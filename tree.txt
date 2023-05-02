@@ -40,6 +40,7 @@
 0000 Evenemang • 2023
 0000 Evenemang • 2023 • 2023-01-04 ChessKid
 0000 Evenemang • 2023 • 2023-01-05 Fide Women Workshop
+0000 Evenemang • 2023 • 2023-04-26 Näringslivet möter förorten Stockholm_L10027_T11711
 0000 Klubbar
 0000 Klubbar • 4 Springare
 0000 Klubbar • 4 Springare • 4 Springare IM och juniortävling på Salongerna Stockholm januari 2020
@@ -526,6 +527,7 @@
 2016 • 2016-12-27 Rilton Cup Stockholm_I10029_R10038 • Utställningen Schackets världsmästare - Luis Cuoso , 2016-2017
 2017
 2017 • 2017--2018 Allsvenskan
+2017 • 2017--2018 Allsvenskan • 2018-03-16 Elitseriesammandraget Scandic Foresta Stockholm
 2017 • 2017--2018 Lag-DM Stockholm
 2017 • 2017-01-08 Tjejträffen Stockholm
 2017 • 2017-01-21 Flick-SM Göteborg
@@ -647,6 +649,7 @@
 2017 • 2017-12-27 Rilton Cup Stockholm_R10039 • Rilton Elo , 2017-2018
 2018
 2018 • 2018--2019 Allsvenskan
+2018 • 2018--2019 Allsvenskan • 2019-03-29 Elitseriesammandraget Malmö Rådhushallen
 2018 • 2018--2019 Lag-DM Stockholm
 2018 • 2018-01-13 Tjejträffen Stockholm
 2018 • 2018-01-20 Flick-SM Västerås
@@ -674,7 +677,6 @@
 2018 • 2018-03-10 Snabbschacks-SM för Knattar och Miniorer Stockholm • Knattar
 2018 • 2018-03-10 Snabbschacks-SM för Knattar och Miniorer Stockholm • Miniorer
 2018 • 2018-03-12 Stockholmsmästerskapet
-2018 • 2018-03-16 Elitseriesammandraget Scandic Foresta Stockholm
 2018 • 2018-03-23 Compo Cup Stockholm
 2018 • 2018-03-24 Tyresö JGP Stockholm
 2018 • 2018-03-24 Tyresö JGP Stockholm • Diverse
@@ -794,7 +796,14 @@
 2018 • 2018-08-03 CellaVision Chess Cup Lund_T05289_V374651011 • Lilla CellaVision Chess Cup 2018
 2018 • 2018-08-10 Kadettallsvenskan Final Norrköping_T05595_V443363171
 2018 • 2018-08-13 Stockholm Open
+2018 • 2018-08-20 Stockholm-Open-blixten_V527482930
 2018 • 2018-08-25 Lidköping Open_V374666712
+2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841
+2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Diverse
+2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Från invigningen
+2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Pia Cramling´s Invitational
+2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Pia Cramling´s Ladies Open
+2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Pristagare
 2018 • 2018-09-09 Svenska Cupen Linköping_T06083_V374669551
 2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073
 2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Diverse
@@ -803,6 +812,7 @@
 2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Pristagare Klass C
 2018 • 2018-09-15 Kristallens JGP Stockholm_T05910_V374662073 • Pristagare Klass D
 2018 • 2018-09-16 Schack i skolan på Comic Con Stockholm_V371616397
+2018 • 2018-09-22 Lag-DM i blixt Stockholm_V376160745
 2018 • 2018-09-23 JDM i blixt Stockholm
 2018 • 2018-09-23 JDM i blixt Stockholm • Diverse
 2018 • 2018-09-23 JDM i blixt Stockholm • Pristagare Klass AB
@@ -810,10 +820,11 @@
 2018 • 2018-09-23 JDM i blixt Stockholm • Pristagare Klass D
 2018 • 2018-09-23 JDM i blixt Stockholm • Pristagare Klass E
 2018 • 2018-09-28 Västerås Open
-2018 • 2018-09-28 Västerås Open • Spellokalen, översiktsbilder 2018
 2018 • 2018-09-28 Västerås Open • Lilla Västerås Open 2018_T05677_V374647397
+2018 • 2018-09-28 Västerås Open • Spellokalen, översiktsbilder 2018
 2018 • 2018-09-28 Västerås Open • Västerås Open 2018_T05676_V374643751
 2018 • 2018-10-06 Minior-Lag-DM Stockholm_T06515_V376156506
+2018 • 2018-10-07 Snabbschacks-DM Stockholm_V374676264
 2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336
 2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Bästa skola
 2018 • 2018-10-12 Skol-SM Lidköping_T05956_V370571336 • Bästa tjej
@@ -881,19 +892,10 @@
 2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Rilton 1800 , 2018-2019
 2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Rilton Cup , 2018-2019
 2018 • 2018-12-27 Rilton Cup Stockholm_I10030_R10040_V369009900 • Rilton Elo , 2018-2019
-2018 • 2018-08-20 Stockholm-Open-blixten_V527482930
-2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841
-2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Diverse
-2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Från invigningen
-2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Pia Cramling´s Invitational
-2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Pia Cramling´s Ladies Open
-2018 • 2018-09-01 Pia Cramlings jubileumsturnering, Stockholm - Damschack_T06068_V370273841 • Pristagare
-2018 • 2018-09-22 Lag-DM i blixt Stockholm_V376160745
-2018 • 2018-10-07 Snabbschacks-DM Stockholm_V374676264
 2019
 2019 • 2019--2020 Allsvenskan
-2019 • 2019--2020 Allsvenskan • 2019-03-29 Elitseriesammandraget Malmö Rådhushallen
 2019 • 2019--2020 Allsvenskan • 2019-10-18 Elitseriesammandraget Uppsala_T07287_V424400670
+2019 • 2019--2020 Lag-DM Stockholm_T07473_V438226589
 2019 • 2019-01-12 Tjejträffen Stockholm_T06666_V371172092
 2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828
 2019 • 2019-01-18 Flick-SM Helsingborg_T06647_V370196828 • Diverse
@@ -916,6 +918,7 @@
 2019 • 2019-02-16 Västgöta Open Skara_V374640196
 2019 • 2019-02-22 Fredagsträning Kristallens SK Katarina Södra Skola
 2019 • 2019-02-23 GP-finaler 2018 Stockholm
+2019 • 2019-03-03 100-mannaschacket Stockholm_V374672023
 2019 • 2019-03-11 Schackfyrans kval Stockholm_V367219696
 2019 • 2019-03-12 Schack56an final Stockholm
 2019 • 2019-03-16 Snabbschacks-SM för Knattar och Miniorer Örebro_T07029_V374634233
@@ -1085,6 +1088,7 @@
 2019 • 2019-10-19 Trojanska Hästen JGP II Täby Stockholm_T07718_V439499085 • Pristagare Klass F
 2019 • 2019-10-23 4 Springare IM-turnering, hösten Stockholm
 2019 • 2019-10-23 Uppsala Young Champions och Uppsala GM
+2019 • 2019-10-28 Lag-DM i blixt Stockholm
 2019 • 2019-10-29 4 Springare Junior Open 15 år Höst Stockholm
 2019 • 2019-11-01 Hasselbacken Chess Open Stockholm_T07408_V430843542
 2019 • 2019-11-16 Rockadenjunioren Stockholm_V428042462
@@ -1107,9 +1111,6 @@
 2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton Cup
 2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton Diverse
 2019 • 2019-12-27 Rilton Cup Stockholm_R10041_V442435329 • Rilton Elo
-2019 • 2019--2020 Lag-DM Stockholm_T07473_V438226589
-2019 • 2019-03-03 100-mannaschacket Stockholm_V374672023
-2019 • 2019-10-28 Lag-DM i blixt Stockholm_V440062054
 2020
 2020 • 2020--2021 Lag-DM Stockholm
 2020 • 2020-01-09 Pro Chess League Sweden Wasabis-V415620018
@@ -1523,8 +1524,7 @@
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 2_I10078_R10080
 2023 • 2023-02-13 Skollag-DM Stockholm • Mellanstadiet kval 3_I10078_R10084
 2023 • 2023-02-13 Skollag-DM Stockholm • kval lågstadiet_I10075_R10076
-2023 • 2023-02-18 Västgöta Open Skara
-2023 • 2023-02-18 Västgöta Open Skara_I10080_R10081
+2023 • 2023-02-18 Västgöta Open Skara_I10099_R10100
 2023 • 2023-02-19 Junior-Lag-DM Stockholm
 2023 • 2023-02-19 Junior-Lag-DM Stockholm • Superettan_I10077_T11296
 2023 • 2023-02-27 Sportlovsturneringen på Salongerna, Stockholm_I10081_R10082
@@ -1539,12 +1539,20 @@
 2023 • 2023-03-20 Skollag-DM Stockholm
 2023 • 2023-03-20 Skollag-DM Stockholm • final lågstadiet_I10075_R10089
 2023 • 2023-03-20 Skollag-DM Stockholm • final mellanstadiet_I10075_R10089
+2023 • 2023-03-25 Snabbschacks-SM för Knattar och Miniorer Västerås_I10091
+2023 • 2023-03-25 Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Diverse
+2023 • 2023-03-25 Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Pristagare Knattar_T11403
+2023 • 2023-03-25 Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Pristagare Miniorer_T11404
 2023 • 2023-03-26 GP-finaler 2022 Stockholm_I10093_R10092
 2023 • 2023-03-31 Compo Cup Stockholm_I100094_T11431
 2023 • 2023-04-07 Påskturneringen Norrköping_I10095_T10380
 2023 • 2023-04-22 Kadettallsvenskan Kval Stockholm_I10097_T11626_V820157109
 2023 • 2023-04-23 Blixt-DM Stockholm_I10098_T11499_V820468800
-2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091
-2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Diverse
-2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Pristagare Knattar_T11403
-2023 • Snabbschacks-SM för Knattar och Miniorer Västerås_I10091 • Pristagare Miniorer_T11404
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Diverse Klass A, B och E
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Diverse Klass C och D
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Pristagare Klass A_T11558
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Pristagare Klass B_T11559
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Pristagare Klass C_T11560
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Pristagare Klass D_T11561
+2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Pristagare Klass E_T11562

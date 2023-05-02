@@ -97,3 +97,6 @@
 10096 : files/Nytt_avtal_mellan_Stockholms_Schackförbund_och_Scandic_gällande_Rilton_Cup.pdf
 10097 : files/Inbjudan_kadett2023.pdf
 10098 : files/Inbjudan_Blixt_DM_2023.pdf
+10099 : files/Inbjudan_Västgöta_Open_2023.pdf
+10100 : files/Resultat_Västgöta_Open_2023.pdf
+10101 : files/Inbjudan_Wasa_JGP_2023.pdf
