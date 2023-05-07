@@ -100,3 +100,4 @@
 10099 : files/Inbjudan_Västgöta_Open_2023.pdf
 10100 : files/Resultat_Västgöta_Open_2023.pdf
 10101 : files/Inbjudan_Wasa_JGP_2023.pdf
+10102 : files/skollagssm2023.pdf
