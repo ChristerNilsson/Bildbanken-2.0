@@ -12,14 +12,12 @@
 
 ### Detta görs vid varje uppdatering
 
-* steg 1 (uppdaterar bilder.json)
-  * ställ dig i katalogen D:\2022-014-Bildbanken2
-  * python python\bilderflat.py
-  * Svara Y om allt ser ok ut
-  
-* steg 2 (kopierar nya och ändrade filer till Google Cloud Storage)
-  * Start Google Cloud SDK Shell
-  * gsutil -m rsync -d -r D:\2022-014-Bildbanken2\public gs://bildbank2
+* ställ dig i katalogen D:\2022-014-Bildbanken2
+
+* a.bat (uppdaterar bilder.json)
+	* Svara Y om allt ser ok ut
+
+* b.bat (kopierar nya och ändrade filer till Google Cloud Storage)
 
 * starta bildbanken med
-  * https://storage.googleapis.com/bildbank2/index.html
+	* https://storage.googleapis.com/bildbank2/index.html
