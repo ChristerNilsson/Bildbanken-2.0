@@ -30,7 +30,9 @@ QUALITY = 95
 WIDTH = 475
 YEAR = datetime.today().year
 
-ROOT = "C:/github/2022-014-Bildbanken2/"
+#ROOT = "C:/github/2022-014-Bildbanken2/"
+ROOT = ""
+
 Original = ROOT + "Original"       # cirka 2.000.000 bytes per bild (Readonly)
 Home     = ROOT + "public/Home"    # cirka 2.000.000 bytes per bild
 small    = ROOT + "public/small"   # cirka 	  25.000 bytes per bild

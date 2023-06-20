@@ -41,6 +41,7 @@
 0000 Evenemang • 2023 • 2023-01-04 ChessKid
 0000 Evenemang • 2023 • 2023-01-05 Fide Women Workshop
 0000 Evenemang • 2023 • 2023-04-26 Näringslivet möter förorten Stockholm_L10027_T11711
+0000 Evenemang • 2023 • 2023-06-10 Schackläger på Ingarö Wasa SK
 0000 Klubbar
 0000 Klubbar • 4 Springare
 0000 Klubbar • 4 Springare • 4 Springare IM och juniortävling på Salongerna Stockholm januari 2020
@@ -1529,6 +1530,7 @@
 2023 • 2023-02-19 Junior-Lag-DM Stockholm • Superettan_I10077_T11296
 2023 • 2023-02-27 Sportlovsturneringen på Salongerna, Stockholm_I10081_R10082
 2023 • 2023-03-03 Sportlovsturneringen II på Salongerna, Stockholm_R10083
+2023 • 2023-03-06 Stockholmsmästerskapet_I10108_R10109
 2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088
 2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Diverse
 2023 • 2023-03-18 Trojanska Hästen JGP I Täby Stockholm_I10088 • Pristagare Klass AB_T11514
@@ -1558,4 +1560,25 @@
 2023 • 2023-04-29 Wasa JGP Stockholm_I10101 • Pristagare Klass E_T11562
 2023 • 2023-05-03 Schackfyrans kval Stockholm
 2023 • 2023-05-04 Schack56an kval Stockholm
+2023 • 2023-05-04 TePe-Sigemanturneringen Malmö_R10103
 2023 • 2023-05-07 Skollags-SM Västerås_I10102_T11595
+2023 • 2023-05-11 50-mannamatchen Wasa - Kristallen Stockholm_R10104
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105 • Diverse
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105 • Pristagare Klass A_T11808
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105 • Pristagare Klass B_T11664
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105 • Pristagare Klass C_T11665
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105 • Pristagare Klass D_T11666
+2023 • 2023-05-13 JDM i snabbschack Stockholm_I10105 • Pristagare Klass E_T11667
+2023 • 2023-05-26 Schack56an-mästaren final Stockholm_I10106_R10107
+2023 • 2023-05-28 Schack56ans riksfinal i Uppsala_I10110_R10112
+2023 • 2023-05-28 Schack56ans riksfinal i Uppsala_I10110_R10112 • Diverse S56 2023
+2023 • 2023-05-28 Schack56ans riksfinal i Uppsala_I10110_R10112 • Vy-IFUarena S56 Lagbilder
+2023 • 2023-05-28 Schackfyrans riksfinal i Uppsala_I10110_R10111
+2023 • 2023-05-28 Schackfyrans riksfinal i Uppsala_I10110_R10111 • Diverse 2023
+2023 • 2023-05-28 Schackfyrans riksfinal i Uppsala_I10110_R10111 • Vy-IFUarena Lagbilder 2023
+2023 • 2023-05-29 Schackfyran-mästaren Stockholm
+2023 • 2023-05-29 Schackfyran-mästaren Stockholm • Kval 1 2023 Stockholm_I10113_R10116
+2023 • 2023-05-29 Schackfyran-mästaren Stockholm • Kval 2 2023 Stockholm_I10114_R10117
+2023 • 2023-05-29 Schackfyran-mästaren Stockholm • Kval 3 2023 Stockholm_I10115_R10118
+2023 • 2023-05-31 Juniturneringen Stockholm_I10119_T11766
