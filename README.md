@@ -143,4 +143,4 @@ Korrekt kommando rensas automatiskt.
 |Kommando|Betydelse|Exempel|Default|
 |-|-|-|-|
 
-[Katalogträd](https://storage.googleapis.com/bildbanken2/index.html?tree=)
+[Katalogträd](https://storage.googleapis.com/bildbank2/index.html?tree=)
