@@ -2,7 +2,7 @@
 
 ## Introduktion
 
-Denna databas innehåller drygt 45.000 fotografier från den svenska schackvärlden, tagna av Lars OA Hedlund, sedan 2011.  
+Denna databas innehåller drygt 50.000 fotografier från den svenska schackvärlden, tagna av Lars OA Hedlund, sedan 2011.  
 När du startar ser du alla bilder, med de senaste högst upp.  
 Du kan avgränsa sökandet på två sätt:
 
@@ -136,11 +136,5 @@ Klicka på **Download** för att ladda ner en zipfil.
 
 * Case: Sökorden måste ha samma case som texten
 * All: Sökorden kan stå var som helst i texten eller måste stå i början
-
-## Kommandon
-Kommandon inleds med @ och avslutas med Enter.  
-Korrekt kommando rensas automatiskt.
-|Kommando|Betydelse|Exempel|Default|
-|-|-|-|-|
 
 [Katalogträd](https://storage.googleapis.com/bildbank2/index.html?tree=)
