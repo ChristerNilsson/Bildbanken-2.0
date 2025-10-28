@@ -139,4 +139,6 @@ Klicka på **Download** för att ladda ner en zipfil.
 
 [Katalogträd](https://storage.googleapis.com/bildbank2/index.html?tree=)  
 
+[Bildbanken (förra versionen)](https://bildbanken1.schack.se)
+
 [Lars OA Hedlunds översikter, fördjupningar, tabeller och sökordskataloger](https://storage.googleapis.com/bildbank2/sandbox/index.html)  
